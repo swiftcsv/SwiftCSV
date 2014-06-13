@@ -28,4 +28,13 @@ class CSVTests: XCTestCase {
         let expect = ["id", "name", "age"]
         XCTAssertEqualObjects(self.csv?.headers, expect, "")
     }
+    
+    func testRows() {
+        let expect = [
+            ["id": 1, "name": "Alice", "age": 18],
+            ["id": 2, "name": "Bob", "age": 19],
+            ["id": 3, "name": "Charlie", "age": 20],
+        ]
+        XCTAssertEqualObjects(self.csv?.rows, expect, "")
+    }
 }
