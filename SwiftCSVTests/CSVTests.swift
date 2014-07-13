@@ -10,7 +10,7 @@ import XCTest
 import SwiftCSV
 
 class CSVTests: XCTestCase {
-    var csv: CSV?
+    var csv: CSV!
     
     override func setUp() {
         super.setUp()
@@ -26,7 +26,7 @@ class CSVTests: XCTestCase {
     
     func testHeaders() {
         let expect = ["id", "name", "age"]
-        XCTAssertEqualObjects(self.csv?.headers, expect, "")
+        XCTAssertEqualObjects(self.csv.headers, expect, "")
     }
     
     func testRows() {
@@ -35,7 +35,7 @@ class CSVTests: XCTestCase {
             ["id": 2, "name": "Bob", "age": 19],
             ["id": 3, "name": "Charlie", "age": 20],
         ]
-        XCTAssertEqualObjects(self.csv?.rows, expect, "")
+        XCTAssertEqualObjects(self.csv.rows, expect, "")
     }
     
     func testColumns() {
@@ -44,6 +44,6 @@ class CSVTests: XCTestCase {
             "name": ["Alice", "Bob", "Charlie"],
             "age": [18, 19, 20]
         ]
-        XCTAssertEqualObjects(self.csv?.columns, expect, "")
+        XCTAssertEqualObjects(self.csv.columns, expect, "")
     }
 }

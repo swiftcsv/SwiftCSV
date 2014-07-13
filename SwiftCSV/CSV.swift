@@ -10,9 +10,9 @@ import UIKit
 
 class CSV {
     let separator = ","
-    let headers: String[] = []
-    let rows: Dictionary<String, AnyObject?>[] = []
-    let columns = Dictionary<String, AnyObject[]>()
+    let headers: [String] = []
+    let rows: [Dictionary<String, AnyObject?>] = []
+    let columns = Dictionary<String, [AnyObject?]>()
     
     init(contentsOfURL url: NSURL, separator: String) {
         var error: NSError?
@@ -23,6 +23,7 @@ class CSV {
             let lines = csvStringToParse.componentsSeparatedByString("\n")
             self.headers = self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
+            self.columns = self.parseColumns(fromLines: lines)
         } else {
             NSLog("Failed to open file: \(error)")
             abort()
@@ -33,12 +34,12 @@ class CSV {
         self.init(contentsOfURL: url, separator: ",")
     }
     
-    func parseHeaders(fromLines lines: String[]) -> String[] {
+    func parseHeaders(fromLines lines: [String]) -> [String] {
         return lines[0].componentsSeparatedByString(self.separator)
     }
     
-    func parseRows(fromLines lines: String[]) -> Dictionary<String, AnyObject?>[] {
-        var rows: Dictionary<String, AnyObject?>[] = []
+    func parseRows(fromLines lines: [String]) -> [Dictionary<String, AnyObject?>] {
+        var rows: [Dictionary<String, AnyObject?>] = []
         
         for (lineNumber, line) in enumerate(lines) {
             if lineNumber == 0 {
@@ -65,8 +66,8 @@ class CSV {
         return rows
     }
     
-    func parseColumns(fromLines lines: String[]) -> Dictionary<String, AnyObject?[]> {
-        var columns = Dictionary<String, AnyObject?[]>()
+    func parseColumns(fromLines lines: [String]) -> Dictionary<String, [AnyObject?]> {
+        var columns = Dictionary<String, [AnyObject?]>()
         
         for header in self.headers {
             let column = self.rows.map { row in row[header]! }

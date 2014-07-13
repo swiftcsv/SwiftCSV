@@ -10,13 +10,13 @@ import XCTest
 import SwiftCSV
 
 class TSVTests: XCTestCase {
-    var tsv: CSV?
+    var tsv: CSV!
 
     override func setUp() {
         super.setUp()
         
         let bundle = NSBundle(forClass: TSVTests.self)
-        let url = bundle.URLForRecource("users", withExtension: "tsv")
+        let url = bundle.URLForResource("users", withExtension: "tsv")
         self.tsv = CSV(contentsOfURL: url, separator: "\t")
     }
     
@@ -26,7 +26,7 @@ class TSVTests: XCTestCase {
     
     func testHeaders() {
         let expect = ["id", "name", "age"]
-        XCTAssertEqualObjects(self.tsv?.headers, expect, "")
+        XCTAssertEqualObjects(self.tsv.headers, expect, "")
     }
     
     func testRows() {
@@ -35,7 +35,7 @@ class TSVTests: XCTestCase {
             ["id": 2, "name": "Bob", "age": 19],
             ["id": 3, "name": "Charlie", "age": 20],
         ]
-        XCTAssertEqualObjects(self.tsv?.rows, expect, "")
+        XCTAssertEqualObjects(self.tsv.rows, expect, "")
     }
     
     func testColumns() {
@@ -44,7 +44,6 @@ class TSVTests: XCTestCase {
             "name": ["Alice", "Bob", "Charlie"],
             "age": [18, 19, 20]
         ]
-        XCTAssertEqualObjects(self.tsv?.columns, expect, "")
+        XCTAssertEqualObjects(self.tsv.columns, expect, "")
     }
-
 }
