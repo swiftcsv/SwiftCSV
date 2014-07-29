@@ -12,15 +12,15 @@ public class CSV {
     public let headers: [String] = []
     public let rows: [Dictionary<String, AnyObject?>] = []
     public let columns = Dictionary<String, [AnyObject?]>()
-    let separator = ","
+    let separator = NSCharacterSet(charactersInString: ",")
     
-    public init(contentsOfURL url: NSURL, separator: String) {
+    public init(contentsOfURL url: NSURL, separator: NSCharacterSet) {
         var error: NSError?
         let csvString = String.stringWithContentsOfURL(url, encoding: NSUTF8StringEncoding, error: &error)
         if let csvStringToParse = csvString {
             self.separator = separator
             
-            let lines = csvStringToParse.componentsSeparatedByString("\n")
+            let lines = csvStringToParse.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
             self.headers = self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
             self.columns = self.parseColumns(fromLines: lines)
@@ -31,11 +31,12 @@ public class CSV {
     }
     
     public convenience init(contentsOfURL url: NSURL) {
-        self.init(contentsOfURL: url, separator: ",")
+        let comma = NSCharacterSet(charactersInString: ",")
+        self.init(contentsOfURL: url, separator: comma)
     }
     
     func parseHeaders(fromLines lines: [String]) -> [String] {
-        return lines[0].componentsSeparatedByString(self.separator)
+        return lines[0].componentsSeparatedByCharactersInSet(self.separator)
     }
     
     func parseRows(fromLines lines: [String]) -> [Dictionary<String, AnyObject?>] {
@@ -47,7 +48,7 @@ public class CSV {
             }
             
             var row = Dictionary<String, AnyObject?>()
-            let values = line.componentsSeparatedByString(self.separator)
+            let values = line.componentsSeparatedByCharactersInSet(self.separator)
             for (index, header) in enumerate(self.headers) {
                 let value = values[index]
                 if let intValue = value.toInt() {

@@ -17,7 +17,8 @@ class TSVTests: XCTestCase {
         
         let bundle = NSBundle(forClass: TSVTests.self)
         let url = bundle.URLForResource("users", withExtension: "tsv")
-        self.tsv = CSV(contentsOfURL: url, separator: "\t")
+        let tab = NSCharacterSet(charactersInString: "\t")
+        self.tsv = CSV(contentsOfURL: url, separator: tab)
     }
     
     override func tearDown() {

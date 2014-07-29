@@ -35,5 +35,6 @@ Also, you can parse other formats such as TSV by using `init(contentsOfURL:separ
 
 ```swift
 let tsvURL = NSURL(string: "users.tsv")
-let tsv = CSV(contentsOfURL: tsvURL, separator: "\t")
+let tab = NSCharacterSet(charactersInString: "\t")
+let tsv = CSV(contentsOfURL: tsvURL, separator: tab)
 ```
