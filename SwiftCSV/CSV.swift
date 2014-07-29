@@ -8,13 +8,13 @@
 
 import UIKit
 
-class CSV {
+public class CSV {
+    public let headers: [String] = []
+    public let rows: [Dictionary<String, AnyObject?>] = []
+    public let columns = Dictionary<String, [AnyObject?]>()
     let separator = ","
-    let headers: [String] = []
-    let rows: [Dictionary<String, AnyObject?>] = []
-    let columns = Dictionary<String, [AnyObject?]>()
     
-    init(contentsOfURL url: NSURL, separator: String) {
+    public init(contentsOfURL url: NSURL, separator: String) {
         var error: NSError?
         let csvString = String.stringWithContentsOfURL(url, encoding: NSUTF8StringEncoding, error: &error)
         if let csvStringToParse = csvString {
@@ -30,7 +30,7 @@ class CSV {
         }
     }
     
-    convenience init(contentsOfURL url: NSURL) {
+    public convenience init(contentsOfURL url: NSURL) {
         self.init(contentsOfURL: url, separator: ",")
     }
     
