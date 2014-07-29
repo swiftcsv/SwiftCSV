@@ -20,7 +20,9 @@ public class CSV {
         if let csvStringToParse = csvString {
             self.separator = separator
             
-            let lines = csvStringToParse.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+            let newline = NSCharacterSet.newlineCharacterSet()
+            let lines = csvStringToParse.stringByTrimmingCharactersInSet(newline).componentsSeparatedByCharactersInSet(newline)
+            
             self.headers = self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
             self.columns = self.parseColumns(fromLines: lines)
