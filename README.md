@@ -38,3 +38,20 @@ let tsvURL = NSURL(string: "users.tsv")
 let tab = NSCharacterSet(charactersInString: "\t")
 let tsv = CSV(contentsOfURL: tsvURL, separator: tab)
 ```
+
+## Contribution
+
+1. Fork
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create new Pull Request
+
+## License
+
+SwiftCSV is available under the MIT license. See the LICENSE file for more info.
+
+## Author
+
+[naoty](https://github.com/naoty)
+
