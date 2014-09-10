@@ -11,40 +11,27 @@ import SwiftCSV
 
 class TSVTests: XCTestCase {
     var tsv: CSV!
-
-    override func setUp() {
-        super.setUp()
-        
-        let bundle = NSBundle(forClass: TSVTests.self)
-        let url = bundle.URLForResource("users", withExtension: "tsv")
-        let tab = NSCharacterSet(charactersInString: "\t")
-        self.tsv = CSV(contentsOfURL: url, separator: tab)
-    }
     
-    override func tearDown() {
-        super.tearDown()
+    override func setUp() {
+        let url = NSBundle(forClass: TSVTests.self).URLForResource("users", withExtension: "tsv")
+        let tab = NSCharacterSet(charactersInString: "\t")
+        tsv = CSV(contentsOfURL: url!, separator: tab)
     }
     
     func testHeaders() {
-        let expect = ["id", "name", "age"]
-//        XCTAssertEqualObjects(self.tsv.headers, expect, "")
+        XCTAssertEqual(tsv.headers, ["id", "name", "age"], "")
     }
     
     func testRows() {
-        let expect = [
-            ["id": 1, "name": "Alice", "age": 18],
-            ["id": 2, "name": "Bob", "age": 19],
-            ["id": 3, "name": "Charlie", "age": 20],
+        let expects = [
+            ["id": "1", "name": "Alice", "age": "18"],
+            ["id": "2", "name": "Bob", "age": "19"],
+            ["id": "3", "name": "Charlie", "age": "20"],
         ]
-//        XCTAssertEqualObjects(self.tsv.rows, expect, "")
+        XCTAssertEqual(tsv.rows, expects, "")
     }
     
     func testColumns() {
-        let expect = [
-            "id": [1, 2, 3],
-            "name": ["Alice", "Bob", "Charlie"],
-            "age": [18, 19, 20]
-        ]
-//        XCTAssertEqualObjects(self.tsv.columns, expect, "")
+        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", "20"]], tsv.columns, "")
     }
 }

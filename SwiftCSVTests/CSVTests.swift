@@ -13,37 +13,30 @@ class CSVTests: XCTestCase {
     var csv: CSV!
     
     override func setUp() {
-        super.setUp()
-        
-        let bundle = NSBundle(forClass: CSVTests.self)
-        let url = bundle.URLForResource("users", withExtension: "csv")
-        self.csv = CSV(contentsOfURL: url)
-    }
-    
-    override func tearDown() {
-        super.tearDown()
+        let url = NSBundle(forClass: CSVTests.self).URLForResource("users", withExtension: "csv")
+        csv = CSV(contentsOfURL: url!)
     }
     
     func testHeaders() {
-        let expect = ["id", "name", "age"]
-//        XCTAssertEqual(self.csv.headers, expect, "")
+        XCTAssertEqual(csv.headers, ["id", "name", "age"], "")
     }
     
     func testRows() {
-        let expect = [
-            ["id": 1, "name": "Alice", "age": 18],
-            ["id": 2, "name": "Bob", "age": 19],
-            ["id": 3, "name": "Charlie", "age": 20],
+        let expects = [
+            ["id": "1", "name": "Alice", "age": "18"],
+            ["id": "2", "name": "Bob", "age": "19"],
+            ["id": "3", "name": "Charlie", "age": "20"],
         ]
-//        XCTAssertEqual(self.csv.rows, expect, "")
+        XCTAssertEqual(csv.rows, expects, "")
     }
     
     func testColumns() {
-        let expect = [
-            "id": [1, 2, 3],
-            "name": ["Alice", "Bob", "Charlie"],
-            "age": [18, 19, 20]
-        ]
-//        XCTAssertEqual(self.csv.columns, expect, "")
+//        let expects = [
+//            "id": ["1", "2", "3"],
+//            "name": ["Alice", "Bob", "Charlie"],
+//            "age": ["18", "19", "20"]
+//        ]
+//        XCTAssertEqual(csv.columns, expects, "")
+        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", "20"]], csv.columns, "")
     }
 }

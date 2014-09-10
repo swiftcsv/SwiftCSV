@@ -10,8 +10,8 @@ import UIKit
 
 public class CSV {
     public let headers: [String] = []
-    public let rows: [Dictionary<String, AnyObject?>] = []
-    public let columns = Dictionary<String, [AnyObject?]>()
+    public let rows: [Dictionary<String, String>] = []
+    public let columns = Dictionary<String, [String]>()
     let separator = NSCharacterSet(charactersInString: ",")
     
     public init(contentsOfURL url: NSURL, separator: NSCharacterSet) {
@@ -41,27 +41,19 @@ public class CSV {
         return lines[0].componentsSeparatedByCharactersInSet(self.separator)
     }
     
-    func parseRows(fromLines lines: [String]) -> [Dictionary<String, AnyObject?>] {
-        var rows: [Dictionary<String, AnyObject?>] = []
+    func parseRows(fromLines lines: [String]) -> [Dictionary<String, String>] {
+        var rows: [Dictionary<String, String>] = []
         
         for (lineNumber, line) in enumerate(lines) {
             if lineNumber == 0 {
                 continue
             }
             
-            var row = Dictionary<String, AnyObject?>()
+            var row = Dictionary<String, String>()
             let values = line.componentsSeparatedByCharactersInSet(self.separator)
             for (index, header) in enumerate(self.headers) {
                 let value = values[index]
-                if let intValue = value.toInt() {
-                    row[header] = intValue
-                } else if value == "true" {
-                    row[header] = true
-                } else if value == "false" {
-                    row[header] = false
-                } else {
-                    row[header] = value
-                }
+                row[header] = value
             }
             rows.append(row)
         }
@@ -69,8 +61,8 @@ public class CSV {
         return rows
     }
     
-    func parseColumns(fromLines lines: [String]) -> Dictionary<String, [AnyObject?]> {
-        var columns = Dictionary<String, [AnyObject?]>()
+    func parseColumns(fromLines lines: [String]) -> Dictionary<String, [String]> {
+        var columns = Dictionary<String, [String]>()
         
         for header in self.headers {
             let column = self.rows.map { row in row[header]! }
