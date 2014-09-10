@@ -12,13 +12,13 @@ public class CSV {
     public let headers: [String] = []
     public let rows: [Dictionary<String, String>] = []
     public let columns = Dictionary<String, [String]>()
-    let separator = NSCharacterSet(charactersInString: ",")
+    let delimiter = NSCharacterSet(charactersInString: ",")
     
-    public init(contentsOfURL url: NSURL, separator: NSCharacterSet) {
+    public init(contentsOfURL url: NSURL, delimiter: NSCharacterSet) {
         var error: NSError?
         let csvString = String.stringWithContentsOfURL(url, encoding: NSUTF8StringEncoding, error: &error)
         if let csvStringToParse = csvString {
-            self.separator = separator
+            self.delimiter = delimiter
             
             let newline = NSCharacterSet.newlineCharacterSet()
             let lines = csvStringToParse.stringByTrimmingCharactersInSet(newline).componentsSeparatedByCharactersInSet(newline)
@@ -34,11 +34,11 @@ public class CSV {
     
     public convenience init(contentsOfURL url: NSURL) {
         let comma = NSCharacterSet(charactersInString: ",")
-        self.init(contentsOfURL: url, separator: comma)
+        self.init(contentsOfURL: url, delimiter: comma)
     }
     
     func parseHeaders(fromLines lines: [String]) -> [String] {
-        return lines[0].componentsSeparatedByCharactersInSet(self.separator)
+        return lines[0].componentsSeparatedByCharactersInSet(self.delimiter)
     }
     
     func parseRows(fromLines lines: [String]) -> [Dictionary<String, String>] {
@@ -50,7 +50,7 @@ public class CSV {
             }
             
             var row = Dictionary<String, String>()
-            let values = line.componentsSeparatedByCharactersInSet(self.separator)
+            let values = line.componentsSeparatedByCharactersInSet(self.delimiter)
             for (index, header) in enumerate(self.headers) {
                 let value = values[index]
                 row[header] = value

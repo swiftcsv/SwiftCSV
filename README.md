@@ -31,12 +31,12 @@ let ages = csv.columns["age"]    //=> [18, 19, 20]
 
 ### Other formats
 
-Also, you can parse other formats such as TSV by using `init(contentsOfURL:separator:)`.
+Also, you can parse other formats such as TSV by using `init(contentsOfURL:delimiter:)`.
 
 ```swift
 let tsvURL = NSURL(string: "users.tsv")
 let tab = NSCharacterSet(charactersInString: "\t")
-let tsv = CSV(contentsOfURL: tsvURL, separator: tab)
+let tsv = CSV(contentsOfURL: tsvURL, delimiter: tab)
 ```
 
 ## Contribution
