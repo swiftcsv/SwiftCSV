@@ -11,14 +11,19 @@ import SwiftCSV
 
 class CSVTests: XCTestCase {
     var csv: CSV!
+    var csvWithCRLF: CSV!
     
     override func setUp() {
-        let url = NSBundle(forClass: CSVTests.self).URLForResource("users", withExtension: "csv")
-        csv = CSV(contentsOfURL: url!)
+        let csvURL = NSBundle(forClass: CSVTests.self).URLForResource("users", withExtension: "csv")
+        csv = CSV(contentsOfURL: csvURL!)
+        
+        let csvWithCRLFURL = NSBundle(forClass: CSVTests.self).URLForResource("users_with_crlf", withExtension: "csv")
+        csvWithCRLF = CSV(contentsOfURL: csvWithCRLFURL!)
     }
     
     func testHeaders() {
         XCTAssertEqual(csv.headers, ["id", "name", "age"], "")
+        XCTAssertEqual(csvWithCRLF.headers, ["id", "name", "age"], "")
     }
     
     func testRows() {
@@ -28,6 +33,7 @@ class CSVTests: XCTestCase {
             ["id": "3", "name": "Charlie", "age": "20"],
         ]
         XCTAssertEqual(csv.rows, expects, "")
+        XCTAssertEqual(csvWithCRLF.rows, expects, "")
     }
     
     func testColumns() {
@@ -38,5 +44,6 @@ class CSVTests: XCTestCase {
 //        ]
 //        XCTAssertEqual(csv.columns, expects, "")
         XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", "20"]], csv.columns, "")
+        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", "20"]], csvWithCRLF.columns, "")
     }
 }

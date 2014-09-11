@@ -21,7 +21,8 @@ public class CSV {
             self.delimiter = delimiter
             
             let newline = NSCharacterSet.newlineCharacterSet()
-            let lines = csvStringToParse.stringByTrimmingCharactersInSet(newline).componentsSeparatedByCharactersInSet(newline)
+            var lines: [String] = []
+            csvStringToParse.stringByTrimmingCharactersInSet(newline).enumerateLines { line, stop in lines.append(line) }
             
             self.headers = self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
