@@ -12,13 +12,14 @@ import SwiftCSV
 class CSVTests: XCTestCase {
     var csv: CSV!
     var csvWithCRLF: CSV!
+    var error: NSErrorPointer = nil
     
     override func setUp() {
         let csvURL = NSBundle(forClass: CSVTests.self).URLForResource("users", withExtension: "csv")
-        csv = CSV(contentsOfURL: csvURL!)
+        csv = CSV(contentsOfURL: csvURL!, error: error)
         
         let csvWithCRLFURL = NSBundle(forClass: CSVTests.self).URLForResource("users_with_crlf", withExtension: "csv")
-        csvWithCRLF = CSV(contentsOfURL: csvWithCRLFURL!)
+        csvWithCRLF = CSV(contentsOfURL: csvWithCRLFURL!, error: error)
     }
     
     func testHeaders() {

@@ -1,5 +1,9 @@
 # SwiftCSV
 
+## Requirements
+
+* Xcode 6.1 or later
+
 ## Usage
 
 For example, if you want to parse a below `users.csv`,
@@ -15,7 +19,8 @@ you can access data from rows and columns like this.
 
 ```swift
 let csvURL = NSURL(string: "users.csv")
-let csv = CSV(contentsOfURL: url)
+var error: NSErrorPointer = nil
+let csv = CSV(contentsOfURL: url, error: error)
 
 // Rows
 let rows = csv.rows
@@ -29,14 +34,17 @@ let names = csv.columns["name"]  //=> ["Alice", "Bob", "Charlie"]
 let ages = csv.columns["age"]    //=> ["18", "19", "20"]
 ```
 
+`CSV(contentsOfURL:error:)` will return `CSV?` type, because the initialization may be failed.
+
 ### Other formats
 
-Also, you can parse other formats such as TSV by using `init(contentsOfURL:delimiter:)`.
+Also, you can parse other formats such as TSV by using `CSV(contentsOfURL:delimiter:error:)`.
 
 ```swift
 let tsvURL = NSURL(string: "users.tsv")
 let tab = NSCharacterSet(charactersInString: "\t")
-let tsv = CSV(contentsOfURL: tsvURL, delimiter: tab)
+var error: NSErrorPointer = nil
+let tsv = CSV(contentsOfURL: tsvURL, delimiter: tab, error: error)
 ```
 
 ## Contribution

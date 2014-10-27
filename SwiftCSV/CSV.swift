@@ -14,9 +14,8 @@ public class CSV {
     public let columns = Dictionary<String, [String]>()
     let delimiter = NSCharacterSet(charactersInString: ",")
     
-    public init(contentsOfURL url: NSURL, delimiter: NSCharacterSet) {
-        var error: NSError?
-        let csvString = String.stringWithContentsOfURL(url, encoding: NSUTF8StringEncoding, error: &error)
+    public init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, error: NSErrorPointer) {
+        let csvString = String(contentsOfURL: url, encoding: NSUTF8StringEncoding, error: error);
         if let csvStringToParse = csvString {
             self.delimiter = delimiter
             
@@ -27,15 +26,12 @@ public class CSV {
             self.headers = self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
             self.columns = self.parseColumns(fromLines: lines)
-        } else {
-            NSLog("Failed to open file: \(error)")
-            abort()
         }
     }
     
-    public convenience init(contentsOfURL url: NSURL) {
+    public convenience init?(contentsOfURL url: NSURL, error: NSErrorPointer) {
         let comma = NSCharacterSet(charactersInString: ",")
-        self.init(contentsOfURL: url, delimiter: comma)
+        self.init(contentsOfURL: url, delimiter: comma, error: error)
     }
     
     func parseHeaders(fromLines lines: [String]) -> [String] {
