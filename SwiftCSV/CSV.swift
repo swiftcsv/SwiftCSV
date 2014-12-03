@@ -14,7 +14,7 @@ public class CSV {
     public let columns = Dictionary<String, [String]>()
     let delimiter = NSCharacterSet(charactersInString: ",")
     
-    public init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, error: NSErrorPointer) {
+    public init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, headers: [String], error: NSErrorPointer) {
         let csvString = String(contentsOfURL: url, encoding: NSUTF8StringEncoding, error: error);
         if let csvStringToParse = csvString {
             self.delimiter = delimiter
@@ -23,7 +23,7 @@ public class CSV {
             var lines: [String] = []
             csvStringToParse.stringByTrimmingCharactersInSet(newline).enumerateLines { line, stop in lines.append(line) }
             
-            self.headers = self.parseHeaders(fromLines: lines)
+            self.headers = headers.count > 0 ? headers : self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
             self.columns = self.parseColumns(fromLines: lines)
         }
@@ -31,7 +31,18 @@ public class CSV {
     
     public convenience init?(contentsOfURL url: NSURL, error: NSErrorPointer) {
         let comma = NSCharacterSet(charactersInString: ",")
-        self.init(contentsOfURL: url, delimiter: comma, error: error)
+        self.init(contentsOfURL: url, delimiter: comma, headers: [], error: error)
+    }
+    
+    public convenience init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, error: NSErrorPointer) {
+        let comma = NSCharacterSet(charactersInString: ",")
+        self.init(contentsOfURL: url, delimiter: delimiter, headers: [], error: error)
+    }
+    
+    
+    public convenience init?(contentsOfURL url: NSURL, headers: [String], error: NSErrorPointer) {
+        let comma = NSCharacterSet(charactersInString: ",")
+        self.init(contentsOfURL: url, delimiter: comma, headers: headers, error: error)
     }
     
     func parseHeaders(fromLines lines: [String]) -> [String] {
