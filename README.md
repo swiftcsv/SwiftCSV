@@ -20,7 +20,7 @@ you can access data from rows and columns like this.
 ```swift
 let csvURL = NSURL(string: "users.csv")
 var error: NSErrorPointer = nil
-let csv = CSV(contentsOfURL: url, error: error)
+let csv = CSV(contentsOfURL: csvURL, error: error)
 
 // Rows
 let rows = csv.rows
