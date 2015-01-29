@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Naoto Kaneko. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public class CSV {
     public let headers: [String] = []
