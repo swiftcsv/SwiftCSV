@@ -47,6 +47,15 @@ var error: NSErrorPointer = nil
 let tsv = CSV(contentsOfURL: tsvURL, delimiter: tab, error: error)
 ```
 
+## Installation
+
+SwiftCSV is available through CocoaPods, to install it simply add the following line to your Podfile:
+
+```ruby
+platform :ios, "8.0"
+pod "SwiftCSV"
+```
+
 ## Contribution
 
 1. Fork
