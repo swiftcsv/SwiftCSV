@@ -60,6 +60,25 @@ platform :ios, "8.0"
 pod "SwiftCSV"
 ```
 
+Every format also supports the ability to supply the headers for the file format independently of the data source file.
+
+```swift
+let csvURL = NSURL(string: "users.csv")
+let csvHeaders = ["id", "name", "age"]
+var error: NSErrorPointer = nil
+let csv = CSV(contentsOfURL: csvURL, headers: csvHeaders, error: error)
+
+// Rows
+let rows = csv.rows
+let headers = csv.headers  //=> ["id", "name", "age"]
+let alice = csv.rows[0]    //=> ["id": "1", "name": "Alice", "age": "18"]
+let bob = csv.rows[1]      //=> ["id": "2", "name": "Bob", "age": "19"]
+
+// Columns
+let columns = csv.columns
+let names = csv.columns["name"]  //=> ["Alice", "Bob", "Charlie"]
+let ages = csv.columns["age"]    //=> ["18", "19", "20"]
+```
 ## Contribution
 
 1. Fork
