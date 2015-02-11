@@ -18,20 +18,21 @@ id,name,age
 you can access data from rows and columns like this.
 
 ```swift
-let csvURL = NSURL(string: "users.csv")
-var error: NSErrorPointer = nil
-let csv = CSV(contentsOfURL: csvURL, error: error)
+if let url = NSURL(string: "users.csv") {
+    var error: NSErrorPointer = nil
+    if let csv = CSV(contentsOfURL: url, error: error) {
+        // Rows
+        let rows = csv.rows
+        let headers = csv.headers  //=> ["id", "name", "age"]
+        let alice = csv.rows[0]    //=> ["id": "1", "name": "Alice", "age": "18"]
+        let bob = csv.rows[1]      //=> ["id": "2", "name": "Bob", "age": "19"]
 
-// Rows
-let rows = csv.rows
-let headers = csv.headers  //=> ["id", "name", "age"]
-let alice = csv.rows[0]    //=> ["id": "1", "name": "Alice", "age": "18"]
-let bob = csv.rows[1]      //=> ["id": "2", "name": "Bob", "age": "19"]
-
-// Columns
-let columns = csv.columns
-let names = csv.columns["name"]  //=> ["Alice", "Bob", "Charlie"]
-let ages = csv.columns["age"]    //=> ["18", "19", "20"]
+        // Columns
+        let columns = csv.columns
+        let names = csv.columns["name"]  //=> ["Alice", "Bob", "Charlie"]
+        let ages = csv.columns["age"]    //=> ["18", "19", "20"]
+    }
+}
 ```
 
 `CSV(contentsOfURL:error:)` will return `CSV?` type, because the initialization may be failed.
@@ -41,10 +42,13 @@ let ages = csv.columns["age"]    //=> ["18", "19", "20"]
 Also, you can parse other formats such as TSV by using `CSV(contentsOfURL:delimiter:error:)`.
 
 ```swift
-let tsvURL = NSURL(string: "users.tsv")
-let tab = NSCharacterSet(charactersInString: "\t")
-var error: NSErrorPointer = nil
-let tsv = CSV(contentsOfURL: tsvURL, delimiter: tab, error: error)
+if let url = NSURL(string: "users.tsv") {
+    let tab = NSCharacterSet(charactersInString: "\t")
+    var error: NSErrorPointer = nil
+    if let tsv = CSV(contentsOfURL: url, delimiter: tab, error: error) {
+        // ...
+    }
+}
 ```
 
 ## Installation
