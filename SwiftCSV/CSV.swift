@@ -9,10 +9,10 @@
 import Foundation
 
 public class CSV {
-    public let headers: [String] = []
-    public let rows: [Dictionary<String, String>] = []
-    public let columns = Dictionary<String, [String]>()
-    let delimiter = NSCharacterSet(charactersInString: ",")
+    public var headers: [String] = []
+    public var rows: [Dictionary<String, String>] = []
+    public var columns = Dictionary<String, [String]>()
+    var delimiter = NSCharacterSet(charactersInString: ",")
     
     public init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, error: NSErrorPointer) {
         let csvString = String(contentsOfURL: url, encoding: NSUTF8StringEncoding, error: error);

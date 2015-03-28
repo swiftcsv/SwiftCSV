@@ -1,12 +1,14 @@
 # SwiftCSV
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 ## Requirements
 
 * Xcode 6.1 or later
 
 ## Usage
 
-For example, if you want to parse a below `users.csv`,
+For example, if you want to parse `users.csv` below,
 
 ```csv
 id,name,age
@@ -35,11 +37,11 @@ if let url = NSURL(string: "users.csv") {
 }
 ```
 
-`CSV(contentsOfURL:error:)` will return `CSV?` type, because the initialization may be failed.
+`CSV(contentsOfURL:error:)` will return `CSV?` type, because the initialization may fail.
 
 ### Other formats
 
-Also, you can parse other formats such as TSV by using `CSV(contentsOfURL:delimiter:error:)`.
+You can parse other formats such as TSV by using `CSV(contentsOfURL:delimiter:error:)`.
 
 ```swift
 if let url = NSURL(string: "users.tsv") {
@@ -59,6 +61,14 @@ SwiftCSV is available through CocoaPods, to install it simply add the following 
 platform :ios, "8.0"
 pod "SwiftCSV"
 ```
+
+SwiftCSV can also be installed using Carthage for version 0.1.1 and higher. To install, add the following to your Cartfile.
+
+```
+github "naoty/SwiftCSV" ~> 0.1.1
+```
+
+Then run `carthage update` and add the framework to your project. For more details, see the Carthage repository. 
 
 ## Contribution
 
