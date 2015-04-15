@@ -29,7 +29,12 @@ public class CSV {
         }
     }
     
-    public convenience init?(contentsOfURL url: NSURL, encoding: UInt = NSUTF8StringEncoding, error: NSErrorPointer) {
+    public convenience init?(contentsOfURL url: NSURL, error: NSErrorPointer) {
+        let comma = NSCharacterSet(charactersInString: ",")
+        self.init(contentsOfURL: url, delimiter: comma, encoding: NSUTF8StringEncoding, error: error)
+    }
+    
+    public convenience init?(contentsOfURL url: NSURL, encoding: UInt, error: NSErrorPointer) {
         let comma = NSCharacterSet(charactersInString: ",")
         self.init(contentsOfURL: url, delimiter: comma, encoding: encoding, error: error)
     }
