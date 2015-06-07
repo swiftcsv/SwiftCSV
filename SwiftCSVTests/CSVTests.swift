@@ -31,14 +31,14 @@ class CSVTests: XCTestCase {
         let expects = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
-            ["id": "3", "name": "Charlie", "age": "20"],
+            ["id": "3", "name": "Charlie", "age": ""],
         ]
         XCTAssertEqual(csv.rows, expects, "")
         XCTAssertEqual(csvWithCRLF.rows, expects, "")
     }
     
     func testColumns() {
-        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", "20"]], csv.columns, "")
-        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", "20"]], csvWithCRLF.columns, "")
+        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", ""]], csv.columns, "")
+        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", ""]], csvWithCRLF.columns, "")
     }
 }

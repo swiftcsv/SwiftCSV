@@ -54,8 +54,11 @@ public class CSV {
             var row = Dictionary<String, String>()
             let values = line.componentsSeparatedByCharactersInSet(self.delimiter)
             for (index, header) in enumerate(self.headers) {
-                let value = values[index]
-                row[header] = value
+                if index < values.count {
+                    row[header] = values[index]
+                } else {
+                    row[header] = ""
+                }
             }
             rows.append(row)
         }
@@ -67,7 +70,7 @@ public class CSV {
         var columns = Dictionary<String, [String]>()
         
         for header in self.headers {
-            let column = self.rows.map { row in row[header]! }
+            let column = self.rows.map { row in row[header] != nil ? row[header]! : "" }
             columns[header] = column
         }
         
