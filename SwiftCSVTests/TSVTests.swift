@@ -27,12 +27,12 @@ class TSVTests: XCTestCase {
         let expects = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
-            ["id": "3", "name": "Charlie", "age": "20"],
+            ["id": "3", "name": "Charlie", "age": ""],
         ]
         XCTAssertEqual(tsv.rows, expects, "")
     }
     
     func testColumns() {
-        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", "20"]], tsv.columns, "")
+        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", ""]], tsv.columns, "")
     }
 }
