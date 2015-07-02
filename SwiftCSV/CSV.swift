@@ -14,7 +14,7 @@ public class CSV {
     public var columns = Dictionary<String, [String]>()
     var delimiter = NSCharacterSet(charactersInString: ",")
     
-    public init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, encoding: UInt, error: NSErrorPointer) {
+    public init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, encoding: NSStringEncoding, error: NSErrorPointer) {
         let csvString = String(contentsOfURL: url, encoding: encoding, error: error);
         if let csvStringToParse = csvString {
             self.delimiter = delimiter
