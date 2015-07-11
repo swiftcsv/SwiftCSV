@@ -14,19 +14,23 @@ public class CSV {
     public var columns = Dictionary<String, [String]>()
     var delimiter = NSCharacterSet(charactersInString: ",")
     
-    public init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, encoding: NSStringEncoding, error: NSErrorPointer) {
-        let csvString = String(contentsOfURL: url, encoding: encoding, error: error);
-        if let csvStringToParse = csvString {
+    public init?(content: String?, delimiter: NSCharacterSet, encoding: UInt, error: NSErrorPointer){
+        if let csvStringToParse = content{
             self.delimiter = delimiter
-            
+
             let newline = NSCharacterSet.newlineCharacterSet()
             var lines: [String] = []
             csvStringToParse.stringByTrimmingCharactersInSet(newline).enumerateLines { line, stop in lines.append(line) }
-            
+
             self.headers = self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
             self.columns = self.parseColumns(fromLines: lines)
         }
+    }
+    
+    public convenience init?(contentsOfURL url: NSURL, delimiter: NSCharacterSet, encoding: UInt, error: NSErrorPointer) {
+        let csvString = String(contentsOfURL: url, encoding: encoding, error: error);
+        self.init(content: csvString,delimiter:delimiter, encoding:encoding, error: error)
     }
     
     public convenience init?(contentsOfURL url: NSURL, error: NSErrorPointer) {
