@@ -16,10 +16,20 @@ class CSVTests: XCTestCase {
     
     override func setUp() {
         let csvURL = NSBundle(forClass: CSVTests.self).URLForResource("users", withExtension: "csv")
-        csv = CSV(contentsOfURL: csvURL!, error: error)
+        do {
+            csv = try CSV(contentsOfURL: csvURL!)
+        } catch let error1 as NSError {
+            error.memory = error1
+            csv = nil
+        }
         
         let csvWithCRLFURL = NSBundle(forClass: CSVTests.self).URLForResource("users_with_crlf", withExtension: "csv")
-        csvWithCRLF = CSV(contentsOfURL: csvWithCRLFURL!, error: error)
+        do {
+            csvWithCRLF = try CSV(contentsOfURL: csvWithCRLFURL!)
+        } catch let error1 as NSError {
+            error.memory = error1
+            csvWithCRLF = nil
+        }
     }
     
     func testHeaders() {
