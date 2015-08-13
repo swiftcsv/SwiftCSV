@@ -16,7 +16,12 @@ class TSVTests: XCTestCase {
     override func setUp() {
         let url = NSBundle(forClass: TSVTests.self).URLForResource("users", withExtension: "tsv")
         let tab = NSCharacterSet(charactersInString: "\t")
-        tsv = CSV(contentsOfURL: url!, delimiter: tab, encoding: NSUTF8StringEncoding, error: error)
+        do {
+            tsv = try CSV(contentsOfURL: url!, delimiter: tab, encoding: NSUTF8StringEncoding)
+        } catch let error1 as NSError {
+            error.memory = error1
+            tsv = nil
+        }
     }
     
     func testHeaders() {

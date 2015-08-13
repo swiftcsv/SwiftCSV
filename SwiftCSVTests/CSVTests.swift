@@ -17,13 +17,28 @@ class CSVTests: XCTestCase {
     
     override func setUp() {
         let csvURL = NSBundle(forClass: CSVTests.self).URLForResource("users", withExtension: "csv")
-        csv = CSV(contentsOfURL: csvURL!, error: error)
+        do {
+            csv = try CSV(contentsOfURL: csvURL!)
+        } catch let error1 as NSError {
+            error.memory = error1
+            csv = nil
+        }
         
         let csvWithCRLFURL = NSBundle(forClass: CSVTests.self).URLForResource("users_with_crlf", withExtension: "csv")
-        csvWithCRLF = CSV(contentsOfURL: csvWithCRLFURL!, error: error)
+        do {
+            csvWithCRLF = try CSV(contentsOfURL: csvWithCRLFURL!)
+        } catch let error1 as NSError {
+            error.memory = error1
+            csvWithCRLF = nil
+        }
         
         let csvString = "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,\n"
-        csvFromString = CSV(csvString: csvString, error: error)
+        do {
+            csvFromString = try CSV(csvString: csvString)
+        } catch let error1 as NSError {
+            error.memory = error1
+            csvFromString = nil
+        }
     }
     
     func testHeaders() {
