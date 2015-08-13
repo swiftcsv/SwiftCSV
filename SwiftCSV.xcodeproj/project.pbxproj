@@ -165,6 +165,8 @@
 		3D1E59AB1945FFAC001CF760 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Naoto Kaneko";
 				TargetAttributes = {
