@@ -80,4 +80,29 @@ public class CSV {
         
         return columns
     }
+    
+    public func toString(){
+        var string = ""
+        let headersCount = self.headers.count
+        for (index, header) in enumerate(self.headers){
+            if index < headersCount - 1 && headersCount != 1 {
+                string += "\(header),"
+            }else{
+                string += "\(header)"
+            }
+        }
+        string += "\n"
+        for row in self.rows {
+            var valuesCount = row.count
+            for (index, value) in enumerate(row.values) {
+                if index < valuesCount && valuesCount != 1 {
+                    string += "\(value),"
+                }else{
+                    string += "\(value)"
+                }
+                
+            }
+            string += "\n"
+        }
+    }
 }
