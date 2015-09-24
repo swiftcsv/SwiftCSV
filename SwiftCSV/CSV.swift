@@ -81,31 +81,28 @@ public class CSV {
         return columns
     }
     
-    public func toString(del:String = ",") -> String{
+    public func toString(){
         var string = ""
         let headersCount = self.headers.count
-        for (i, header) in enumerate(self.headers){
-            if i < headersCount - 1 && headersCount != 1 {
-                string += "\(header)\(del)"
+        for (index, header) in enumerate(self.headers){
+            if index < headersCount - 1 && headersCount != 1 {
+                string += "\(header),"
             }else{
                 string += "\(header)"
             }
         }
         string += "\n"
-        for (i, row) in enumerate(self.rows) {
-            for (j, header) in enumerate(self.headers) {
-                var value = row[header]
-                if value == nil {
-                    value = ""
-                }
-                if j < headersCount - 1 && headersCount != 1 {
-                    string += "\(value!)\(del)"
+        for row in self.rows {
+            var valuesCount = row.count
+            for (index, value) in enumerate(row.values) {
+                if index < valuesCount && valuesCount != 1 {
+                    string += "\(value),"
                 }else{
-                    string += "\(value!)"
+                    string += "\(value)"
                 }
+                
             }
             string += "\n"
         }
-        return string
     }
 }
