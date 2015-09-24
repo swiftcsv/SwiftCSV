@@ -173,6 +173,7 @@
 					};
 					3D1E59BE1945FFAD001CF760 = {
 						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 3D1E59B31945FFAC001CF760;
 					};
 				};
 			};
