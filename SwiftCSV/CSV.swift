@@ -48,6 +48,26 @@ public class CSV {
         try self.init(contentsOfURL: url, delimiter: comma, encoding: encoding)
     }
     
+    public convenience init?(contentsOfFile path: String, delimiter: NSCharacterSet, encoding: UInt, error: NSErrorPointer) {
+        var csvString: String? = nil
+        do {
+            csvString = try String(contentsOfFile: path, encoding: encoding)
+        } catch let errorLocal as NSError {
+            error.memory = errorLocal
+        }
+        self.init(content: csvString, delimiter:delimiter, encoding:encoding, error: error)
+    }
+    
+    public convenience init?(contentsOfFile path: String, error: NSErrorPointer) {
+        let comma = NSCharacterSet(charactersInString: ",")
+        self.init(contentsOfFile: path, delimiter: comma, encoding: NSUTF8StringEncoding, error: error)
+    }
+    
+    public convenience init?(contentsOfFile path: String, encoding: UInt, error: NSErrorPointer) {
+        let comma = NSCharacterSet(charactersInString: ",")
+        self.init(contentsOfFile: path, delimiter: comma, encoding: encoding, error: error)
+    }
+    
     func parseHeaders(fromLines lines: [String]) -> [String] {
         return lines[0].componentsSeparatedByCharactersInSet(self.delimiter)
     }
