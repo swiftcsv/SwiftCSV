@@ -40,7 +40,9 @@ public class CSV {
                 if currentColumn == columnsCount-1 {
                     column.enumerateLines { columnLine, stop in
                         line += columnLine
-                        column.removeRange(columnLine.startIndex...columnLine.endIndex.predecessor())
+                        if !columnLine.isEmpty {
+                            column.removeRange(columnLine.startIndex...columnLine.endIndex.predecessor())
+                        }
                         stop = true
                     }
 
