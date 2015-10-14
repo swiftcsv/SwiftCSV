@@ -20,9 +20,58 @@ public class CSV {
 
             let newline = NSCharacterSet.newlineCharacterSet()
             var lines: [String] = []
-            csvStringToParse.stringByTrimmingCharactersInSet(newline).enumerateLines { line, stop in lines.append(line) }
+            var textWithoutHeader = "";
+            csvStringToParse.stringByTrimmingCharactersInSet(newline).enumerateLines { line, stop in
+                lines.append(line)
+                textWithoutHeader = csvStringToParse.substringFromIndex(line.endIndex)
+                stop = true
+            }
 
             self.headers = self.parseHeaders(fromLines: lines)
+            lines.removeAll()
+
+            let columnsCount = self.headers.count
+
+            var line = ""
+            var column = ""
+            var currentColumn = 0
+
+            func splitLine() {
+                if currentColumn == columnsCount-1 {
+                    column.enumerateLines { columnLine, stop in
+                        line += columnLine
+                        if !columnLine.isEmpty {
+                            column.removeRange(columnLine.startIndex...columnLine.endIndex.predecessor())
+                        }
+                        stop = true
+                    }
+
+                    lines.append(line)
+                    line = ""
+                    currentColumn = 0
+                }
+            }
+
+            for character in textWithoutHeader.utf16 {
+                column += String(Character(UnicodeScalar(character)))
+                
+                if delimiter.characterIsMember(character) {
+                    splitLine()
+                    currentColumn++;
+                    line += column.stringByTrimmingCharactersInSet(newline)
+                    column = ""
+                }
+            }
+
+            if !column.isEmpty {
+                currentColumn++;
+                splitLine()
+                line += column.stringByTrimmingCharactersInSet(newline)
+            }
+
+            if !line.isEmpty {
+                lines.append(line)
+            }
             self.rows = self.parseRows(fromLines: lines)
             self.columns = self.parseColumns(fromLines: lines)
         }
@@ -75,11 +124,7 @@ public class CSV {
     func parseRows(fromLines lines: [String]) -> [Dictionary<String, String>] {
         var rows: [Dictionary<String, String>] = []
         
-        for (lineNumber, line) in lines.enumerate() {
-            if lineNumber == 0 {
-                continue
-            }
-            
+        for line in lines {
             var row = Dictionary<String, String>()
             let values = line.componentsSeparatedByCharactersInSet(self.delimiter)
             for (index, header) in self.headers.enumerate() {
