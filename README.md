@@ -20,9 +20,11 @@ id,name,age
 you can access data from rows and columns like this.
 
 ```swift
-if let url = NSURL(string: "users.csv") {
+    let fileLocation = NSBundle.mainBundle().pathForResource("users", ofType: "csv")!
+
     var error: NSErrorPointer = nil
-    if let csv = CSV(contentsOfURL: url, error: error) {
+
+     if let csv = CSV(contentsOfFile: fileLocation, error: error) {
         // Rows
         let rows = csv.rows
         let headers = csv.headers  //=> ["id", "name", "age"]
@@ -34,23 +36,21 @@ if let url = NSURL(string: "users.csv") {
         let names = csv.columns["name"]  //=> ["Alice", "Bob", "Charlie"]
         let ages = csv.columns["age"]    //=> ["18", "19", "20"]
     }
-}
 ```
 
 `CSV(contentsOfURL:error:)` will return `CSV?` type, because the initialization may fail.
 
 ### Other formats
 
-You can parse other formats such as TSV by using `CSV(contentsOfURL:delimiter:error:)`.
+You can parse other formats such as TSV by using `CSV(contentsOf:delimiter:error:)`.
 
 ```swift
-if let url = NSURL(string: "users.tsv") {
+    let fileLocation = NSBundle.mainBundle().pathForResource("users", ofType: "csv)! 
     let tab = NSCharacterSet(charactersInString: "\t")
     var error: NSErrorPointer = nil
-    if let tsv = CSV(contentsOfURL: url, delimiter: tab, error: error) {
+    if let tsv = CSV(contentsOfFile: fileLocation, delimiter: tab, error: error) {
         // ...
     }
-}
 ```
 
 ## Installation
