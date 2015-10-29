@@ -45,7 +45,7 @@ you can access data from rows and columns like this.
 You can parse other formats such as TSV by using `CSV(contentsOf:delimiter:error:)`.
 
 ```swift
-    let fileLocation = NSBundle.mainBundle().pathForResource("users", ofType: "csv)! 
+    let fileLocation = NSBundle.mainBundle().pathForResource("users", ofType: "csv")! 
     let tab = NSCharacterSet(charactersInString: "\t")
     var error: NSErrorPointer = nil
     if let tsv = CSV(contentsOfFile: fileLocation, delimiter: tab, error: error) {
