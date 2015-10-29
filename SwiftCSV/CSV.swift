@@ -14,58 +14,35 @@ public class CSV {
     public var columns = Dictionary<String, [String]>()
     var delimiter = NSCharacterSet(charactersInString: ",")
     
-    public init(content: String?, delimiter: NSCharacterSet, encoding: UInt) throws{
-        if let csvStringToParse = content{
+    public init?(contentsOfFile file: String, delimiter: NSCharacterSet, encoding: UInt, error: NSErrorPointer) {
+        let csvString : String
+        do {
+            csvString = try String(contentsOfFile: file);
+            let csvStringToParse = csvString
             self.delimiter = delimiter
-
+            
             let newline = NSCharacterSet.newlineCharacterSet()
             var lines: [String] = []
             csvStringToParse.stringByTrimmingCharactersInSet(newline).enumerateLines { line, stop in lines.append(line) }
-
+            
             self.headers = self.parseHeaders(fromLines: lines)
             self.rows = self.parseRows(fromLines: lines)
             self.columns = self.parseColumns(fromLines: lines)
         }
-    }
-    
-    public convenience init(contentsOfURL url: NSURL, delimiter: NSCharacterSet, encoding: UInt) throws {
-        let csvString: String?
-        do {
-            csvString = try String(contentsOfURL: url, encoding: encoding)
-        } catch _ {
-            csvString = nil
-        };
-        try self.init(content: csvString,delimiter:delimiter, encoding:encoding)
-    }
-    
-    public convenience init(contentsOfURL url: NSURL) throws {
-        let comma = NSCharacterSet(charactersInString: ",")
-        try self.init(contentsOfURL: url, delimiter: comma, encoding: NSUTF8StringEncoding)
-    }
-    
-    public convenience init(contentsOfURL url: NSURL, encoding: UInt) throws {
-        let comma = NSCharacterSet(charactersInString: ",")
-        try self.init(contentsOfURL: url, delimiter: comma, encoding: encoding)
-    }
-    
-    public convenience init?(contentsOfFile path: String, delimiter: NSCharacterSet, encoding: UInt) throws {
-        var csvString: String? = nil
-        do {
-            csvString = try String(contentsOfFile: path, encoding: encoding)
-        } catch _ {
-            csvString = nil
+        catch {
+            csvString = ""
         }
-        try self.init(content: csvString, delimiter:delimiter, encoding:encoding)
+        
     }
     
-    public convenience init?(contentsOfFile path: String, error: NSErrorPointer) throws {
+    public convenience init?(contentsOfFile file: String, error: NSErrorPointer) {
         let comma = NSCharacterSet(charactersInString: ",")
-        try self.init(contentsOfFile: path, delimiter: comma, encoding: NSUTF8StringEncoding)
+        self.init(contentsOfFile: file, delimiter: comma, encoding: NSUTF8StringEncoding, error: error)
     }
     
-    public convenience init?(contentsOfFile path: String, encoding: UInt, error: NSErrorPointer) throws {
+    public convenience init?(contentsOfURL file: String, encoding: UInt, error: NSErrorPointer) {
         let comma = NSCharacterSet(charactersInString: ",")
-        try self.init(contentsOfFile: path, delimiter: comma, encoding: encoding)
+        self.init(contentsOfFile: file, delimiter: comma, encoding: encoding, error: error)
     }
     
     func parseHeaders(fromLines lines: [String]) -> [String] {
