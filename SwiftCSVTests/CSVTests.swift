@@ -51,4 +51,8 @@ class CSVTests: XCTestCase {
         XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", ""]], csv.columns, "")
         XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", ""]], csvWithCRLF.columns, "")
     }
+    
+    func testToString() {
+        XCTAssertEqual(csv.toString(), "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,\n", "toString() failed")
+    }
 }
