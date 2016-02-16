@@ -35,6 +35,25 @@ public class CSV {
         
     }
     
+    public init?(contentsOfHTTPURL url: String, encoding: UInt, error: NSErrorPointer) {
+        let csvString : String
+        do {
+            csvString = try String(contentsOfURL: NSURL(string: url)!)
+            let csvStringToParse = csvString
+            
+            let newline = NSCharacterSet.newlineCharacterSet()
+            var lines: [String] = []
+            csvStringToParse.stringByTrimmingCharactersInSet(newline).enumerateLines { line, stop in lines.append(line) }
+            
+            self.headers = self.parseHeaders(fromLines: lines)
+            self.rows = self.parseRows(fromLines: lines)
+            self.columns = self.parseColumns(fromLines: lines)
+        }
+        catch {
+            csvString = ""
+        }
+    }
+    
     public convenience init?(contentsOfFile file: String, error: NSErrorPointer) {
         let comma = NSCharacterSet(charactersInString: ",")
         self.init(contentsOfFile: file, delimiter: comma, encoding: NSUTF8StringEncoding, error: error)
