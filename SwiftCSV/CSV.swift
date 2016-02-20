@@ -13,11 +13,11 @@ public class CSV {
     internal(set) var rows: [[String: String]] = []
     internal(set) var columns: [String: [String]] = [:]
     
-    public init(name: String) throws {
+    public init(name: String, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         var contents: String!
         
         do {
-            contents = try String(contentsOfFile: name)
+            contents = try String(contentsOfFile: name, encoding: encoding)
         } catch {
             throw error
         }
@@ -25,11 +25,11 @@ public class CSV {
         parseContents(contents)
     }
     
-    public init(url: NSURL) throws {
+    public init(url: NSURL, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         var contents: String!
         
         do {
-            contents = try String(contentsOfURL: url)
+            contents = try String(contentsOfURL: url, encoding: encoding)
         } catch {
             throw error
         }
