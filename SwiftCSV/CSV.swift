@@ -9,11 +9,14 @@
 import Foundation
 
 public class CSV {
+    static private let comma = NSCharacterSet(charactersInString: ",")
+    static private let newline = NSCharacterSet(charactersInString: "\n")
+    
     internal(set) var header: [String] = []
     internal(set) var rows: [[String: String]] = []
     internal(set) var columns: [String: [String]] = [:]
     
-    public init(name: String, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
+    public init(name: String, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         var contents: String!
         
         do {
@@ -22,10 +25,10 @@ public class CSV {
             throw error
         }
         
-        parseContents(contents)
+        parseContents(contents, delimiter: delimiter)
     }
     
-    public init(url: NSURL, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
+    public init(url: NSURL, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         var contents: String!
         
         do {
@@ -34,14 +37,13 @@ public class CSV {
             throw error
         }
         
-        parseContents(contents)
+        parseContents(contents, delimiter: delimiter)
     }
     
-    private func parseContents(contents: String) {
-        let newline = NSCharacterSet(charactersInString: "\n")
-        let trimmedContents = contents.stringByTrimmingCharactersInSet(newline)
+    private func parseContents(contents: String, delimiter: NSCharacterSet) {
+        let trimmedContents = contents.stringByTrimmingCharactersInSet(CSV.newline)
         
-        for fieldName in HeaderSequence(text: trimmedContents) {
+        for fieldName in HeaderSequence(text: trimmedContents, delimiter: delimiter) {
             header.append(fieldName)
             columns[fieldName] = []
         }
@@ -52,7 +54,7 @@ public class CSV {
             }
             
             var fields: [String: String] = [:]
-            for (fieldIndex, field) in FieldSequence(text: row).enumerate() {
+            for (fieldIndex, field) in FieldSequence(text: row, delimiter: delimiter).enumerate() {
                 let fieldName = header[fieldIndex]
                 fields[fieldName] = field
                 columns[fieldName]?.append(field)

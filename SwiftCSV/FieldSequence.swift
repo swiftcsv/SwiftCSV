@@ -13,9 +13,8 @@ struct FieldGenerator: GeneratorType {
     
     private var tokens: [String]
     
-    init(text: String) {
-        let comma = NSCharacterSet(charactersInString: ",")
-        tokens = text.componentsSeparatedByCharactersInSet(comma)
+    init(text: String, delimiter: NSCharacterSet) {
+        tokens = text.componentsSeparatedByCharactersInSet(delimiter)
     }
     
     mutating func next() -> String? {
@@ -27,12 +26,14 @@ struct FieldSequence: SequenceType {
     typealias Generator = FieldGenerator
     
     private let text: String
+    private let delimiter: NSCharacterSet
     
-    init(text: String) {
+    init(text: String, delimiter: NSCharacterSet) {
         self.text = text
+        self.delimiter = delimiter
     }
     
     func generate() -> FieldGenerator {
-        return FieldGenerator(text: text)
+        return FieldGenerator(text: text, delimiter: delimiter)
     }
 }

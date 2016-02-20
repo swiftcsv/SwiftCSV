@@ -7,37 +7,35 @@
 //
 
 import XCTest
-import SwiftCSV
+import Foundation
+@testable import SwiftCSV
 
-//class TSVTests: XCTestCase {
-//    var tsv: CSV!
-//    var error: NSErrorPointer = nil
-//    
-//    override func setUp() {
-//        let url = NSBundle(forClass: TSVTests.self).URLForResource("users", withExtension: "tsv")
-//        let tab = NSCharacterSet(charactersInString: "\t")
-//        do {
-//            tsv = try CSV(contentsOfURL: url!, delimiter: tab, encoding: NSUTF8StringEncoding)
-//        } catch let error1 as NSError {
-//            error.memory = error1
-//            tsv = nil
-//        }
-//    }
-//    
-//    func testHeaders() {
-//        XCTAssertEqual(tsv.headers, ["id", "name", "age"], "")
-//    }
-//    
-//    func testRows() {
-//        let expects = [
-//            ["id": "1", "name": "Alice", "age": "18"],
-//            ["id": "2", "name": "Bob", "age": "19"],
-//            ["id": "3", "name": "Charlie", "age": ""],
-//        ]
-//        XCTAssertEqual(tsv.rows, expects, "")
-//    }
-//    
-//    func testColumns() {
-//        XCTAssertEqual(["id": ["1", "2", "3"], "name": ["Alice", "Bob", "Charlie"], "age": ["18", "19", ""]], tsv.columns, "")
-//    }
-//}
+class TSVTests: XCTestCase {
+    var tsv: CSV!
+    
+    override func setUp() {
+        let url = NSBundle(forClass: TSVTests.self).URLForResource("users", withExtension: "tsv")!
+        let tab = NSCharacterSet(charactersInString: "\t")
+        tsv = try! CSV(url: url, delimiter: tab)
+    }
+    
+    func testInit_makesHeader() {
+        XCTAssertEqual(tsv.header, ["id", "name", "age"])
+    }
+    
+    func testInit_makesRows() {
+        XCTAssertEqual(tsv.rows, [
+            ["id": "1", "name": "Alice", "age": "18"],
+            ["id": "2", "name": "Bob", "age": "19"],
+            ["id": "3", "name": "Charlie", "age": "20"]
+        ])
+    }
+    
+    func testInit_makesColumns() {
+        XCTAssertEqual(tsv.columns, [
+            "id": ["1", "2", "3"],
+            "name": ["Alice", "Bob", "Charlie"],
+            "age": ["18", "19", "20"]
+        ])
+    }
+}
