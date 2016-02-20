@@ -36,4 +36,8 @@ class CSVTests: XCTestCase {
             "age": ["18", "19", "20"]
         ])
     }
+    
+    func testDescription() {
+        XCTAssertEqual(csv.description, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
+    }
 }

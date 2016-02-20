@@ -10,7 +10,7 @@ import Foundation
 
 public class CSV {
     static private let comma = NSCharacterSet(charactersInString: ",")
-    static private let newline = NSCharacterSet(charactersInString: "\n")
+    static private let newline = NSCharacterSet.newlineCharacterSet()
     
     internal(set) var header: [String] = []
     internal(set) var rows: [[String: String]] = []
@@ -18,7 +18,6 @@ public class CSV {
     
     public init(name: String, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         var contents: String!
-        
         do {
             contents = try String(contentsOfFile: name, encoding: encoding)
         } catch {
@@ -30,7 +29,6 @@ public class CSV {
     
     public init(url: NSURL, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         var contents: String!
-        
         do {
             contents = try String(contentsOfURL: url, encoding: encoding)
         } catch {
@@ -61,5 +59,20 @@ public class CSV {
             }
             rows.append(fields)
         }
+    }
+}
+
+extension CSV: CustomStringConvertible {
+    public var description: String {
+        var contents = header.joinWithSeparator(",")
+        
+        for row in rows {
+            contents += "\n"
+            
+            let fields = header.map { row[$0]! }
+            contents += fields.joinWithSeparator(",")
+        }
+        
+        return contents
     }
 }
