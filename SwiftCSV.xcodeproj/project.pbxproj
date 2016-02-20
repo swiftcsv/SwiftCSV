@@ -15,7 +15,6 @@
 		3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3749E2194D6DF7008F262A /* TSVTests.swift */; };
 		3D3749E5194D6E12008F262A /* users.tsv in Resources */ = {isa = PBXBuildFile; fileRef = 3D3749E4194D6E12008F262A /* users.tsv */; };
 		3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
-		3DAAEE9E1C74C83400A933DB /* CSVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9D1C74C83400A933DB /* CSVError.swift */; };
 		3DAAEEA81C74D20E00A933DB /* RowSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEEA71C74D20E00A933DB /* RowSequence.swift */; };
 		3DAAEEAA1C74D4F200A933DB /* FieldSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEEA91C74D4F200A933DB /* FieldSequence.swift */; };
 		3DAAEEAE1C74DA6A00A933DB /* HeaderSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEEAD1C74DA6A00A933DB /* HeaderSequence.swift */; };
@@ -48,7 +47,6 @@
 		3D3749E2194D6DF7008F262A /* TSVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSVTests.swift; sourceTree = "<group>"; };
 		3D3749E4194D6E12008F262A /* users.tsv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.tsv; sourceTree = "<group>"; };
 		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
-		3DAAEE9D1C74C83400A933DB /* CSVError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVError.swift; sourceTree = "<group>"; };
 		3DAAEEA71C74D20E00A933DB /* RowSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowSequence.swift; sourceTree = "<group>"; };
 		3DAAEEA91C74D4F200A933DB /* FieldSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldSequence.swift; sourceTree = "<group>"; };
 		3DAAEEAD1C74DA6A00A933DB /* HeaderSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderSequence.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 			children = (
 				3D1E59D2194600D6001CF760 /* CSV.old.swift */,
 				3DAAEE9B1C74C7EC00A933DB /* CSV.swift */,
-				3DAAEE9D1C74C83400A933DB /* CSVError.swift */,
 				3DAAEEA91C74D4F200A933DB /* FieldSequence.swift */,
 				3DAAEEAD1C74DA6A00A933DB /* HeaderSequence.swift */,
 				3DAAEEA71C74D20E00A933DB /* RowSequence.swift */,
@@ -241,7 +238,6 @@
 				3DAAEEAE1C74DA6A00A933DB /* HeaderSequence.swift in Sources */,
 				3DAAEEAA1C74D4F200A933DB /* FieldSequence.swift in Sources */,
 				3DAAEEA81C74D20E00A933DB /* RowSequence.swift in Sources */,
-				3DAAEE9E1C74C83400A933DB /* CSVError.swift in Sources */,
 				3D1E59D3194600D6001CF760 /* CSV.old.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

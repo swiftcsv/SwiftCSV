@@ -13,20 +13,40 @@ public class CSV {
     internal(set) var rows: [[String: String]] = []
     internal(set) var columns: [String: [String]] = [:]
     
-    public init(url: NSURL) throws {
-        guard var contents = try? String(contentsOfURL: url) else {
-            throw CSVError.FileNotFound(url.absoluteString)
+    public init(name: String) throws {
+        var contents: String!
+        
+        do {
+            contents = try String(contentsOfFile: name)
+        } catch {
+            throw error
         }
         
-        let newline = NSCharacterSet(charactersInString: "\n")
-        contents = contents.stringByTrimmingCharactersInSet(newline)
+        parseContents(contents)
+    }
+    
+    public init(url: NSURL) throws {
+        var contents: String!
         
-        for fieldName in HeaderSequence(text: contents) {
+        do {
+            contents = try String(contentsOfURL: url)
+        } catch {
+            throw error
+        }
+        
+        parseContents(contents)
+    }
+    
+    private func parseContents(contents: String) {
+        let newline = NSCharacterSet(charactersInString: "\n")
+        let trimmedContents = contents.stringByTrimmingCharactersInSet(newline)
+        
+        for fieldName in HeaderSequence(text: trimmedContents) {
             header.append(fieldName)
             columns[fieldName] = []
         }
         
-        for (rowIndex, row) in RowSequence(text: contents).enumerate() {
+        for (rowIndex, row) in RowSequence(text: trimmedContents).enumerate() {
             if rowIndex == 0 {
                 continue
             }
