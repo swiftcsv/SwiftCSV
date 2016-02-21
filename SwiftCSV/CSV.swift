@@ -60,6 +60,10 @@ public class CSV {
         
         self.init(string: contents, delimiter: delimiter)
     }
+    
+    public func dataUsingEncoding(encoding: NSStringEncoding) -> NSData? {
+        return description.dataUsingEncoding(encoding)
+    }
 }
 
 extension CSV: CustomStringConvertible {
