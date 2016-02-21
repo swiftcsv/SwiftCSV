@@ -24,11 +24,7 @@ public class CSV {
             columns[fieldName] = []
         }
         
-        for (rowIndex, row) in RowSequence(text: trimmedContents).enumerate() {
-            if rowIndex == 0 {
-                continue
-            }
-            
+        for row in RowSequence(text: trimmedContents) {
             var fields: [String: String] = [:]
             for (fieldIndex, field) in FieldSequence(text: row, delimiter: delimiter).enumerate() {
                 let fieldName = header[fieldIndex]

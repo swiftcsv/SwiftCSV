@@ -14,9 +14,10 @@ struct HeaderGenerator: GeneratorType {
     private var fieldGenerator: FieldGenerator
     
     init(text: String, delimiter: NSCharacterSet) {
-        var rowGenerator = RowGenerator(text: text)
-        let header = rowGenerator.next()
-        fieldGenerator = FieldGenerator(text: header!, delimiter: delimiter)
+        let newline = NSCharacterSet.newlineCharacterSet()
+        let rows = text.componentsSeparatedByCharactersInSet(newline)
+        let header = rows[0]
+        fieldGenerator = FieldGenerator(text: header, delimiter: delimiter)
     }
     
     mutating func next() -> String? {

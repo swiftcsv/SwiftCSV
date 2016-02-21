@@ -14,8 +14,9 @@ struct RowGenerator: GeneratorType {
     private var rows: [String]
     
     init(text: String) {
-        let newline = NSCharacterSet(charactersInString: "\n")
+        let newline = NSCharacterSet.newlineCharacterSet()
         rows = text.componentsSeparatedByCharactersInSet(newline)
+        rows.removeAtIndex(0)
     }
     
     mutating func next() -> String? {
