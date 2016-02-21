@@ -14,9 +14,8 @@ class TSVTests: XCTestCase {
     var tsv: CSV!
     
     override func setUp() {
-        let url = NSBundle(forClass: TSVTests.self).URLForResource("users", withExtension: "tsv")!
         let tab = NSCharacterSet(charactersInString: "\t")
-        tsv = try! CSV(url: url, delimiter: tab)
+        tsv = CSV(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: tab)
     }
     
     func testInit_makesHeader() {

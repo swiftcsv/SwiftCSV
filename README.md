@@ -4,21 +4,41 @@
 
 ## Usage
 
-```csv
-id,name,age
-1,Alice,18
-2,Bob,19
-3,Charlie,20
+### Initialization
+
+```swift
+let csv = CSV(string: "id,name,age\n1,Alice,18")
+```
+
+```swift
+let tab = NSCharacterset(charactersInString: "\t")
+let tsv = CSV(string: "id\tname\tage\n1\tAlice\t18", delimiter: tab)
 ```
 
 ```swift
 do {
     let csv = try CSV(name: "users.csv")
-    csv.rows[0]         //=> [1, "Alice", 18]
-    csv.columns["age"]  //=> [18, 19, 20]
-} catch CSVError.FileNotFound(let name) {
-    print("File not found: \(name)")
+} catch {
+    // Error handling
 }
+```
+
+```swift
+let tab = NSCharacterset(charactersInString: "\t")
+do {
+    let tsv = try CSV(name: "users.tsv", delimiter: tab, encoding: NSUTF8StringEncoding)
+} catch {
+    // Error handling
+}
+```
+
+### Access to data
+
+```swift
+let csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19")
+csv.header    //=> ["id", "name", "age"]
+csv.rows      //=> [["id": "1", "name": "Alice", "age": "18"], ["id": "2", "name": "Bob", "age": "19"]]
+csv.columns   //=> ["id": ["1", "2"], "name": ["Alice", "Bob"], "age": ["18", "19"]]
 ```
 
 ## Installation

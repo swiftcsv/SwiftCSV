@@ -13,8 +13,7 @@ class CSVTests: XCTestCase {
     var csv: CSV!
     
     override func setUp() {
-        let url = NSBundle(forClass: CSVTests.self).URLForResource("users", withExtension: "csv")!
-        csv = try! CSV(url: url)
+        csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
     
     func testInit_makesHeader() {

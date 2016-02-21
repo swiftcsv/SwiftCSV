@@ -16,30 +16,8 @@ public class CSV {
     internal(set) var rows: [[String: String]] = []
     internal(set) var columns: [String: [String]] = [:]
     
-    public init(name: String, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
-        var contents: String!
-        do {
-            contents = try String(contentsOfFile: name, encoding: encoding)
-        } catch {
-            throw error
-        }
-        
-        parseContents(contents, delimiter: delimiter)
-    }
-    
-    public init(url: NSURL, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
-        var contents: String!
-        do {
-            contents = try String(contentsOfURL: url, encoding: encoding)
-        } catch {
-            throw error
-        }
-        
-        parseContents(contents, delimiter: delimiter)
-    }
-    
-    private func parseContents(contents: String, delimiter: NSCharacterSet) {
-        let trimmedContents = contents.stringByTrimmingCharactersInSet(CSV.newline)
+    public init(string: String, delimiter: NSCharacterSet = comma) {
+        let trimmedContents = string.stringByTrimmingCharactersInSet(CSV.newline)
         
         for fieldName in HeaderSequence(text: trimmedContents, delimiter: delimiter) {
             header.append(fieldName)
@@ -59,6 +37,28 @@ public class CSV {
             }
             rows.append(fields)
         }
+    }
+    
+    public convenience init(name: String, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
+        var contents: String!
+        do {
+            contents = try String(contentsOfFile: name, encoding: encoding)
+        } catch {
+            throw error
+        }
+        
+        self.init(string: contents, delimiter: delimiter)
+    }
+    
+    public convenience init(url: NSURL, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
+        var contents: String!
+        do {
+            contents = try String(contentsOfURL: url, encoding: encoding)
+        } catch {
+            throw error
+        }
+        
+        self.init(string: contents, delimiter: delimiter)
     }
 }
 
