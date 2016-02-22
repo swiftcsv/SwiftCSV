@@ -19,14 +19,15 @@ public class CSV {
     public init(string: String, delimiter: NSCharacterSet = comma) {
         let trimmedContents = string.stringByTrimmingCharactersInSet(CSV.newline)
         
-        for fieldName in HeaderSequence(text: trimmedContents, delimiter: delimiter) {
+        let headerSequence = HeaderSequence(text: trimmedContents, delimiter: delimiter)
+        for fieldName in headerSequence {
             header.append(fieldName)
             columns[fieldName] = []
         }
         
         for row in RowSequence(text: trimmedContents) {
             var fields: [String: String] = [:]
-            for (fieldIndex, field) in FieldSequence(text: row, delimiter: delimiter).enumerate() {
+            for (fieldIndex, field) in FieldSequence(text: row, headerSequence: headerSequence).enumerate() {
                 let fieldName = header[fieldIndex]
                 fields[fieldName] = field
                 columns[fieldName]?.append(field)

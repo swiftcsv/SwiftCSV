@@ -11,14 +11,21 @@ import Foundation
 struct FieldGenerator: GeneratorType {
     typealias Element = String
     
-    private var tokens: [String]
+    private var fields: [String]
+    private var headerGenerator: HeaderGenerator
     
-    init(text: String, delimiter: NSCharacterSet) {
-        tokens = text.componentsSeparatedByCharactersInSet(delimiter)
+    init(text: String, headerSequence: HeaderSequence) {
+        fields = text.componentsSeparatedByCharactersInSet(headerSequence.delimiter)
+        headerGenerator = headerSequence.generate()
     }
     
     mutating func next() -> String? {
-        return tokens.isEmpty ? .None : tokens.removeAtIndex(0)
+        switch headerGenerator.next() {
+        case .Some(_):
+            return fields.count > 0 ? fields.removeAtIndex(0) : ""
+        case .None:
+            return .None
+        }
     }
 }
 
@@ -26,14 +33,14 @@ struct FieldSequence: SequenceType {
     typealias Generator = FieldGenerator
     
     private let text: String
-    private let delimiter: NSCharacterSet
+    private let headerSequence: HeaderSequence
     
-    init(text: String, delimiter: NSCharacterSet) {
+    init(text: String, headerSequence: HeaderSequence) {
         self.text = text
-        self.delimiter = delimiter
+        self.headerSequence = headerSequence
     }
     
     func generate() -> FieldGenerator {
-        return FieldGenerator(text: text, delimiter: delimiter)
+        return FieldGenerator(text: text, headerSequence: headerSequence)
     }
 }

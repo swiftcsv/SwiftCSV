@@ -28,6 +28,15 @@ class CSVTests: XCTestCase {
         ])
     }
     
+    func testInit_whenThereAreIncompleteRows_makesRows() {
+        csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
+        XCTAssertEqual(csv.rows, [
+            ["id": "1", "name": "Alice", "age": "18"],
+            ["id": "2", "name": "Bob", "age": "19"],
+            ["id": "3", "name": "Charlie", "age": ""]
+        ])
+    }
+    
     func testInit_makesColumns() {
         XCTAssertEqual(csv.columns, [
             "id": ["1", "2", "3"],
