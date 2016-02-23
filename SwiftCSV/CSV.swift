@@ -17,7 +17,8 @@ public class CSV {
     public private(set) var columns: [String: [String]] = [:]
     
     public init(string: String, delimiter: NSCharacterSet = comma) {
-        let trimmedContents = string.stringByTrimmingCharactersInSet(CSV.newline)
+        let stringWithoutCarriageReturn = string.stringByReplacingOccurrencesOfString("\r\n", withString: "\n")
+        let trimmedContents = stringWithoutCarriageReturn.stringByTrimmingCharactersInSet(CSV.newline)
         
         let headerSequence = HeaderSequence(text: trimmedContents, delimiter: delimiter)
         for fieldName in headerSequence {
