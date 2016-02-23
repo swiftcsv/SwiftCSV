@@ -12,9 +12,9 @@ public class CSV {
     static private let comma = NSCharacterSet(charactersInString: ",")
     static private let newline = NSCharacterSet.newlineCharacterSet()
     
-    internal(set) var header: [String] = []
-    internal(set) var rows: [[String: String]] = []
-    internal(set) var columns: [String: [String]] = [:]
+    public private(set) var header: [String] = []
+    public private(set) var rows: [[String: String]] = []
+    public private(set) var columns: [String: [String]] = [:]
     
     public init(string: String, delimiter: NSCharacterSet = comma) {
         let trimmedContents = string.stringByTrimmingCharactersInSet(CSV.newline)
