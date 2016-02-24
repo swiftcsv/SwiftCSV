@@ -10,22 +10,19 @@ import Foundation
 
 public class CSV {
     static private let comma = NSCharacterSet(charactersInString: ",")
-    static private let newline = NSCharacterSet.newlineCharacterSet()
     
     public private(set) var header: [String] = []
     public private(set) var rows: [[String: String]] = []
     public private(set) var columns: [String: [String]] = [:]
     
     public init(string: String, delimiter: NSCharacterSet = comma) {
-        let trimmedContents = string.stringByTrimmingCharactersInSet(CSV.newline)
-        
-        let headerSequence = HeaderSequence(text: trimmedContents, delimiter: delimiter)
+        let headerSequence = HeaderSequence(text: string, delimiter: delimiter)
         for fieldName in headerSequence {
             header.append(fieldName)
             columns[fieldName] = []
         }
         
-        for row in RowSequence(text: trimmedContents) {
+        for row in RowSequence(text: string) {
             var fields: [String: String] = [:]
             for (fieldIndex, field) in FieldSequence(text: row, headerSequence: headerSequence).enumerate() {
                 let fieldName = header[fieldIndex]

@@ -37,6 +37,15 @@ class CSVTests: XCTestCase {
         ])
     }
     
+    func testInit_whenThereAreCRLFs_makesRows() {
+        csv = CSV(string: "id,name,age\r\n1,Alice,18\r\n2,Bob,19\r\n3,Charlie,20\r\n")
+        XCTAssertEqual(csv.rows, [
+            ["id": "1", "name": "Alice", "age": "18"],
+            ["id": "2", "name": "Bob", "age": "19"],
+            ["id": "3", "name": "Charlie", "age": "20"]
+        ])
+    }
+    
     func testInit_makesColumns() {
         XCTAssertEqual(csv.columns, [
             "id": ["1", "2", "3"],
