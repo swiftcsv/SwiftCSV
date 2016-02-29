@@ -11,7 +11,7 @@ let csv = CSV(string: "id,name,age\n1,Alice,18")
 ```
 
 ```swift
-let tab = NSCharacterset(charactersInString: "\t")
+let tab = NSCharacterSet(charactersInString: "\t")
 let tsv = CSV(string: "id\tname\tage\n1\tAlice\t18", delimiter: tab)
 ```
 
@@ -24,7 +24,7 @@ do {
 ```
 
 ```swift
-let tab = NSCharacterset(charactersInString: "\t")
+let tab = NSCharacterSet(charactersInString: "\t")
 do {
     let tsv = try CSV(name: "users.tsv", delimiter: tab, encoding: NSUTF8StringEncoding)
 } catch {
