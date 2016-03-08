@@ -24,10 +24,12 @@ public class CSV {
         
         for row in RowSequence(text: string) {
             var fields: [String: String] = [:]
-            for (fieldIndex, field) in FieldSequence(text: row, headerSequence: headerSequence).enumerate() {
-                let fieldName = header[fieldIndex]
-                fields[fieldName] = field
-                columns[fieldName]?.append(field)
+            autoreleasepool {
+                for (fieldIndex, field) in FieldSequence(text: row, headerSequence: headerSequence).enumerate() {
+                    let fieldName = header[fieldIndex]
+                    fields[fieldName] = field
+                    columns[fieldName]?.append(field)
+                }
             }
             rows.append(fields)
         }
