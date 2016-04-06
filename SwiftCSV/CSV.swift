@@ -36,23 +36,13 @@ public class CSV {
     }
     
     public convenience init(name: String, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
-        var contents: String!
-        do {
-            contents = try String(contentsOfFile: name, encoding: encoding)
-        } catch {
-            throw error
-        }
-        
+        let contents = try String(contentsOfFile: name, encoding: encoding)
+    
         self.init(string: contents, delimiter: delimiter)
     }
     
     public convenience init(url: NSURL, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
-        var contents: String!
-        do {
-            contents = try String(contentsOfURL: url, encoding: encoding)
-        } catch {
-            throw error
-        }
+        let contents = try String(contentsOfURL: url, encoding: encoding)
         
         self.init(string: contents, delimiter: delimiter)
     }
@@ -64,15 +54,11 @@ public class CSV {
 
 extension CSV: CustomStringConvertible {
     public var description: String {
-        var contents = header.joinWithSeparator(",")
+        let head = header.joinWithSeparator(",") + "\n"
         
-        for row in rows {
-            contents += "\n"
-            
-            let fields = header.map { row[$0]! }
-            contents += fields.joinWithSeparator(",")
-        }
-        
-        return contents
+        let cont = rows.map { row in
+            header.map { row[$0]! }.joinWithSeparator(",")
+        }.joinWithSeparator("\n")
+        return head + cont
     }
 }

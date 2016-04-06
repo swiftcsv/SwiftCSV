@@ -40,7 +40,7 @@
 		3D1E59C61945FFAD001CF760 /* CSVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVTests.swift; sourceTree = "<group>"; };
 		3D3749E2194D6DF7008F262A /* TSVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSVTests.swift; sourceTree = "<group>"; };
 		3D444BCC1C7D88290001C60C /* String+Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Lines.swift"; sourceTree = "<group>"; };
-		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
+		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; tabWidth = 4; };
 		3DAAEEA71C74D20E00A933DB /* RowSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowSequence.swift; sourceTree = "<group>"; };
 		3DAAEEA91C74D4F200A933DB /* FieldSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldSequence.swift; sourceTree = "<group>"; };
 		3DAAEEAD1C74DA6A00A933DB /* HeaderSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderSequence.swift; sourceTree = "<group>"; };
@@ -72,7 +72,9 @@
 				3D1E59C31945FFAD001CF760 /* SwiftCSVTests */,
 				3D1E59B51945FFAC001CF760 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		3D1E59B51945FFAC001CF760 /* Products */ = {
 			isa = PBXGroup;
