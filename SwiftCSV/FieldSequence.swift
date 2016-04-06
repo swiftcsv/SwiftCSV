@@ -13,6 +13,7 @@ struct FieldGenerator: GeneratorType {
     
     private var fields: [String]
     private var headerGenerator: HeaderGenerator
+    private var index = 0
     
     init(text: String, headerSequence: HeaderSequence) {
         fields = text.componentsSeparatedByCharactersInSet(headerSequence.delimiter)
@@ -22,7 +23,9 @@ struct FieldGenerator: GeneratorType {
     mutating func next() -> String? {
         switch headerGenerator.next() {
         case .Some(_):
-            return fields.count > 0 ? fields.removeAtIndex(0) : ""
+            let val = index < fields.count ? fields[index] : ""
+            index += 1
+            return val
         case .None:
             return .None
         }
