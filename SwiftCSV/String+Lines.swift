@@ -7,9 +7,20 @@
 //
 
 extension String {
-    var lines: [String] {
+    /// Returns the first `count` lines of this string as a list
+    func getLines(count: Int) -> [String] {
         var lines: [String] = []
-        self.enumerateLines { line, _ in lines.append(line) }
+        var index = 1
+        self.enumerateLines { line, stop in
+            lines.append(line)
+            stop = index >= count
+            index += 1
+        }
+        return lines
+    }
+    var lines: [String] {
+        var lines = [String]()
+        self.enumerateLines({ line, _ in lines.append(line) })
         return lines
     }
 }

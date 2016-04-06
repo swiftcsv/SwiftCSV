@@ -14,7 +14,7 @@ struct HeaderGenerator: GeneratorType {
     private var fields: [String]
     
     init(text: String, delimiter: NSCharacterSet) {
-        let header = text.lines[0]
+        let header = text.getLines(1)[0]
         fields = header.componentsSeparatedByCharactersInSet(delimiter)
     }
     
