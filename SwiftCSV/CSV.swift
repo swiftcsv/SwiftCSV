@@ -9,13 +9,13 @@
 import Foundation
 
 public class CSV {
-    static private let comma = NSCharacterSet(charactersInString: ",")
+    static private let comma: Character = ","
     
     public private(set) var header: [String] = []
     public private(set) var rows: [[String: String]] = []
     public private(set) var columns: [String: [String]] = [:]
     
-    public init(string: String, delimiter: NSCharacterSet = comma) {
+    public init(string: String, delimiter: Character = comma) {
         let headerSequence = HeaderSequence(text: string, delimiter: delimiter)
         for fieldName in headerSequence {
             header.append(fieldName)
@@ -35,13 +35,13 @@ public class CSV {
         }
     }
     
-    public convenience init(name: String, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
+    public convenience init(name: String, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         let contents = try String(contentsOfFile: name, encoding: encoding)
     
         self.init(string: contents, delimiter: delimiter)
     }
     
-    public convenience init(url: NSURL, delimiter: NSCharacterSet = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
+    public convenience init(url: NSURL, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
         let contents = try String(contentsOfURL: url, encoding: encoding)
         
         self.init(string: contents, delimiter: delimiter)

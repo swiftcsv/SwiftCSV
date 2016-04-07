@@ -16,7 +16,32 @@ struct FieldGenerator: GeneratorType {
     private var index = 0
     
     init(text: String, headerSequence: HeaderSequence) {
-        fields = text.componentsSeparatedByCharactersInSet(headerSequence.delimiter)
+        let delim = headerSequence.delimiter
+        let escape: Character = "\\"
+        let quote: Character = "\""
+        let quoteCharSet = NSCharacterSet(charactersInString: "\"")
+        fields = [String]()
+        
+        var inQuotes = false
+        var lastIndex = text.startIndex
+        var currentIndex = text.startIndex
+        
+        while currentIndex < text.endIndex {
+            let char = text[currentIndex]
+            if !inQuotes && char == delim {
+                let field = text.substringWithRange(lastIndex..<currentIndex)
+                // TODO it would be nice to not trim this
+                fields.append(field.stringByTrimmingCharactersInSet(quoteCharSet))
+                lastIndex = currentIndex.advancedBy(1)
+            }
+            if char == quote {
+                inQuotes = !inQuotes
+            }
+            currentIndex = currentIndex.advancedBy(char == escape ? 2 : 1)
+        }
+        let field = text.substringWithRange(lastIndex..<currentIndex)
+        fields.append(field.stringByTrimmingCharactersInSet(quoteCharSet))
+        
         headerGenerator = headerSequence.generate()
     }
     
