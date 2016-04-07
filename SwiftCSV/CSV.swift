@@ -11,7 +11,7 @@ import Foundation
 public class CSV {
     static private let comma: Character = ","
     
-    public private(set) var header: [String] = []
+    public var header: [String]!
     private var _rows: [[String: String]]? = nil
     private var _columns: [String: [String]]? = nil
     
@@ -22,10 +22,7 @@ public class CSV {
         text = string
         self.delimiter = delimiter
         
-        let headerSequence = HeaderSequence(text: text, delimiter: delimiter)
-        for fieldName in headerSequence {
-            header.append(fieldName)
-        }
+        header = parseLine(text.getLines(1)[0])
     }
     
     public convenience init(name: String, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
@@ -59,11 +56,28 @@ extension CSV {
         return _columns!
     }
     
-    public func enumerateRows(block: [String: String] -> ()) {
+    public func enumerateAsDict(block: [String: String] -> ()) {
+        var first = true
+        let enumeratedHeader = header.enumerate()
+        
+        self.text.enumerateLines { line, _ in
+            if !first {
+                let fields = self.parseLine(line)
+                var dict = [String: String]()
+                for (index, head) in enumeratedHeader {
+                    dict[head] = index < fields.count ? fields[index] : ""
+                }
+                block(dict)
+            } else {
+                first = false
+            }
+        }
+    }
+    public func enumerateAsArray(block: [String] -> ()) {
         var first = true
         self.text.enumerateLines { line, _ in
             if !first {
-                block(self.parseLineAsDict(line))
+                block(self.parseLine(line))
             } else {
                 first = false
             }
@@ -71,39 +85,33 @@ extension CSV {
     }
     
     private func parse() {
-        let rows = [[String: String]]()
-        let columns = [String: [String]]()
-//
-//        for head in header {
-//            columns[head] = []
-//        }
-//        
-//        for row in RowSequence(text: text) {
-//            var fields: [String: String] = [:]
-//            autoreleasepool {
-//                for (fieldIndex, field) in FieldSequence(text: row, headerSequence: headerSequence).enumerate() {
-//                    let fieldName = header[fieldIndex]
-//                    fields[fieldName] = field
-//                    columns[fieldName]?.append(field)
-//                }
-//            }
-//            rows.append(fields)
-//        }
+        var rows = [[String: String]]()
+        var columns = [String: [String]]()
+
+        for head in header {
+            columns[head] = []
+        }
+        
+        enumerateAsDict { fields in
+            for (key, value) in fields {
+                columns[key]?.append(value)
+            }
+            rows.append(fields)
+        }
         _rows = rows
         _columns = columns
     }
     
-    private func parseLineAsDict(line: String) -> [String: String] {
+    private func parseLine(line: String) -> [String] {
         let escape: Character = "\\"
         let quote: Character = "\""
         let quoteCharSet = NSCharacterSet(charactersInString: "\"")
         
-        var fields = [String: String]()
+        var fields = [String]()
         
         var inQuotes = false
         var lastIndex = line.startIndex
         var currentIndex = line.startIndex
-        var position = 0
         
         while currentIndex < line.endIndex {
             let char = line[currentIndex]
@@ -112,12 +120,8 @@ extension CSV {
                 // TODO it would be nice to not trim this
                 let value = field.stringByTrimmingCharactersInSet(quoteCharSet)
                 
-                let head = header[position]
-                fields[head] = value
-                position += 1
-                if position >= header.count {
-                    break
-                }
+                fields.append(value)
+                
                 lastIndex = currentIndex.advancedBy(1)
             }
             if char == quote {
@@ -125,12 +129,10 @@ extension CSV {
             }
             currentIndex = currentIndex.advancedBy(char == escape ? 2 : 1)
         }
-        if position < header.count {
-            let value = line.substringWithRange(lastIndex..<currentIndex).stringByTrimmingCharactersInSet(quoteCharSet)
-            
-            let head = header[position]
-            fields[head] = value
-        }
+        let field = line.substringWithRange(lastIndex..<currentIndex)
+        // TODO it would be nice to not trim this
+        let value = field.stringByTrimmingCharactersInSet(quoteCharSet)
+        fields.append(value)
         
         return fields
     }

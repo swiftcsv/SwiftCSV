@@ -65,7 +65,7 @@ class CSVTests: XCTestCase {
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
         var index = 0
-        csv.enumerateRows { row in
+        csv.enumerateAsDict { row in
             XCTAssertEqual(row, expected[index])
             index += 1
         }
