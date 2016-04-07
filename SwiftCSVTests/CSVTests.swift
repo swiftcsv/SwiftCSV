@@ -57,4 +57,17 @@ class CSVTests: XCTestCase {
     func testDescription() {
         XCTAssertEqual(csv.description, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
+    
+    func testEnumerate() {
+        let expected = [
+            ["id": "1", "name": "Alice", "age": "18"],
+            ["id": "2", "name": "Bob", "age": "19"],
+            ["id": "3", "name": "Charlie", "age": "20"]
+        ]
+        var index = 0
+        csv.enumerateRows { row in
+            XCTAssertEqual(row, expected[index])
+            index += 1
+        }
+    }
 }

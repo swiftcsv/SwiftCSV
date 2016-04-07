@@ -12,26 +12,19 @@ public class CSV {
     static private let comma: Character = ","
     
     public private(set) var header: [String] = []
-    public private(set) var rows: [[String: String]] = []
-    public private(set) var columns: [String: [String]] = [:]
+    private var _rows: [[String: String]]? = nil
+    private var _columns: [String: [String]]? = nil
+    
+    private var text: String
+    private var delimiter: Character
     
     public init(string: String, delimiter: Character = comma) {
-        let headerSequence = HeaderSequence(text: string, delimiter: delimiter)
+        text = string
+        self.delimiter = delimiter
+        
+        let headerSequence = HeaderSequence(text: text, delimiter: delimiter)
         for fieldName in headerSequence {
             header.append(fieldName)
-            columns[fieldName] = []
-        }
-        
-        for row in RowSequence(text: string) {
-            var fields: [String: String] = [:]
-            autoreleasepool {
-                for (fieldIndex, field) in FieldSequence(text: row, headerSequence: headerSequence).enumerate() {
-                    let fieldName = header[fieldIndex]
-                    fields[fieldName] = field
-                    columns[fieldName]?.append(field)
-                }
-            }
-            rows.append(fields)
         }
     }
     
@@ -49,6 +42,97 @@ public class CSV {
     
     public func dataUsingEncoding(encoding: NSStringEncoding) -> NSData? {
         return description.dataUsingEncoding(encoding)
+    }
+}
+
+extension CSV {
+    public var rows: [[String: String]] {
+        if _rows == nil {
+            parse()
+        }
+        return _rows!
+    }
+    public var columns: [String: [String]] {
+        if _columns == nil {
+            parse()
+        }
+        return _columns!
+    }
+    
+    public func enumerateRows(block: [String: String] -> ()) {
+        var first = true
+        self.text.enumerateLines { line, _ in
+            if !first {
+                block(self.parseLineAsDict(line))
+            } else {
+                first = false
+            }
+        }
+    }
+    
+    private func parse() {
+        let rows = [[String: String]]()
+        let columns = [String: [String]]()
+//
+//        for head in header {
+//            columns[head] = []
+//        }
+//        
+//        for row in RowSequence(text: text) {
+//            var fields: [String: String] = [:]
+//            autoreleasepool {
+//                for (fieldIndex, field) in FieldSequence(text: row, headerSequence: headerSequence).enumerate() {
+//                    let fieldName = header[fieldIndex]
+//                    fields[fieldName] = field
+//                    columns[fieldName]?.append(field)
+//                }
+//            }
+//            rows.append(fields)
+//        }
+        _rows = rows
+        _columns = columns
+    }
+    
+    private func parseLineAsDict(line: String) -> [String: String] {
+        let escape: Character = "\\"
+        let quote: Character = "\""
+        let quoteCharSet = NSCharacterSet(charactersInString: "\"")
+        
+        var fields = [String: String]()
+        
+        var inQuotes = false
+        var lastIndex = line.startIndex
+        var currentIndex = line.startIndex
+        var position = 0
+        
+        while currentIndex < line.endIndex {
+            let char = line[currentIndex]
+            if !inQuotes && char == self.delimiter {
+                let field = line.substringWithRange(lastIndex..<currentIndex)
+                // TODO it would be nice to not trim this
+                let value = field.stringByTrimmingCharactersInSet(quoteCharSet)
+                
+                let head = header[position]
+                fields[head] = value
+                position += 1
+                if position >= header.count {
+                    break
+                }
+                lastIndex = currentIndex.advancedBy(1)
+            }
+            if char == quote {
+                inQuotes = !inQuotes
+            }
+            currentIndex = currentIndex.advancedBy(char == escape ? 2 : 1)
+        }
+        if position < header.count {
+            let value = line.substringWithRange(lastIndex..<currentIndex).stringByTrimmingCharactersInSet(quoteCharSet)
+            
+            let head = header[position]
+            fields[head] = value
+        }
+        
+        return fields
     }
 }
 
