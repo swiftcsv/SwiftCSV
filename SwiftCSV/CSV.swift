@@ -18,14 +18,14 @@ public class CSV {
     private var text: String
     private var delimiter: Character
     
-    private let ignoreColumns: Bool
+    private let loadColumns: Bool
     
-    public init(string: String, delimiter: Character = comma, ignoreColumns: Bool = false) {
+    public init(string: String, delimiter: Character = comma, loadColumns: Bool = true) {
         self.text = string
         self.delimiter = delimiter
-        self.ignoreColumns = ignoreColumns
+        self.loadColumns = loadColumns
         
-        header = parseLine(text.getLines(1)[0])
+        header = parseLine(text.firstLine)
     }
     
     public convenience init(name: String, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
@@ -53,7 +53,7 @@ extension CSV {
         return _rows!
     }
     public var columns: [String: [String]] {
-        if ignoreColumns {
+        if !loadColumns {
             return [:]
         } else if _columns == nil {
             parse()
@@ -93,14 +93,14 @@ extension CSV {
         var rows = [[String: String]]()
         var columns = [String: [String]]()
 
-        if !ignoreColumns {
+        if loadColumns {
             for head in header {
                 columns[head] = []
             }
         }
         
         enumerateAsDict { fields in
-            if !self.ignoreColumns {
+            if self.loadColumns {
                 for (key, value) in fields {
                     columns[key]?.append(value)
                 }
