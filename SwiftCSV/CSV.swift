@@ -18,9 +18,12 @@ public class CSV {
     private var text: String
     private var delimiter: Character
     
-    public init(string: String, delimiter: Character = comma) {
-        text = string
+    private let ignoreColumns: Bool
+    
+    public init(string: String, delimiter: Character = comma, ignoreColumns: Bool = false) {
+        self.text = string
         self.delimiter = delimiter
+        self.ignoreColumns = ignoreColumns
         
         header = parseLine(text.getLines(1)[0])
     }
@@ -50,7 +53,9 @@ extension CSV {
         return _rows!
     }
     public var columns: [String: [String]] {
-        if _columns == nil {
+        if ignoreColumns {
+            return [:]
+        } else if _columns == nil {
             parse()
         }
         return _columns!
@@ -60,7 +65,7 @@ extension CSV {
         var first = true
         let enumeratedHeader = header.enumerate()
         
-        self.text.enumerateLines { line, _ in
+        text.enumerateLines { line, _ in
             if !first {
                 let fields = self.parseLine(line)
                 var dict = [String: String]()
@@ -75,7 +80,7 @@ extension CSV {
     }
     public func enumerateAsArray(block: [String] -> ()) {
         var first = true
-        self.text.enumerateLines { line, _ in
+        text.enumerateLines { line, _ in
             if !first {
                 block(self.parseLine(line))
             } else {
@@ -88,13 +93,17 @@ extension CSV {
         var rows = [[String: String]]()
         var columns = [String: [String]]()
 
-        for head in header {
-            columns[head] = []
+        if !ignoreColumns {
+            for head in header {
+                columns[head] = []
+            }
         }
         
         enumerateAsDict { fields in
-            for (key, value) in fields {
-                columns[key]?.append(value)
+            if !self.ignoreColumns {
+                for (key, value) in fields {
+                    columns[key]?.append(value)
+                }
             }
             rows.append(fields)
         }
@@ -105,34 +114,32 @@ extension CSV {
     private func parseLine(line: String) -> [String] {
         let escape: Character = "\\"
         let quote: Character = "\""
-        let quoteCharSet = NSCharacterSet(charactersInString: "\"")
         
         var fields = [String]()
         
         var inQuotes = false
-        var lastIndex = line.startIndex
         var currentIndex = line.startIndex
+        
+        var field = [Character]()
         
         while currentIndex < line.endIndex {
             let char = line[currentIndex]
             if !inQuotes && char == self.delimiter {
-                let field = line.substringWithRange(lastIndex..<currentIndex)
-                // TODO it would be nice to not trim this
-                let value = field.stringByTrimmingCharactersInSet(quoteCharSet)
-                
-                fields.append(value)
-                
-                lastIndex = currentIndex.advancedBy(1)
+                fields.append(String(field))
+                field = [Character]()
+            } else {
+                if char == quote {
+                    inQuotes = !inQuotes
+                } else if char == escape {
+                    currentIndex = currentIndex.successor()
+                    field.append(line[currentIndex])
+                } else {
+                    field.append(char)
+                }
             }
-            if char == quote {
-                inQuotes = !inQuotes
-            }
-            currentIndex = currentIndex.advancedBy(char == escape ? 2 : 1)
+            currentIndex = currentIndex.successor()
         }
-        let field = line.substringWithRange(lastIndex..<currentIndex)
-        // TODO it would be nice to not trim this
-        let value = field.stringByTrimmingCharactersInSet(quoteCharSet)
-        fields.append(value)
+        fields.append(String(field))
         
         return fields
     }

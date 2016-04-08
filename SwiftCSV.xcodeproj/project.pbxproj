@@ -12,6 +12,9 @@
 		3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3749E2194D6DF7008F262A /* TSVTests.swift */; };
 		3D444BCD1C7D88290001C60C /* String+Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D444BCC1C7D88290001C60C /* String+Lines.swift */; };
 		3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
+		BE06B67D1CB7267B009578CC /* empty_fields.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE06B67C1CB7267B009578CC /* empty_fields.csv */; };
+		BE06B6801CB726B5009578CC /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06B67F1CB726B5009578CC /* URLTests.swift */; };
+		BE06B6821CB7287F009578CC /* quotes.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE06B6811CB7287F009578CC /* quotes.csv */; };
 		BE6C86071CB5CE44009A351D /* QuotedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C86061CB5CE44009A351D /* QuotedTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +42,9 @@
 		3D3749E2194D6DF7008F262A /* TSVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSVTests.swift; sourceTree = "<group>"; };
 		3D444BCC1C7D88290001C60C /* String+Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Lines.swift"; sourceTree = "<group>"; };
 		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; tabWidth = 4; };
+		BE06B67C1CB7267B009578CC /* empty_fields.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty_fields.csv; sourceTree = "<group>"; };
+		BE06B67F1CB726B5009578CC /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
+		BE06B6811CB7287F009578CC /* quotes.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = quotes.csv; sourceTree = "<group>"; };
 		BE6C86061CB5CE44009A351D /* QuotedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,11 +99,22 @@
 		3D1E59C31945FFAD001CF760 /* SwiftCSVTests */ = {
 			isa = PBXGroup;
 			children = (
+				BE06B67E1CB72680009578CC /* Res */,
 				3D1E59C61945FFAD001CF760 /* CSVTests.swift */,
 				BE6C86061CB5CE44009A351D /* QuotedTests.swift */,
 				3D3749E2194D6DF7008F262A /* TSVTests.swift */,
+				BE06B67F1CB726B5009578CC /* URLTests.swift */,
 			);
 			path = SwiftCSVTests;
+			sourceTree = "<group>";
+		};
+		BE06B67E1CB72680009578CC /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				BE06B67C1CB7267B009578CC /* empty_fields.csv */,
+				BE06B6811CB7287F009578CC /* quotes.csv */,
+			);
+			name = Res;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +217,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE06B67D1CB7267B009578CC /* empty_fields.csv in Resources */,
+				BE06B6821CB7287F009578CC /* quotes.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +240,7 @@
 			files = (
 				3D1E59C71945FFAD001CF760 /* CSVTests.swift in Sources */,
 				3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */,
+				BE06B6801CB726B5009578CC /* URLTests.swift in Sources */,
 				BE6C86071CB5CE44009A351D /* QuotedTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
