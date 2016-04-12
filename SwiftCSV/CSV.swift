@@ -28,16 +28,16 @@ public class CSV {
         header = parseLine(text.firstLine)
     }
     
-    public convenience init(name: String, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
+    public convenience init(name: String, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding, loadColumns: Bool = true) throws {
         let contents = try String(contentsOfFile: name, encoding: encoding)
     
-        self.init(string: contents, delimiter: delimiter)
+        self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
     }
     
-    public convenience init(url: NSURL, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding) throws {
+    public convenience init(url: NSURL, delimiter: Character = comma, encoding: NSStringEncoding = NSUTF8StringEncoding, loadColumns: Bool = true) throws {
         let contents = try String(contentsOfURL: url, encoding: encoding)
         
-        self.init(string: contents, delimiter: delimiter)
+        self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
     }
     
     public func dataUsingEncoding(encoding: NSStringEncoding) -> NSData? {
