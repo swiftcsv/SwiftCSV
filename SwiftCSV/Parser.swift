@@ -6,8 +6,6 @@
 //  Copyright © 2016 JavaNut13. All rights reserved.
 //
 
-import Foundation
-
 extension CSV {
     /// List of dictionaries that contains the CSV data
     public var rows: [[String: String]] {
@@ -27,37 +25,37 @@ extension CSV {
         }
         return _columns!
     }
-    
-    /// Parse the file and call a block for each row, passing it as a dictionary
-    public func enumerateAsDict(block: [String: String] -> ()) {
-        var first = true
-        let enumeratedHeader = header.enumerate()
-        
-        text.enumerateLines { line, _ in
-            if !first {
-                let fields = self.parseLine(line)
-                var dict = [String: String]()
-                for (index, head) in enumeratedHeader {
-                    dict[head] = index < fields.count ? fields[index] : ""
-                }
-                block(dict)
-            } else {
-                first = false
-            }
-        }
-    }
-    
-    /// Parse the file and call a block for each row, passing it as an array
-    public func enumerateAsArray(block: [String] -> ()) {
-        var first = true
-        text.enumerateLines { line, _ in
-            if !first {
-                block(self.parseLine(line))
-            } else {
-                first = false
-            }
-        }
-    }
+//    
+//    /// Parse the file and call a block for each row, passing it as a dictionary
+//    public func enumerateAsDict(block: [String: String] -> ()) {
+//        var first = true
+//        let enumeratedHeader = header.enumerate()
+//        
+//        text.enumerateLines { line, _ in
+//            if !first {
+//                let fields = self.parseLine(line)
+//                var dict = [String: String]()
+//                for (index, head) in enumeratedHeader {
+//                    dict[head] = index < fields.count ? fields[index] : ""
+//                }
+//                block(dict)
+//            } else {
+//                first = false
+//            }
+//        }
+//    }
+//    
+//    /// Parse the file and call a block for each row, passing it as an array
+//    public func enumerateAsArray(block: [String] -> ()) {
+//        var first = true
+//        text.enumerateLines { line, _ in
+//            if !first {
+//                block(self.parseLine(line))
+//            } else {
+//                first = false
+//            }
+//        }
+//    }
     
     private func parse() {
         var rows = [[String: String]]()
@@ -68,15 +66,91 @@ extension CSV {
                 columns[head] = []
             }
         }
-        
-        enumerateAsDict { fields in
-            if self.loadColumns {
-                for (key, value) in fields {
-                    columns[key]?.append(value)
-                }
+        let enumeratedHeader = header.enumerate()
+        let block: [String] -> () = { fields in
+            var dict = [String: String]()
+            for (index, head) in enumeratedHeader {
+                dict[head] = index < fields.count ? fields[index] : ""
             }
-            rows.append(fields)
+            rows.append(dict)
         }
+        
+        var currentIndex = text.startIndex
+        let endIndex = text.endIndex
+        
+        var atStart = true
+        var parsingField = false
+        var parsingQuotes = false
+        var innerQuotes = false
+        
+        var fields = [String]()
+        var field = [Character]()
+        
+        while currentIndex < endIndex {
+            let char = text[currentIndex]
+            print(currentIndex, char, innerQuotes)
+            if atStart {
+                if char == "\"" {
+                    atStart = false
+                    parsingQuotes = true
+                } else if char == "," || char == "\n" {
+                    fields.append(String(field))
+                    block(fields)
+                    fields = [String]()
+                    field = [Character]()
+                } else {
+                    parsingField = true
+                    atStart = false
+                    field.append(char)
+                }
+            } else if parsingField {
+                if innerQuotes {
+                    if char == "\"" {
+                        field.append(char)
+                        innerQuotes = false
+                    } else {
+                        fatalError("Can't have non-quote here: \(char)")
+                    }
+                } else {
+                    if char == "\"" {
+                        innerQuotes = true
+                    } else if char == "," || char == "\n" {
+                        atStart = true
+                        parsingField = false
+                        innerQuotes = false
+                        fields.append(String(field))
+                        field = [Character]()
+                    } else {
+                        field.append(char)
+                    }
+                }
+            } else if parsingQuotes {
+                if innerQuotes {
+                    if char == "\"" {
+                        field.append(char)
+                        innerQuotes = false
+                    } else if char == "," || char == "\n" {
+                        atStart = true
+                        parsingQuotes = false
+                        innerQuotes = false
+                        fields.append(String(field))
+                        field = [Character]()
+                    } else {
+                        fatalError("Can't have non-quote here: \(char)")
+                    }
+                } else {
+                    if char == "\"" {
+                        innerQuotes = true
+                    } else {
+                        field.append(char)
+                    }
+                }
+            } else {
+                fatalError("me_irl")
+            }
+            currentIndex = currentIndex.successor()
+        }
+        
         _rows = rows
         _columns = columns
     }
