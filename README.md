@@ -1,4 +1,5 @@
 # SwiftCSV
+[![Version](http://img.shields.io/cocoapods/v/SwiftCSV.svg?style=flat)](http://cocoadocs.org/docsets/SwiftCSV)
 
 _Simple CSV parsing, for OSX and iOS._
 
