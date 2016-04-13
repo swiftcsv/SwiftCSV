@@ -9,12 +9,16 @@
 import Foundation
 
 extension CSV {
+    /// List of dictionaries that contains the CSV data
     public var rows: [[String: String]] {
         if _rows == nil {
             parse()
         }
         return _rows!
     }
+    
+    /// Dictionary of header name to list of values in that column
+    /// Will not be loaded if loadColumns in init is false
     public var columns: [String: [String]] {
         if !loadColumns {
             return [:]
@@ -24,6 +28,7 @@ extension CSV {
         return _columns!
     }
     
+    /// Parse the file and call a block for each row, passing it as a dictionary
     public func enumerateAsDict(block: [String: String] -> ()) {
         var first = true
         let enumeratedHeader = header.enumerate()
@@ -41,6 +46,8 @@ extension CSV {
             }
         }
     }
+    
+    /// Parse the file and call a block for each row, passing it as an array
     public func enumerateAsArray(block: [String] -> ()) {
         var first = true
         text.enumerateLines { line, _ in
