@@ -7,9 +7,12 @@
 //
 
 extension String {
-    var lines: [String] {
-        var lines: [String] = []
-        self.enumerateLines { line, _ in lines.append(line) }
-        return lines
+    var firstLine: String {
+        var index = startIndex
+        let chars = characters
+        while index < endIndex && chars[index] != "\r\n" && chars[index] != "\n" && chars[index] != "\r" {
+            index = index.successor()
+        }
+        return substringToIndex(index)
     }
 }
