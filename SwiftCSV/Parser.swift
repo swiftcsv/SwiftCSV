@@ -2,79 +2,14 @@
 //  Parser.swift
 //  SwiftCSV
 //
-//  Created by Will Richardson on 11/04/16.
-//  Copyright © 2016 JavaNut13. All rights reserved.
+//  Created by Will Richardson on 13/04/16.
+//  Copyright © 2016 Naoto Kaneko. All rights reserved.
 //
 
 extension CSV {
-    /// List of dictionaries that contains the CSV data
-    public var rows: [[String: String]] {
-        if _rows == nil {
-            parse()
-        }
-        return _rows!
-    }
-    
-    /// Dictionary of header name to list of values in that column
-    /// Will not be loaded if loadColumns in init is false
-    public var columns: [String: [String]] {
-        if !loadColumns {
-            return [:]
-        } else if _columns == nil {
-            parse()
-        }
-        return _columns!
-    }
-//    
-//    /// Parse the file and call a block for each row, passing it as a dictionary
-//    public func enumerateAsDict(block: [String: String] -> ()) {
-//        var first = true
-//        let enumeratedHeader = header.enumerate()
-//        
-//        text.enumerateLines { line, _ in
-//            if !first {
-//                let fields = self.parseLine(line)
-//                var dict = [String: String]()
-//                for (index, head) in enumeratedHeader {
-//                    dict[head] = index < fields.count ? fields[index] : ""
-//                }
-//                block(dict)
-//            } else {
-//                first = false
-//            }
-//        }
-//    }
-//    
-//    /// Parse the file and call a block for each row, passing it as an array
-//    public func enumerateAsArray(block: [String] -> ()) {
-//        var first = true
-//        text.enumerateLines { line, _ in
-//            if !first {
-//                block(self.parseLine(line))
-//            } else {
-//                first = false
-//            }
-//        }
-//    }
-    
-    private func parse() {
-        var rows = [[String: String]]()
-        var columns = [String: [String]]()
-        
-        if loadColumns {
-            for head in header {
-                columns[head] = []
-            }
-        }
-        let enumeratedHeader = header.enumerate()
-        let block: [String] -> () = { fields in
-            var dict = [String: String]()
-            for (index, head) in enumeratedHeader {
-                dict[head] = index < fields.count ? fields[index] : ""
-            }
-            rows.append(dict)
-        }
-        
+    /// Parse the file and call a block on each row, passing it in as a list of fields
+    /// limitTo will limit the result to a certain number of lines
+    func enumerateAsArray(block: [String] -> (), limitTo: Int?, startAt: Int = 0) {
         var currentIndex = text.startIndex
         let endIndex = text.endIndex
         
@@ -86,18 +21,29 @@ extension CSV {
         var fields = [String]()
         var field = [Character]()
         
-        while currentIndex < endIndex {
-            let char = text[currentIndex]
-            print(currentIndex, char, innerQuotes)
+        var count = 0
+        let doLimit = limitTo != nil
+        
+        let callBlock: () -> () = {
+            fields.append(String(field))
+            if count >= startAt {
+                block(fields)
+            }
+            count += 1
+            fields = [String]()
+            field = [Character]()
+        }
+        
+        let changeState: (Character) -> (Bool) = { char in
             if atStart {
                 if char == "\"" {
                     atStart = false
                     parsingQuotes = true
-                } else if char == "," || char == "\n" {
+                } else if char == self.delimiter {
                     fields.append(String(field))
-                    block(fields)
-                    fields = [String]()
                     field = [Character]()
+                } else if CSV.isNewline(char) {
+                    callBlock()
                 } else {
                     parsingField = true
                     atStart = false
@@ -114,12 +60,17 @@ extension CSV {
                 } else {
                     if char == "\"" {
                         innerQuotes = true
-                    } else if char == "," || char == "\n" {
+                    } else if char == self.delimiter {
                         atStart = true
                         parsingField = false
                         innerQuotes = false
                         fields.append(String(field))
                         field = [Character]()
+                    } else if CSV.isNewline(char) {
+                        atStart = true
+                        parsingField = false
+                        innerQuotes = false
+                        callBlock()
                     } else {
                         field.append(char)
                     }
@@ -129,12 +80,17 @@ extension CSV {
                     if char == "\"" {
                         field.append(char)
                         innerQuotes = false
-                    } else if char == "," || char == "\n" {
+                    } else if char == self.delimiter {
                         atStart = true
-                        parsingQuotes = false
+                        parsingField = false
                         innerQuotes = false
                         fields.append(String(field))
                         field = [Character]()
+                    } else if CSV.isNewline(char) {
+                        atStart = true
+                        parsingQuotes = false
+                        innerQuotes = false
+                        callBlock()
                     } else {
                         fatalError("Can't have non-quote here: \(char)")
                     }
@@ -148,43 +104,24 @@ extension CSV {
             } else {
                 fatalError("me_irl")
             }
-            currentIndex = currentIndex.successor()
+            return doLimit && count >= limitTo!
         }
         
-        _rows = rows
-        _columns = columns
-    }
-    
-    func parseLine(line: String) -> [String] {
-        let escape: Character = "\\"
-        let quote: Character = "\""
-        
-        var fields = [String]()
-        
-        var inQuotes = false
-        var currentIndex = line.startIndex
-        
-        var field = [Character]()
-        
-        while currentIndex < line.endIndex {
-            let char = line[currentIndex]
-            if !inQuotes && char == self.delimiter {
-                fields.append(String(field))
-                field = [Character]()
-            } else {
-                if char == quote {
-                    inQuotes = !inQuotes
-                } else if char == escape {
-                    currentIndex = currentIndex.successor()
-                    field.append(line[currentIndex])
-                } else {
-                    field.append(char)
-                }
+        while currentIndex < endIndex {
+            let char = text[currentIndex]
+            if changeState(char) {
+                break
             }
             currentIndex = currentIndex.successor()
         }
-        fields.append(String(field))
         
-        return fields
+        if fields.count != 0 || field.count != 0 || (doLimit && count < limitTo!) {
+            fields.append(String(field))
+            block(fields)
+        }
+    }
+    
+    private static func isNewline(char: Character) -> Bool {
+        return char == "\n" || char == "\r\n"
     }
 }

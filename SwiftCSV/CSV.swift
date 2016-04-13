@@ -30,7 +30,10 @@ public class CSV {
         self.delimiter = delimiter
         self.loadColumns = loadColumns
         
-        header = parseLine(text.firstLine)
+        let createHeader: [String] -> () = { head in
+            self.header = head
+        }
+        enumerateAsArray(createHeader, limitTo: 1, startAt: 0)
     }
     
     /// Load a CSV file
