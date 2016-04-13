@@ -48,7 +48,13 @@ class URLTests: XCTestCase {
                 "id": "10",
                 "name, first": "Person\\ with a backslash",
                 "name, last": "Jones"
-            ]
+            ],
+            [
+                "id": "12",
+                "name, first": "Newlines\nare the best",
+                "name, last": "Woo hoo"
+            ],
+            [:]
         ]
         for (index, row) in csv.rows.enumerate() {
             XCTAssertEqual(expected[index], row)
