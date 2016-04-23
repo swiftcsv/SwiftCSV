@@ -48,20 +48,16 @@ extension CSV {
         var rows = [[String: String]]()
         var columns = [String: [String]]()
         
+        enumerateAsDict { dict in
+            rows.append(dict)
+        }
+
         if loadColumns {
             for field in header {
-                columns[field] = []
+                columns[field] = rows.map { $0[field] ?? "" }
             }
         }
         
-        enumerateAsDict { dict in
-            rows.append(dict)
-            if self.loadColumns {
-                for key in self.header {
-                    columns[key]?.append(dict[key] ?? "")
-                }
-            }
-        }
         _columns = columns
         _rows = rows
     }
