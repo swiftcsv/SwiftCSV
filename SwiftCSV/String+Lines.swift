@@ -11,8 +11,8 @@ extension String {
         var index = startIndex
         let chars = characters
         while index < endIndex && chars[index] != "\r\n" && chars[index] != "\n" && chars[index] != "\r" {
-            index = index.successor()
+            index = self.index(after: index)
         }
-        return substringToIndex(index)
+        return substring(to: index)
     }
 }
