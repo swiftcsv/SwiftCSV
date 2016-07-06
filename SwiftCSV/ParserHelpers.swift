@@ -27,8 +27,8 @@ extension CSV {
     }
     
     /// Parse the file and call a block for each row, passing it as a dictionary
-    public func enumerateAsDict(block: [String: String] -> ()) {
-        let enumeratedHeader = header.enumerate()
+    public func enumerateAsDict(_ block: ([String: String]) -> ()) {
+        let enumeratedHeader = header.enumerated()
         
         enumerateAsArray { fields in
             var dict = [String: String]()
@@ -40,7 +40,7 @@ extension CSV {
     }
     
     /// Parse the file and call a block on each row, passing it in as a list of fields
-    public func enumerateAsArray(block: [String] -> ()) {
+    public func enumerateAsArray(_ block: ([String]) -> ()) {
         self.enumerateAsArray(block, limitTo: nil, startAt: 1)
     }
     
