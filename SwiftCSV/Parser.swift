@@ -9,7 +9,7 @@
 extension CSV {
     /// Parse the file and call a block on each row, passing it in as a list of fields
     /// limitTo will limit the result to a certain number of lines
-    func enumerateAsArray(block: [String] -> (), limitTo: Int?, startAt: Int = 0) {
+    func enumerateAsArray(_ block: @escaping ([String]) -> (), limitTo: Int?, startAt: Int = 0) {
         var currentIndex = text.startIndex
         let endIndex = text.endIndex
         
@@ -112,7 +112,7 @@ extension CSV {
             if changeState(char) {
                 break
             }
-            currentIndex = currentIndex.successor()
+            currentIndex = text.index(after: currentIndex)
         }
         
         if fields.count != 0 || field.count != 0 || (doLimit && count < limitTo!) {
@@ -121,7 +121,7 @@ extension CSV {
         }
     }
     
-    private static func isNewline(char: Character) -> Bool {
+    fileprivate static func isNewline(_ char: Character) -> Bool {
         return char == "\n" || char == "\r\n"
     }
 }
