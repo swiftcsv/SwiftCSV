@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5FB74BAC1CCB929D009DDBF1"
-               BuildableName = "SwiftCSV tvOS.framework"
+               BuildableName = "SwiftCSV.framework"
                BlueprintName = "SwiftCSV tvOS"
                ReferencedContainer = "container:SwiftCSV.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5FB74BB51CCB929D009DDBF1"
-               BuildableName = "SwiftCSV tvOSTests.xctest"
+               BuildableName = "SwiftCSVTests.xctest"
                BlueprintName = "SwiftCSV tvOSTests"
                ReferencedContainer = "container:SwiftCSV.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5FB74BAC1CCB929D009DDBF1"
-            BuildableName = "SwiftCSV tvOS.framework"
+            BuildableName = "SwiftCSV.framework"
             BlueprintName = "SwiftCSV tvOS"
             ReferencedContainer = "container:SwiftCSV.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5FB74BAC1CCB929D009DDBF1"
-            BuildableName = "SwiftCSV tvOS.framework"
+            BuildableName = "SwiftCSV.framework"
             BlueprintName = "SwiftCSV tvOS"
             ReferencedContainer = "container:SwiftCSV.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5FB74BAC1CCB929D009DDBF1"
-            BuildableName = "SwiftCSV tvOS.framework"
+            BuildableName = "SwiftCSV.framework"
             BlueprintName = "SwiftCSV tvOS"
             ReferencedContainer = "container:SwiftCSV.xcodeproj">
          </BuildableReference>
