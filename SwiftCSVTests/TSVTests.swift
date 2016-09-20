@@ -22,18 +22,25 @@ class TSVTests: XCTestCase {
     }
     
     func testInit_makesRows() {
-        XCTAssertEqual(tsv.rows, [
+        let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
-        ])
+        ]
+        for (index, row) in tsv.rows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
     }
     
     func testInit_makesColumns() {
-        XCTAssertEqual(tsv.columns, [
+        let expected = [
             "id": ["1", "2", "3"],
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
-        ])
+        ]
+        XCTAssertEqual(Array(tsv.columns.keys), Array(expected.keys))
+        for (key, value) in tsv.columns {
+            XCTAssertEqual(expected[key] ?? [], value)
+        }
     }
 }

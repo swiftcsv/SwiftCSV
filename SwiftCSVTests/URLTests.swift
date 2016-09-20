@@ -13,7 +13,7 @@ class URLTests: XCTestCase {
     var csv: CSV!
     
     func testEmptyFields() {
-        let csvURL = NSBundle(forClass: CSVTests.self).URLForResource("empty_fields", withExtension: "csv")!
+        let csvURL = Bundle(for: CSVTests.self).url(forResource: "empty_fields", withExtension: "csv")!
         csv = try! CSV(url: csvURL)
         let expected = [
             ["id": "1", "name": "John", "age": "23"],
@@ -23,13 +23,13 @@ class URLTests: XCTestCase {
             ["id": "", "name": "", "age": ""],
             ["id": "", "name": "Tom", "age": ""]
         ]
-        for (index, row) in csv.rows.enumerate() {
+        for (index, row) in csv.rows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
     
     func testQuotes() {
-        let csvURL = NSBundle(forClass: CSVTests.self).URLForResource("quotes", withExtension: "csv")!
+        let csvURL = Bundle(for: CSVTests.self).url(forResource: "quotes", withExtension: "csv")!
         csv = try! CSV(url: csvURL)
         let expected = [
             ["id": "4", "name, first": "Alex", "name, last": "Smith"],
@@ -56,7 +56,7 @@ class URLTests: XCTestCase {
             ],
             [:]
         ]
-        for (index, row) in csv.rows.enumerate() {
+        for (index, row) in csv.rows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
