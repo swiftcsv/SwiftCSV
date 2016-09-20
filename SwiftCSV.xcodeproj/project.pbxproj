@@ -400,8 +400,8 @@
 				TargetAttributes = {
 					3D1E59B31945FFAC001CF760 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 2X7R4W3Y3Q;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					3D1E59BE1945FFAD001CF760 = {
 						CreatedOnToolsVersion = 6.0;
@@ -411,18 +411,23 @@
 					};
 					5FB74B901CCB9274009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74B991CCB9274009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74BAC1CCB929D009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74BB51CCB929D009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74BC81CCB92BA009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -640,7 +645,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -690,7 +695,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -717,10 +722,9 @@
 		3D1E59CB1945FFAD001CF760 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2X7R4W3Y3Q;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -738,10 +742,9 @@
 		3D1E59CC1945FFAD001CF760 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2X7R4W3Y3Q;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -814,6 +817,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -840,6 +844,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -858,6 +863,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSXTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -877,6 +883,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSXTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -899,6 +906,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -924,6 +932,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -941,6 +950,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOSTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Debug;
@@ -958,6 +968,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOSTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Release;
@@ -982,6 +993,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -1008,6 +1020,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
