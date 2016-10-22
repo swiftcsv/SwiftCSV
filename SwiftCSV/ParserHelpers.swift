@@ -7,27 +7,6 @@
 //
 
 extension CSV {
-    /// List of dictionaries that contains the CSV data
-    public var rows: [[String : String]] {
-        if _rows == nil {
-            parse()
-        }
-        return _rows!
-    }
-    
-    /// Dictionary of header name to list of values in that column
-    /// Will not be loaded if loadColumns in init is false
-    public var namedColumns: [String : [String]] {
-        if !loadColumns {
-            return [:]
-        } else if _namedColumns == nil {
-            parse()
-        }
-        return _namedColumns!
-    }
-
-    @available(*, unavailable, renamed: "namedColumns")
-    public var columns: [String : [String]] { return namedColumns }
     
     /// Parse the file and call a block for each row, passing it as a dictionary
     public func enumerateAsDict(_ block: @escaping ([String : String]) -> ()) {

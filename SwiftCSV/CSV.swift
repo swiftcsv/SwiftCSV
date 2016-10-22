@@ -19,6 +19,29 @@ open class CSV {
     var delimiter: Character
     
     let loadColumns: Bool
+
+    /// List of dictionaries that contains the CSV data
+    public var rows: [[String : String]] {
+        if _rows == nil {
+            parse()
+        }
+        return _rows!
+    }
+
+    /// Dictionary of header name to list of values in that column
+    /// Will not be loaded if loadColumns in init is false
+    public var namedColumns: [String : [String]] {
+        if !loadColumns {
+            return [:]
+        } else if _namedColumns == nil {
+            parse()
+        }
+        return _namedColumns!
+    }
+
+    @available(*, unavailable, renamed: "namedColumns")
+    public var columns: [String : [String]] { return namedColumns }
+    
     
     /// Load a CSV file from a string
     ///
