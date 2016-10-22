@@ -13,7 +13,7 @@ open class CSV {
     
     open var header: [String]!
     var _rows: [[String: String]]? = nil
-    var _columns: [String: [String]]? = nil
+    var _namedColumns: [String: [String]]? = nil
     
     var text: String
     var delimiter: Character
