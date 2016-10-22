@@ -13,10 +13,21 @@ extension CSV {
 
         CSV.enumerateAsArray(text: self.text, delimiter: self.delimiter, limitTo: limitTo, startAt: startAt, block: block)
     }
+
+    static func array(text: String, delimiter: Character, limitTo: Int? = nil, startAt: Int = 0) -> [[String]] {
+
+        var rows = [[String]]()
+
+        enumerateAsArray(text: text, delimiter: delimiter) { row in
+            rows.append(row)
+        }
+
+        return rows
+    }
+
     static func enumerateAsArray(text: String, delimiter: Character, limitTo: Int? = nil, startAt: Int = 0, block: @escaping ([String]) -> ()) {
         var currentIndex = text.startIndex
         let endIndex = text.endIndex
-        
 
         var atStart = true
         var parsingField = false
@@ -125,7 +136,6 @@ extension CSV {
             block(fields)
         }
     }
-    
 
     fileprivate static func isNewline(_ char: Character) -> Bool {
         return char == "\n" || char == "\r\n"
