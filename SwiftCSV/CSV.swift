@@ -55,9 +55,9 @@ open class CSV {
     
     /// Load a CSV file from a string
     ///
-    /// string: string data of the CSV file
-    /// delimiter: character to split row and header fields by (default is ',')
-    /// loadColumns: whether to populate the columns dictionary (default is true)
+    /// - parameter string: Contents of the CSV file
+    /// - parameter delimiter: Character to split row and header fields by (default is ',')
+    /// - parameter loadColumns: Whether to populate the columns dictionary (default is true)
     public init(string: String, delimiter: Character = comma, loadColumns: Bool = true) {
         self.text = string
         self.delimiter = delimiter
@@ -67,11 +67,11 @@ open class CSV {
     
     /// Load a CSV file
     ///
-    /// name: name of the file (will be passed to String(contentsOfFile:encoding:) to load)
-    /// delimiter: character to split row and header fields by (default is ',')
-    /// encoding: encoding used to read file (default is NSUTF8StringEncoding)
-    /// loadColumns: whether to populate the columns dictionary (default is true)
-    public convenience init(name: String, delimiter: Character = comma, encoding: String.Encoding = String.Encoding.utf8, loadColumns: Bool = true) throws {
+    /// - parameter name: name of the file (will be passed to String(contentsOfFile:encoding:) to load)
+    /// - parameter delimiter: character to split row and header fields by (default is ',')
+    /// - parameter encoding: encoding used to read file (default is UTF-8)
+    /// - parameter loadColumns: whether to populate the columns dictionary (default is true)
+    public convenience init(name: String, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOfFile: name, encoding: encoding)
     
         self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
@@ -79,11 +79,11 @@ open class CSV {
     
     /// Load a CSV file from a URL
     ///
-    /// url: url pointing to the file (will be passed to String(contentsOfURL:encoding:) to load)
-    /// delimiter: character to split row and header fields by (default is ',')
-    /// encoding: encoding used to read file (default is NSUTF8StringEncoding)
-    /// loadColumns: whether to populate the columns dictionary (default is true)
-    public convenience init(url: URL, delimiter: Character = comma, encoding: String.Encoding = String.Encoding.utf8, loadColumns: Bool = true) throws {
+    /// - parameter url: url pointing to the file (will be passed to String(contentsOfURL:encoding:) to load)
+    /// - parameter delimiter: character to split row and header fields by (default is ',')
+    /// - parameter encoding: encoding used to read file (default is UTF-8)
+    /// - parameter loadColumns: whether to populate the columns dictionary (default is true)
+    public convenience init(url: URL, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOf: url, encoding: encoding)
         
         self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)

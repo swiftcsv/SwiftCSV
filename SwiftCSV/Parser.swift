@@ -25,6 +25,14 @@ extension CSV {
         return rows
     }
 
+    /// Parse the text and call a block on each row, passing it in as a list of fields.
+    ///
+    /// - parameter text: Text to parse.
+    /// - parameter delimiter: Character to split row and header fields by (default is ',')
+    /// - parameter limitTo: If set to non-nil value, enumeration stops 
+    ///   at the row with index `limitTo` (or on end-of-text, whichever is earlier.
+    /// - parameter startAt: Offset of rows to ignore before invoking `block` for the first time. Default is 0.
+    /// - parameter block: Callback invoked for every parsed row between `startAt` and `limitTo` in `text`.
     static func enumerateAsArray(text: String, delimiter: Character, limitTo: Int? = nil, startAt: Int = 0, block: @escaping ([String]) -> ()) {
         var currentIndex = text.startIndex
         let endIndex = text.endIndex
