@@ -12,8 +12,24 @@ open class CSV {
     static fileprivate let comma: Character = ","
     
     open var header: [String]!
-    var _rows: [[String: String]]? = nil
-    var _namedColumns: [String: [String]]? = nil
+
+    lazy var _namedView: NamedView = {
+
+        var rows = [[String: String]]()
+        var columns = [String: [String]]()
+
+        self.enumerateAsDict { dict in
+            rows.append(dict)
+        }
+
+        if self.loadColumns {
+            for field in self.header {
+                columns[field] = rows.map { $0[field] ?? "" }
+            }
+        }
+
+        return NamedView(rows: rows, columns: columns)
+    }()
     
     var text: String
     var delimiter: Character
@@ -22,26 +38,20 @@ open class CSV {
 
     /// List of dictionaries that contains the CSV data
     public var rows: [[String : String]] {
-        if _rows == nil {
-            parse()
-        }
-        return _rows!
+        return _namedView.rows
     }
 
     /// Dictionary of header name to list of values in that column
     /// Will not be loaded if loadColumns in init is false
     public var namedColumns: [String : [String]] {
-        if !loadColumns {
-            return [:]
-        } else if _namedColumns == nil {
-            parse()
-        }
-        return _namedColumns!
+        return _namedView.columns
     }
 
     @available(*, unavailable, renamed: "namedColumns")
-    public var columns: [String : [String]] { return namedColumns }
-    
+    public var columns: [String : [String]] {
+        return namedColumns
+    }
+
     
     /// Load a CSV file from a string
     ///
