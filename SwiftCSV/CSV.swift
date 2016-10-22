@@ -11,7 +11,7 @@ import Foundation
 open class CSV {
     static fileprivate let comma: Character = ","
     
-    open var header: [String]!
+    open let header: [String]
 
     lazy var _namedView: NamedView = {
 
@@ -62,11 +62,7 @@ open class CSV {
         self.text = string
         self.delimiter = delimiter
         self.loadColumns = loadColumns
-        
-        let createHeader: ([String]) -> () = { head in
-            self.header = head
-        }
-        enumerateAsArray(createHeader, limitTo: 1, startAt: 0)
+        self.header = CSV.array(text: string, delimiter: delimiter).first ?? []
     }
     
     /// Load a CSV file
