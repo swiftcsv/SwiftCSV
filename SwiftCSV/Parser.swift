@@ -10,20 +10,25 @@ extension CSV {
     /// Parse the file and call a block on each row, passing it in as a list of fields
     /// limitTo will limit the result to a certain number of lines
     func enumerateAsArray(_ block: @escaping ([String]) -> (), limitTo: Int?, startAt: Int = 0) {
+
+        CSV.enumerateAsArray(text: self.text, delimiter: self.delimiter, limitTo: limitTo, startAt: startAt, block: block)
+    }
+    static func enumerateAsArray(text: String, delimiter: Character, limitTo: Int? = nil, startAt: Int = 0, block: @escaping ([String]) -> ()) {
         var currentIndex = text.startIndex
         let endIndex = text.endIndex
         
+
         var atStart = true
         var parsingField = false
         var parsingQuotes = false
         var innerQuotes = false
-        
+
         var fields = [String]()
         var field = [Character]()
-        
+
         var count = 0
         let doLimit = limitTo != nil
-        
+
         let callBlock: () -> () = {
             fields.append(String(field))
             if count >= startAt {
@@ -33,13 +38,13 @@ extension CSV {
             fields = [String]()
             field = [Character]()
         }
-        
+
         let changeState: (Character) -> (Bool) = { char in
             if atStart {
                 if char == "\"" {
                     atStart = false
                     parsingQuotes = true
-                } else if char == self.delimiter {
+                } else if char == delimiter {
                     fields.append(String(field))
                     field = [Character]()
                 } else if CSV.isNewline(char) {
@@ -60,7 +65,7 @@ extension CSV {
                 } else {
                     if char == "\"" {
                         innerQuotes = true
-                    } else if char == self.delimiter {
+                    } else if char == delimiter {
                         atStart = true
                         parsingField = false
                         innerQuotes = false
@@ -80,7 +85,7 @@ extension CSV {
                     if char == "\"" {
                         field.append(char)
                         innerQuotes = false
-                    } else if char == self.delimiter {
+                    } else if char == delimiter {
                         atStart = true
                         parsingField = false
                         innerQuotes = false
@@ -106,7 +111,7 @@ extension CSV {
             }
             return doLimit && count >= limitTo!
         }
-        
+
         while currentIndex < endIndex {
             let char = text[currentIndex]
             if changeState(char) {
@@ -114,13 +119,14 @@ extension CSV {
             }
             currentIndex = text.index(after: currentIndex)
         }
-        
+
         if fields.count != 0 || field.count != 0 || (doLimit && count < limitTo!) {
             fields.append(String(field))
             block(fields)
         }
     }
     
+
     fileprivate static func isNewline(_ char: Character) -> Bool {
         return char == "\n" || char == "\r\n"
     }
