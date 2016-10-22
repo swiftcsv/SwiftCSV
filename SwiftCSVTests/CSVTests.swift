@@ -61,8 +61,8 @@ class CSVTests: XCTestCase {
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
         ]
-        XCTAssertEqual(Array(csv.columns.keys), Array(expected.keys))
-        for (key, value) in csv.columns {
+        XCTAssertEqual(Array(csv.namedColumns.keys), Array(expected.keys))
+        for (key, value) in csv.namedColumns {
             XCTAssertEqual(expected[key] ?? [], value)
         }
     }
@@ -86,7 +86,7 @@ class CSVTests: XCTestCase {
     
     func testIgnoreColumns() {
         csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
-        XCTAssertEqual(csv.columns.isEmpty, true)
+        XCTAssertEqual(csv.namedColumns.isEmpty, true)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],

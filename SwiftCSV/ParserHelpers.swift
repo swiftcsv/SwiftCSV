@@ -8,7 +8,7 @@
 
 extension CSV {
     /// List of dictionaries that contains the CSV data
-    public var rows: [[String: String]] {
+    public var rows: [[String : String]] {
         if _rows == nil {
             parse()
         }
@@ -17,19 +17,22 @@ extension CSV {
     
     /// Dictionary of header name to list of values in that column
     /// Will not be loaded if loadColumns in init is false
-    public var columns: [String: [String]] {
+    public var namedColumns: [String : [String]] {
         if !loadColumns {
             return [:]
-        } else if _columns == nil {
+        } else if _namedColumns == nil {
             parse()
         }
-        return _columns!
+        return _namedColumns!
     }
+
+    @available(*, unavailable, renamed: "namedColumns")
+    public var columns: [String : [String]] { return namedColumns }
     
     /// Parse the file and call a block for each row, passing it as a dictionary
-    public func enumerateAsDict(_ block: @escaping ([String: String]) -> ()) {
+    public func enumerateAsDict(_ block: @escaping ([String : String]) -> ()) {
         let enumeratedHeader = header.enumerated()
-        
+
         enumerateAsArray { fields in
             var dict = [String: String]()
             for (index, head) in enumeratedHeader {
@@ -58,7 +61,7 @@ extension CSV {
             }
         }
         
-        _columns = columns
+        _namedColumns = columns
         _rows = rows
     }
 }
