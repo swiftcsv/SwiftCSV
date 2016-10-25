@@ -43,19 +43,19 @@ extension CSV {
         var innerQuotes = false
 
         var fields = [String]()
-        var field = [Character]()
+        var field = ""
 
         var count = 0
         let doLimit = limitTo != nil
 
-        let callBlock: () -> () = {
+        let finishRow: () -> () = {
             fields.append(String(field))
             if count >= startAt {
                 block(fields)
             }
             count += 1
             fields = [String]()
-            field = [Character]()
+            field = ""
         }
 
         let changeState: (Character) -> (Bool) = { char in
@@ -64,10 +64,10 @@ extension CSV {
                     atStart = false
                     parsingQuotes = true
                 } else if char == delimiter {
-                    fields.append(String(field))
-                    field = [Character]()
+                    fields.append(field)
+                    field = ""
                 } else if CSV.isNewline(char) {
-                    callBlock()
+                    finishRow()
                 } else {
                     parsingField = true
                     atStart = false
@@ -88,13 +88,13 @@ extension CSV {
                         atStart = true
                         parsingField = false
                         innerQuotes = false
-                        fields.append(String(field))
-                        field = [Character]()
+                        fields.append(field)
+                        field = ""
                     } else if CSV.isNewline(char) {
                         atStart = true
                         parsingField = false
                         innerQuotes = false
-                        callBlock()
+                        finishRow()
                     } else {
                         field.append(char)
                     }
@@ -108,13 +108,13 @@ extension CSV {
                         atStart = true
                         parsingField = false
                         innerQuotes = false
-                        fields.append(String(field))
-                        field = [Character]()
+                        fields.append(field)
+                        field = ""
                     } else if CSV.isNewline(char) {
                         atStart = true
                         parsingQuotes = false
                         innerQuotes = false
-                        callBlock()
+                        finishRow()
                     } else {
                         fatalError("Can't have non-quote here: \(char)")
                     }
@@ -139,8 +139,8 @@ extension CSV {
             currentIndex = text.index(after: currentIndex)
         }
 
-        if fields.count != 0 || field.count != 0 || (doLimit && count < limitTo!) {
-            fields.append(String(field))
+        if !fields.isEmpty || !field.isEmpty || (doLimit && count < limitTo!) {
+            fields.append(field)
             block(fields)
         }
     }
