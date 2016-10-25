@@ -37,8 +37,13 @@ open class CSV {
     let loadColumns: Bool
 
     /// List of dictionaries that contains the CSV data
-    public var rows: [[String : String]] {
+    public var namedRows: [[String : String]] {
         return _namedView.rows
+    }
+
+    @available(*, unavailable, renamed: "namedRows")
+    public var rows: [[String : String]] {
+        return namedRows
     }
 
     /// Dictionary of header name to list of values in that column

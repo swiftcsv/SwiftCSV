@@ -6,8 +6,6 @@
 //  Copyright © 2016 Naoto Kaneko. All rights reserved.
 //
 
-import Foundation
-
 struct NamedView {
 
     var rows: [[String: String]]

@@ -26,7 +26,7 @@ class CSVTests: XCTestCase {
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
-        for (index, row) in csv.rows.enumerated() {
+        for (index, row) in csv.namedRows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
@@ -38,7 +38,7 @@ class CSVTests: XCTestCase {
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": ""]
         ]
-        for (index, row) in csv.rows.enumerated() {
+        for (index, row) in csv.namedRows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
@@ -50,7 +50,7 @@ class CSVTests: XCTestCase {
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
-        for (index, row) in csv.rows.enumerated() {
+        for (index, row) in csv.namedRows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
@@ -92,7 +92,7 @@ class CSVTests: XCTestCase {
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
-        for (index, row) in csv.rows.enumerated() {
+        for (index, row) in csv.namedRows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }

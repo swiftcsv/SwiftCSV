@@ -27,7 +27,7 @@ class TSVTests: XCTestCase {
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
-        for (index, row) in tsv.rows.enumerated() {
+        for (index, row) in tsv.namedRows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
