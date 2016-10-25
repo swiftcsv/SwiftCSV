@@ -30,6 +30,24 @@ open class CSV {
 
         return NamedView(rows: rows, columns: columns)
     }()
+
+    lazy var _enumeratedView: EnumeratedView = {
+
+        var rows = [[String]]()
+        var columns: [EnumeratedView.Column] = []
+        self.enumerateAsArray { rows.append($0) }
+
+        if self.loadColumns {
+            columns = self.header.enumerated().map { (index: Int, header: String) -> EnumeratedView.Column in
+
+                return EnumeratedView.Column(
+                    header: header,
+                    rows: rows.map { $0[index] })
+            }
+        }
+
+        return EnumeratedView(rows: rows, columns: columns)
+    }()
     
     var text: String
     var delimiter: Character
@@ -41,15 +59,29 @@ open class CSV {
         return _namedView.rows
     }
 
-    @available(*, unavailable, renamed: "namedRows")
-    public var rows: [[String : String]] {
-        return namedRows
-    }
-
     /// Dictionary of header name to list of values in that column
     /// Will not be loaded if loadColumns in init is false
     public var namedColumns: [String : [String]] {
         return _namedView.columns
+    }
+
+    /// Collection of column fields that contain the CSV data
+    public var enumeratedRows: [[String]] {
+        return _enumeratedView.rows
+    }
+
+    /// Collection of columns with metadata.
+    /// Will not be loaded if loadColumns in init is false
+    public var enumeratedColumns: [EnumeratedView.Column] {
+        return _enumeratedView.columns
+    }
+    
+
+
+
+    @available(*, unavailable, renamed: "namedRows")
+    public var rows: [[String : String]] {
+        return namedRows
     }
 
     @available(*, unavailable, renamed: "namedColumns")
