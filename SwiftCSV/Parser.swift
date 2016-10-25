@@ -6,6 +6,12 @@
 //  Copyright © 2016 Naoto Kaneko. All rights reserved.
 //
 
+fileprivate extension Character {
+    var isNewline: Bool {
+        return self == "\n" || self == "\r\n"
+    }
+}
+
 extension CSV {
     /// Parse the file and call a block on each row, passing it in as a list of fields
     /// limitTo will limit the result to a certain number of lines
@@ -46,9 +52,8 @@ extension CSV {
         var field = ""
 
         var count = 0
-        let doLimit = limitTo != nil
 
-        let finishRow: () -> () = {
+        func finishRow() {
             fields.append(String(field))
             if count >= startAt {
                 block(fields)
@@ -58,7 +63,7 @@ extension CSV {
             field = ""
         }
 
-        let changeState: (Character) -> (Bool) = { char in
+        func changeState(_ char: Character) {
             if atStart {
                 if char == "\"" {
                     atStart = false
@@ -66,7 +71,7 @@ extension CSV {
                 } else if char == delimiter {
                     fields.append(field)
                     field = ""
-                } else if CSV.isNewline(char) {
+                } else if char.isNewline {
                     finishRow()
                 } else {
                     parsingField = true
@@ -90,7 +95,7 @@ extension CSV {
                         innerQuotes = false
                         fields.append(field)
                         field = ""
-                    } else if CSV.isNewline(char) {
+                    } else if char.isNewline {
                         atStart = true
                         parsingField = false
                         innerQuotes = false
@@ -110,7 +115,7 @@ extension CSV {
                         innerQuotes = false
                         fields.append(field)
                         field = ""
-                    } else if CSV.isNewline(char) {
+                    } else if char.isNewline {
                         atStart = true
                         parsingQuotes = false
                         innerQuotes = false
@@ -128,24 +133,33 @@ extension CSV {
             } else {
                 fatalError("me_irl")
             }
-            return doLimit && count >= limitTo!
+        }
+
+        func limitReached(_ count: Int) -> Bool {
+
+            guard let limitTo = limitTo,
+                count >= limitTo
+                else { return false }
+
+            return true
         }
 
         while currentIndex < endIndex {
             let char = text[currentIndex]
-            if changeState(char) {
+
+            changeState(char)
+
+            if limitReached(count) {
                 break
             }
+
             currentIndex = text.index(after: currentIndex)
         }
 
-        if !fields.isEmpty || !field.isEmpty || (doLimit && count < limitTo!) {
+        if !fields.isEmpty || !field.isEmpty || limitReached(count) {
             fields.append(field)
             block(fields)
         }
     }
 
-    fileprivate static func isNewline(_ char: Character) -> Bool {
-        return char == "\n" || char == "\r\n"
-    }
 }
