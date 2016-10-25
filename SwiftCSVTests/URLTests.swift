@@ -23,7 +23,7 @@ class URLTests: XCTestCase {
             ["id": "", "name": "", "age": ""],
             ["id": "", "name": "Tom", "age": ""]
         ]
-        for (index, row) in csv.rows.enumerated() {
+        for (index, row) in csv.namedRows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
@@ -56,7 +56,7 @@ class URLTests: XCTestCase {
             ],
             [:]
         ]
-        for (index, row) in csv.rows.enumerated() {
+        for (index, row) in csv.namedRows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
