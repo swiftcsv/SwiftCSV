@@ -16,6 +16,10 @@
 		508975D31DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
 		508975D41DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
 		508975D51DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
+		508975D71DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975D81DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975D91DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975DA1DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
 		5FB74B9B1CCB9274009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BB71CCB929D009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
@@ -99,6 +103,7 @@
 		3D444BCC1C7D88290001C60C /* String+Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Lines.swift"; sourceTree = "<group>"; };
 		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; tabWidth = 4; };
 		508975D11DBB897A006F3DBE /* NamedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedView.swift; sourceTree = "<group>"; };
+		508975D61DBF34CF006F3DBE /* ParsingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingState.swift; sourceTree = "<group>"; };
 		5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74B9A1CCB9274009DDBF1 /* SwiftCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +210,7 @@
 				BEE5461B1CBBB0F400C0666F /* ParserHelpers.swift */,
 				BEE5461D1CBBB15900C0666F /* Description.swift */,
 				BE9B02D71CBE57B8009FE424 /* Parser.swift */,
+				508975D61DBF34CF006F3DBE /* ParsingState.swift */,
 			);
 			path = SwiftCSV;
 			sourceTree = "<group>";
@@ -530,6 +536,7 @@
 				BEE5461E1CBBB15900C0666F /* Description.swift in Sources */,
 				3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */,
 				BE9B02D81CBE57B8009FE424 /* Parser.swift in Sources */,
+				508975D71DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				3D444BCD1C7D88290001C60C /* String+Lines.swift in Sources */,
 				BEE5461C1CBBB0F400C0666F /* ParserHelpers.swift in Sources */,
 			);
@@ -555,6 +562,7 @@
 				5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */,
 				5FB74BD21CCB92E5009DDBF1 /* String+Lines.swift in Sources */,
 				5FB74BD31CCB92E5009DDBF1 /* ParserHelpers.swift in Sources */,
+				508975D81DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				5FB74BD41CCB92E5009DDBF1 /* Description.swift in Sources */,
 				5FB74BD51CCB92E5009DDBF1 /* Parser.swift in Sources */,
 			);
@@ -580,6 +588,7 @@
 				5FB74BD61CCB92EB009DDBF1 /* CSV.swift in Sources */,
 				5FB74BD71CCB92EB009DDBF1 /* String+Lines.swift in Sources */,
 				5FB74BD81CCB92EB009DDBF1 /* ParserHelpers.swift in Sources */,
+				508975D91DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				5FB74BD91CCB92EB009DDBF1 /* Description.swift in Sources */,
 				5FB74BDA1CCB92EB009DDBF1 /* Parser.swift in Sources */,
 			);
@@ -605,6 +614,7 @@
 				5FB74BDB1CCB92F1009DDBF1 /* CSV.swift in Sources */,
 				5FB74BDC1CCB92F1009DDBF1 /* String+Lines.swift in Sources */,
 				5FB74BDD1CCB92F1009DDBF1 /* ParserHelpers.swift in Sources */,
+				508975DA1DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				5FB74BDE1CCB92F1009DDBF1 /* Description.swift in Sources */,
 				5FB74BDF1CCB92F1009DDBF1 /* Parser.swift in Sources */,
 			);
