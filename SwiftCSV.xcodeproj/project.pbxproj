@@ -12,6 +12,21 @@
 		3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3749E2194D6DF7008F262A /* TSVTests.swift */; };
 		3D444BCD1C7D88290001C60C /* String+Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D444BCC1C7D88290001C60C /* String+Lines.swift */; };
 		3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
+		508975D21DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
+		508975D31DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
+		508975D41DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
+		508975D51DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
+		508975D71DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975D81DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975D91DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975DA1DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975DC1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */; };
+		508975DD1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */; };
+		508975DE1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */; };
+		508975DF1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */; };
+		508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */; };
+		508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */; };
+		508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */; };
 		5FB74B9B1CCB9274009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BB71CCB929D009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
@@ -94,6 +109,10 @@
 		3D3749E2194D6DF7008F262A /* TSVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSVTests.swift; sourceTree = "<group>"; };
 		3D444BCC1C7D88290001C60C /* String+Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Lines.swift"; sourceTree = "<group>"; };
 		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; tabWidth = 4; };
+		508975D11DBB897A006F3DBE /* NamedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedView.swift; sourceTree = "<group>"; };
+		508975D61DBF34CF006F3DBE /* ParsingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingState.swift; sourceTree = "<group>"; };
+		508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedView.swift; sourceTree = "<group>"; };
+		508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedViewTests.swift; sourceTree = "<group>"; };
 		5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74B9A1CCB9274009DDBF1 /* SwiftCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,10 +214,13 @@
 			isa = PBXGroup;
 			children = (
 				3DAAEE9B1C74C7EC00A933DB /* CSV.swift */,
+				508975D11DBB897A006F3DBE /* NamedView.swift */,
+				508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */,
 				3D444BCC1C7D88290001C60C /* String+Lines.swift */,
 				BEE5461B1CBBB0F400C0666F /* ParserHelpers.swift */,
 				BEE5461D1CBBB15900C0666F /* Description.swift */,
 				BE9B02D71CBE57B8009FE424 /* Parser.swift */,
+				508975D61DBF34CF006F3DBE /* ParsingState.swift */,
 			);
 			path = SwiftCSV;
 			sourceTree = "<group>";
@@ -208,6 +230,7 @@
 			children = (
 				BE06B67E1CB72680009578CC /* Res */,
 				3D1E59C61945FFAD001CF760 /* CSVTests.swift */,
+				508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */,
 				BE6C86061CB5CE44009A351D /* QuotedTests.swift */,
 				3D3749E2194D6DF7008F262A /* TSVTests.swift */,
 				BE06B67F1CB726B5009578CC /* URLTests.swift */,
@@ -520,9 +543,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508975D21DBB897A006F3DBE /* NamedView.swift in Sources */,
 				BEE5461E1CBBB15900C0666F /* Description.swift in Sources */,
 				3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */,
 				BE9B02D81CBE57B8009FE424 /* Parser.swift in Sources */,
+				508975DC1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */,
+				508975D71DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				3D444BCD1C7D88290001C60C /* String+Lines.swift in Sources */,
 				BEE5461C1CBBB0F400C0666F /* ParserHelpers.swift in Sources */,
 			);
@@ -534,6 +560,7 @@
 			files = (
 				E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */,
 				3D1E59C71945FFAD001CF760 /* CSVTests.swift in Sources */,
+				508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */,
 				BE06B6801CB726B5009578CC /* URLTests.swift in Sources */,
 				BE6C86071CB5CE44009A351D /* QuotedTests.swift in Sources */,
@@ -544,9 +571,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508975D31DBB897A006F3DBE /* NamedView.swift in Sources */,
 				5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */,
 				5FB74BD21CCB92E5009DDBF1 /* String+Lines.swift in Sources */,
 				5FB74BD31CCB92E5009DDBF1 /* ParserHelpers.swift in Sources */,
+				508975DD1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */,
+				508975D81DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				5FB74BD41CCB92E5009DDBF1 /* Description.swift in Sources */,
 				5FB74BD51CCB92E5009DDBF1 /* Parser.swift in Sources */,
 			);
@@ -558,6 +588,7 @@
 			files = (
 				5FB74BE01CCB9312009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE11CCB9312009DDBF1 /* QuotedTests.swift in Sources */,
+				508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE21CCB9312009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE31CCB9312009DDBF1 /* URLTests.swift in Sources */,
 				5FB74BE41CCB9312009DDBF1 /* PerformanceTest.swift in Sources */,
@@ -568,9 +599,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508975D41DBB897A006F3DBE /* NamedView.swift in Sources */,
 				5FB74BD61CCB92EB009DDBF1 /* CSV.swift in Sources */,
 				5FB74BD71CCB92EB009DDBF1 /* String+Lines.swift in Sources */,
 				5FB74BD81CCB92EB009DDBF1 /* ParserHelpers.swift in Sources */,
+				508975DE1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */,
+				508975D91DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				5FB74BD91CCB92EB009DDBF1 /* Description.swift in Sources */,
 				5FB74BDA1CCB92EB009DDBF1 /* Parser.swift in Sources */,
 			);
@@ -582,6 +616,7 @@
 			files = (
 				5FB74BE51CCB931F009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE61CCB931F009DDBF1 /* QuotedTests.swift in Sources */,
+				508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE71CCB931F009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE81CCB931F009DDBF1 /* URLTests.swift in Sources */,
 				5FB74BE91CCB931F009DDBF1 /* PerformanceTest.swift in Sources */,
@@ -592,9 +627,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508975D51DBB897A006F3DBE /* NamedView.swift in Sources */,
 				5FB74BDB1CCB92F1009DDBF1 /* CSV.swift in Sources */,
 				5FB74BDC1CCB92F1009DDBF1 /* String+Lines.swift in Sources */,
 				5FB74BDD1CCB92F1009DDBF1 /* ParserHelpers.swift in Sources */,
+				508975DF1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */,
+				508975DA1DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				5FB74BDE1CCB92F1009DDBF1 /* Description.swift in Sources */,
 				5FB74BDF1CCB92F1009DDBF1 /* Parser.swift in Sources */,
 			);

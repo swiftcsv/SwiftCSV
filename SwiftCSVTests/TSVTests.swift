@@ -27,7 +27,7 @@ class TSVTests: XCTestCase {
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
-        for (index, row) in tsv.rows.enumerated() {
+        for (index, row) in tsv.namedRows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
@@ -38,8 +38,8 @@ class TSVTests: XCTestCase {
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
         ]
-        XCTAssertEqual(Array(tsv.columns.keys), Array(expected.keys))
-        for (key, value) in tsv.columns {
+        XCTAssertEqual(Array(tsv.namedColumns.keys), Array(expected.keys))
+        for (key, value) in tsv.namedColumns {
             XCTAssertEqual(expected[key] ?? [], value)
         }
     }
