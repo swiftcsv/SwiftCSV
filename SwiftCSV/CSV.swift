@@ -20,15 +20,38 @@ public protocol View {
     func serialize(header: [String], delimiter: Character) -> String
 }
 
+/// CSV variant for which unique column names are assumed.
+///
+/// Example:
+///
+///     let csv = NamedCSV(...)
+///     let allIds = csv.columns["id"]
+///     let firstEntry = csv.rows[0]
+///     let fullName = firstEntry["firstName"] + " " + firstEntry["lastName"]
+///
+typealias NamedCSV = CSV<NamedView>
+
+/// CSV variant that exposes columns and rows as arrays.
+/// Example:
+///
+///     let csv = EnumeratedCSV(...)
+///     let allIds = csv.columns.filter { $0.header == "id" }.rows
+///
+typealias EnumeratedCSV = CSV<EnumeratedView>
+
 open class CSV<DataView : View>  {
     public static var comma: Character { return "," }
     
     public let header: [String]
 
-    let text: String
-    let delimiter: Character
+    /// Unparsed contents.
+    public let text: String
 
-    let content: DataView
+    /// Used delimiter to parse `text` and to serialize the data again.
+    public let delimiter: Character
+
+    /// Underlying data representation of the CSV contents.
+    public let content: DataView
 
     public var rows: [DataView.Row] {
         return content.rows
@@ -79,14 +102,20 @@ open class CSV<DataView : View>  {
         try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
     }
     
-    /// Turn the CSV data into NSData using a given encoding
+    /// Turn the CSV contents into Data using a given encoding
     open func dataUsingEncoding(_ encoding: String.Encoding) -> Data? {
-        return description.data(using: encoding)
+        return serialized.data(using: encoding)
+    }
+
+    /// Serialized form of the CSV data; depending on the View used, this may
+    /// perform additional normalizations.
+    open var serialized: String {
+        return self.content.serialize(header: self.header, delimiter: self.delimiter)
     }
 }
 
 extension CSV: CustomStringConvertible {
     public var description: String {
-        return self.content.serialize(header: self.header, delimiter: self.delimiter)
+        return self.serialized
     }
 }
