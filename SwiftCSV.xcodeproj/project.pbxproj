@@ -12,8 +12,8 @@
 		3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3749E2194D6DF7008F262A /* TSVTests.swift */; };
 		3D444BCD1C7D88290001C60C /* String+Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D444BCC1C7D88290001C60C /* String+Lines.swift */; };
 		3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
-		5FB74B9B1CCB9274009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */; };
-		5FB74BB71CCB929D009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */; };
+		5FB74B9B1CCB9274009DDBF1 /* SwiftCSV-OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74B911CCB9274009DDBF1 /* SwiftCSV-OSX.framework */; };
+		5FB74BB71CCB929D009DDBF1 /* SwiftCSV-tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV-tvOS.framework */; };
 		5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
 		5FB74BD21CCB92E5009DDBF1 /* String+Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D444BCC1C7D88290001C60C /* String+Lines.swift */; };
 		5FB74BD31CCB92E5009DDBF1 /* ParserHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5461B1CBBB0F400C0666F /* ParserHelpers.swift */; };
@@ -94,11 +94,11 @@
 		3D3749E2194D6DF7008F262A /* TSVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSVTests.swift; sourceTree = "<group>"; };
 		3D444BCC1C7D88290001C60C /* String+Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Lines.swift"; sourceTree = "<group>"; };
 		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; tabWidth = 4; };
-		5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FB74B9A1CCB9274009DDBF1 /* SwiftCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB74B911CCB9274009DDBF1 /* SwiftCSV-OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "SwiftCSV-OSX.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB74B9A1CCB9274009DDBF1 /* SwiftCSV-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftCSV-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB74BAD1CCB929D009DDBF1 /* SwiftCSV-tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "SwiftCSV-tvOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74BB61CCB929D009DDBF1 /* SwiftCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FB74BC91CCB92BA009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FB74BC91CCB92BA009DDBF1 /* SwiftCSV-watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "SwiftCSV-watchOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE06B67C1CB7267B009578CC /* empty_fields.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty_fields.csv; sourceTree = "<group>"; };
 		BE06B67F1CB726B5009578CC /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		BE06B6811CB7287F009578CC /* quotes.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = quotes.csv; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FB74B9B1CCB9274009DDBF1 /* SwiftCSV.framework in Frameworks */,
+				5FB74B9B1CCB9274009DDBF1 /* SwiftCSV-OSX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FB74BB71CCB929D009DDBF1 /* SwiftCSV.framework in Frameworks */,
+				5FB74BB71CCB929D009DDBF1 /* SwiftCSV-tvOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,11 +182,11 @@
 			children = (
 				3D1E59B41945FFAC001CF760 /* SwiftCSV.framework */,
 				3D1E59BF1945FFAD001CF760 /* SwiftCSVTests.xctest */,
-				5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */,
-				5FB74B9A1CCB9274009DDBF1 /* SwiftCSVTests.xctest */,
-				5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */,
+				5FB74B911CCB9274009DDBF1 /* SwiftCSV-OSX.framework */,
+				5FB74B9A1CCB9274009DDBF1 /* SwiftCSV-OSXTests.xctest */,
+				5FB74BAD1CCB929D009DDBF1 /* SwiftCSV-tvOS.framework */,
 				5FB74BB61CCB929D009DDBF1 /* SwiftCSVTests.xctest */,
-				5FB74BC91CCB92BA009DDBF1 /* SwiftCSV.framework */,
+				5FB74BC91CCB92BA009DDBF1 /* SwiftCSV-watchOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -297,9 +297,9 @@
 			productReference = 3D1E59BF1945FFAD001CF760 /* SwiftCSVTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5FB74B901CCB9274009DDBF1 /* SwiftCSV OSX */ = {
+		5FB74B901CCB9274009DDBF1 /* SwiftCSV-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FB74BA61CCB9274009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV OSX" */;
+			buildConfigurationList = 5FB74BA61CCB9274009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-OSX" */;
 			buildPhases = (
 				5FB74B8C1CCB9274009DDBF1 /* Sources */,
 				5FB74B8D1CCB9274009DDBF1 /* Frameworks */,
@@ -310,14 +310,14 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftCSV OSX";
+			name = "SwiftCSV-OSX";
 			productName = "SwiftCSV OSX";
-			productReference = 5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */;
+			productReference = 5FB74B911CCB9274009DDBF1 /* SwiftCSV-OSX.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		5FB74B991CCB9274009DDBF1 /* SwiftCSV OSXTests */ = {
+		5FB74B991CCB9274009DDBF1 /* SwiftCSV-OSXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FB74BA71CCB9274009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV OSXTests" */;
+			buildConfigurationList = 5FB74BA71CCB9274009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-OSXTests" */;
 			buildPhases = (
 				5FB74B961CCB9274009DDBF1 /* Sources */,
 				5FB74B971CCB9274009DDBF1 /* Frameworks */,
@@ -328,14 +328,14 @@
 			dependencies = (
 				5FB74B9D1CCB9274009DDBF1 /* PBXTargetDependency */,
 			);
-			name = "SwiftCSV OSXTests";
+			name = "SwiftCSV-OSXTests";
 			productName = "SwiftCSV OSXTests";
-			productReference = 5FB74B9A1CCB9274009DDBF1 /* SwiftCSVTests.xctest */;
+			productReference = 5FB74B9A1CCB9274009DDBF1 /* SwiftCSV-OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5FB74BAC1CCB929D009DDBF1 /* SwiftCSV tvOS */ = {
+		5FB74BAC1CCB929D009DDBF1 /* SwiftCSV-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FB74BBE1CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV tvOS" */;
+			buildConfigurationList = 5FB74BBE1CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-tvOS" */;
 			buildPhases = (
 				5FB74BA81CCB929D009DDBF1 /* Sources */,
 				5FB74BA91CCB929D009DDBF1 /* Frameworks */,
@@ -346,14 +346,14 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftCSV tvOS";
+			name = "SwiftCSV-tvOS";
 			productName = "SwiftCSV tvOS";
-			productReference = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */;
+			productReference = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV-tvOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		5FB74BB51CCB929D009DDBF1 /* SwiftCSV tvOSTests */ = {
+		5FB74BB51CCB929D009DDBF1 /* SwiftCSV-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FB74BC11CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV tvOSTests" */;
+			buildConfigurationList = 5FB74BC11CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-tvOSTests" */;
 			buildPhases = (
 				5FB74BB21CCB929D009DDBF1 /* Sources */,
 				5FB74BB31CCB929D009DDBF1 /* Frameworks */,
@@ -364,14 +364,14 @@
 			dependencies = (
 				5FB74BB91CCB929D009DDBF1 /* PBXTargetDependency */,
 			);
-			name = "SwiftCSV tvOSTests";
+			name = "SwiftCSV-tvOSTests";
 			productName = "SwiftCSV tvOSTests";
 			productReference = 5FB74BB61CCB929D009DDBF1 /* SwiftCSVTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5FB74BC81CCB92BA009DDBF1 /* SwiftCSV watchOS */ = {
+		5FB74BC81CCB92BA009DDBF1 /* SwiftCSV-watchOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FB74BCE1CCB92BA009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV watchOS" */;
+			buildConfigurationList = 5FB74BCE1CCB92BA009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-watchOS" */;
 			buildPhases = (
 				5FB74BC41CCB92BA009DDBF1 /* Sources */,
 				5FB74BC51CCB92BA009DDBF1 /* Frameworks */,
@@ -382,9 +382,9 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftCSV watchOS";
+			name = "SwiftCSV-watchOS";
 			productName = "SwiftCSV watchOS";
-			productReference = 5FB74BC91CCB92BA009DDBF1 /* SwiftCSV.framework */;
+			productReference = 5FB74BC91CCB92BA009DDBF1 /* SwiftCSV-watchOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -395,7 +395,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Naoto Kaneko";
 				TargetAttributes = {
 					3D1E59B31945FFAC001CF760 = {
@@ -407,9 +407,11 @@
 					};
 					5FB74B901CCB9274009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74B991CCB9274009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74BAC1CCB929D009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
@@ -436,11 +438,11 @@
 			targets = (
 				3D1E59B31945FFAC001CF760 /* SwiftCSV */,
 				3D1E59BE1945FFAD001CF760 /* SwiftCSVTests */,
-				5FB74B901CCB9274009DDBF1 /* SwiftCSV OSX */,
-				5FB74B991CCB9274009DDBF1 /* SwiftCSV OSXTests */,
-				5FB74BAC1CCB929D009DDBF1 /* SwiftCSV tvOS */,
-				5FB74BB51CCB929D009DDBF1 /* SwiftCSV tvOSTests */,
-				5FB74BC81CCB92BA009DDBF1 /* SwiftCSV watchOS */,
+				5FB74B901CCB9274009DDBF1 /* SwiftCSV-OSX */,
+				5FB74B991CCB9274009DDBF1 /* SwiftCSV-OSXTests */,
+				5FB74BAC1CCB929D009DDBF1 /* SwiftCSV-tvOS */,
+				5FB74BB51CCB929D009DDBF1 /* SwiftCSV-tvOSTests */,
+				5FB74BC81CCB92BA009DDBF1 /* SwiftCSV-watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -606,12 +608,12 @@
 		};
 		5FB74B9D1CCB9274009DDBF1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5FB74B901CCB9274009DDBF1 /* SwiftCSV OSX */;
+			target = 5FB74B901CCB9274009DDBF1 /* SwiftCSV-OSX */;
 			targetProxy = 5FB74B9C1CCB9274009DDBF1 /* PBXContainerItemProxy */;
 		};
 		5FB74BB91CCB929D009DDBF1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5FB74BAC1CCB929D009DDBF1 /* SwiftCSV tvOS */;
+			target = 5FB74BAC1CCB929D009DDBF1 /* SwiftCSV-tvOS */;
 			targetProxy = 5FB74BB81CCB929D009DDBF1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -641,6 +643,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -687,6 +690,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -735,6 +739,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -766,6 +771,7 @@
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -787,10 +793,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSX";
-				PRODUCT_NAME = SwiftCSV;
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -813,10 +820,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSX";
-				PRODUCT_NAME = SwiftCSV;
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -832,9 +841,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSXTests";
-				PRODUCT_NAME = SwiftCSVTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "SwiftCSV-OSXTests";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -851,9 +861,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSXTests";
-				PRODUCT_NAME = SwiftCSVTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "SwiftCSV-OSXTests";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -871,8 +883,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOS";
-				PRODUCT_NAME = SwiftCSV;
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -895,10 +907,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOS";
-				PRODUCT_NAME = SwiftCSV;
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -913,7 +926,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSVTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = appletvos;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
@@ -930,9 +943,10 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSVTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Release;
@@ -952,8 +966,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-watchOS";
-				PRODUCT_NAME = SwiftCSV;
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -977,10 +991,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-watchOS";
-				PRODUCT_NAME = SwiftCSV;
+				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -1016,45 +1031,50 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FB74BA61CCB9274009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV OSX" */ = {
+		5FB74BA61CCB9274009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FB74BA21CCB9274009DDBF1 /* Debug */,
 				5FB74BA31CCB9274009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		5FB74BA71CCB9274009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV OSXTests" */ = {
+		5FB74BA71CCB9274009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-OSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FB74BA41CCB9274009DDBF1 /* Debug */,
 				5FB74BA51CCB9274009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		5FB74BBE1CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV tvOS" */ = {
+		5FB74BBE1CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FB74BBF1CCB929D009DDBF1 /* Debug */,
 				5FB74BC01CCB929D009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		5FB74BC11CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV tvOSTests" */ = {
+		5FB74BC11CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FB74BC21CCB929D009DDBF1 /* Debug */,
 				5FB74BC31CCB929D009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		5FB74BCE1CCB92BA009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV watchOS" */ = {
+		5FB74BCE1CCB92BA009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV-watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FB74BCF1CCB92BA009DDBF1 /* Debug */,
 				5FB74BD01CCB92BA009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
