@@ -12,6 +12,21 @@
 		3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3749E2194D6DF7008F262A /* TSVTests.swift */; };
 		3D444BCD1C7D88290001C60C /* String+Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D444BCC1C7D88290001C60C /* String+Lines.swift */; };
 		3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
+		508975D21DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
+		508975D31DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
+		508975D41DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
+		508975D51DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
+		508975D71DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975D81DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975D91DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975DA1DBF34CF006F3DBE /* ParsingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D61DBF34CF006F3DBE /* ParsingState.swift */; };
+		508975DC1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */; };
+		508975DD1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */; };
+		508975DE1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */; };
+		508975DF1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */; };
+		508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */; };
+		508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */; };
+		508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */; };
 		5FB74B9B1CCB9274009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BB71CCB929D009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
@@ -94,6 +109,10 @@
 		3D3749E2194D6DF7008F262A /* TSVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSVTests.swift; sourceTree = "<group>"; };
 		3D444BCC1C7D88290001C60C /* String+Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Lines.swift"; sourceTree = "<group>"; };
 		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; tabWidth = 4; };
+		508975D11DBB897A006F3DBE /* NamedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedView.swift; sourceTree = "<group>"; };
+		508975D61DBF34CF006F3DBE /* ParsingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingState.swift; sourceTree = "<group>"; };
+		508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedView.swift; sourceTree = "<group>"; };
+		508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedViewTests.swift; sourceTree = "<group>"; };
 		5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74B9A1CCB9274009DDBF1 /* SwiftCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,10 +214,13 @@
 			isa = PBXGroup;
 			children = (
 				3DAAEE9B1C74C7EC00A933DB /* CSV.swift */,
+				508975D11DBB897A006F3DBE /* NamedView.swift */,
+				508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */,
 				3D444BCC1C7D88290001C60C /* String+Lines.swift */,
 				BEE5461B1CBBB0F400C0666F /* ParserHelpers.swift */,
 				BEE5461D1CBBB15900C0666F /* Description.swift */,
 				BE9B02D71CBE57B8009FE424 /* Parser.swift */,
+				508975D61DBF34CF006F3DBE /* ParsingState.swift */,
 			);
 			path = SwiftCSV;
 			sourceTree = "<group>";
@@ -208,6 +230,7 @@
 			children = (
 				BE06B67E1CB72680009578CC /* Res */,
 				3D1E59C61945FFAD001CF760 /* CSVTests.swift */,
+				508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */,
 				BE6C86061CB5CE44009A351D /* QuotedTests.swift */,
 				3D3749E2194D6DF7008F262A /* TSVTests.swift */,
 				BE06B67F1CB726B5009578CC /* URLTests.swift */,
@@ -395,30 +418,39 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Naoto Kaneko";
 				TargetAttributes = {
 					3D1E59B31945FFAC001CF760 = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					3D1E59BE1945FFAD001CF760 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 2X7R4W3Y3Q;
+						LastSwiftMigration = 0800;
 						TestTargetID = 3D1E59B31945FFAC001CF760;
 					};
 					5FB74B901CCB9274009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74B991CCB9274009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74BAC1CCB929D009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74BB51CCB929D009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					5FB74BC81CCB92BA009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -511,9 +543,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508975D21DBB897A006F3DBE /* NamedView.swift in Sources */,
 				BEE5461E1CBBB15900C0666F /* Description.swift in Sources */,
 				3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */,
 				BE9B02D81CBE57B8009FE424 /* Parser.swift in Sources */,
+				508975DC1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */,
+				508975D71DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				3D444BCD1C7D88290001C60C /* String+Lines.swift in Sources */,
 				BEE5461C1CBBB0F400C0666F /* ParserHelpers.swift in Sources */,
 			);
@@ -525,6 +560,7 @@
 			files = (
 				E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */,
 				3D1E59C71945FFAD001CF760 /* CSVTests.swift in Sources */,
+				508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */,
 				BE06B6801CB726B5009578CC /* URLTests.swift in Sources */,
 				BE6C86071CB5CE44009A351D /* QuotedTests.swift in Sources */,
@@ -535,9 +571,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508975D31DBB897A006F3DBE /* NamedView.swift in Sources */,
 				5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */,
 				5FB74BD21CCB92E5009DDBF1 /* String+Lines.swift in Sources */,
 				5FB74BD31CCB92E5009DDBF1 /* ParserHelpers.swift in Sources */,
+				508975DD1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */,
+				508975D81DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				5FB74BD41CCB92E5009DDBF1 /* Description.swift in Sources */,
 				5FB74BD51CCB92E5009DDBF1 /* Parser.swift in Sources */,
 			);
@@ -549,6 +588,7 @@
 			files = (
 				5FB74BE01CCB9312009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE11CCB9312009DDBF1 /* QuotedTests.swift in Sources */,
+				508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE21CCB9312009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE31CCB9312009DDBF1 /* URLTests.swift in Sources */,
 				5FB74BE41CCB9312009DDBF1 /* PerformanceTest.swift in Sources */,
@@ -559,9 +599,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508975D41DBB897A006F3DBE /* NamedView.swift in Sources */,
 				5FB74BD61CCB92EB009DDBF1 /* CSV.swift in Sources */,
 				5FB74BD71CCB92EB009DDBF1 /* String+Lines.swift in Sources */,
 				5FB74BD81CCB92EB009DDBF1 /* ParserHelpers.swift in Sources */,
+				508975DE1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */,
+				508975D91DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				5FB74BD91CCB92EB009DDBF1 /* Description.swift in Sources */,
 				5FB74BDA1CCB92EB009DDBF1 /* Parser.swift in Sources */,
 			);
@@ -573,6 +616,7 @@
 			files = (
 				5FB74BE51CCB931F009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE61CCB931F009DDBF1 /* QuotedTests.swift in Sources */,
+				508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE71CCB931F009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE81CCB931F009DDBF1 /* URLTests.swift in Sources */,
 				5FB74BE91CCB931F009DDBF1 /* PerformanceTest.swift in Sources */,
@@ -583,9 +627,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508975D51DBB897A006F3DBE /* NamedView.swift in Sources */,
 				5FB74BDB1CCB92F1009DDBF1 /* CSV.swift in Sources */,
 				5FB74BDC1CCB92F1009DDBF1 /* String+Lines.swift in Sources */,
 				5FB74BDD1CCB92F1009DDBF1 /* ParserHelpers.swift in Sources */,
+				508975DF1DBF3B70006F3DBE /* EnumeratedView.swift in Sources */,
+				508975DA1DBF34CF006F3DBE /* ParsingState.swift in Sources */,
 				5FB74BDE1CCB92F1009DDBF1 /* Description.swift in Sources */,
 				5FB74BDF1CCB92F1009DDBF1 /* Parser.swift in Sources */,
 			);
@@ -630,17 +677,20 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -677,16 +727,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -696,6 +749,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -706,8 +760,9 @@
 		3D1E59CB1945FFAD001CF760 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -718,14 +773,16 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		3D1E59CC1945FFAD001CF760 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -735,6 +792,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -742,6 +800,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 2X7R4W3Y3Q;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -752,7 +811,9 @@
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -760,12 +821,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 2X7R4W3Y3Q;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSVTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -773,7 +837,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -785,12 +849,13 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSX";
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -798,7 +863,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -811,12 +876,13 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSX";
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -835,6 +901,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSXTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -854,6 +921,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSXTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -861,6 +929,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -875,6 +944,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -884,6 +954,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -899,6 +970,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -916,6 +988,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOSTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Debug;
@@ -933,6 +1006,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOSTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Release;
@@ -942,6 +1016,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -956,6 +1031,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -966,6 +1042,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -981,6 +1058,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -1023,6 +1101,7 @@
 				5FB74BA31CCB9274009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5FB74BA71CCB9274009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -1031,6 +1110,7 @@
 				5FB74BA51CCB9274009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5FB74BBE1CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1039,6 +1119,7 @@
 				5FB74BC01CCB929D009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5FB74BC11CCB929D009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1047,6 +1128,7 @@
 				5FB74BC31CCB929D009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5FB74BCE1CCB92BA009DDBF1 /* Build configuration list for PBXNativeTarget "SwiftCSV watchOS" */ = {
 			isa = XCConfigurationList;
@@ -1055,6 +1137,7 @@
 				5FB74BD01CCB92BA009DDBF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

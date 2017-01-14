@@ -26,7 +26,7 @@ class QuotedTests: XCTestCase {
     }
     
     func testQuotedContent() {
-        let cols = csv.rows
+        let cols = csv.namedRows
         XCTAssertEqual(cols[0], [
             "id": "5",
             "name, person": "Smith, John",
