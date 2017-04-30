@@ -9,7 +9,7 @@
 extension CSV {
     /// Parse the file and call a block on each row, passing it in as a list of fields
     /// limitTo will limit the result to a certain number of lines
-    func enumerateAsArray(block: [String] -> (), limitTo: Int?, startAt: Int = 0) {
+    func enumerateAsArray(block: @escaping ([String]) -> (), limitTo: Int?, startAt: Int = 0) {
         var currentIndex = text.startIndex
         let endIndex = text.endIndex
         
@@ -42,7 +42,7 @@ extension CSV {
                 } else if char == self.delimiter {
                     fields.append(String(field))
                     field = [Character]()
-                } else if CSV.isNewline(char) {
+                } else if CSV.isNewline(char: char) {
                     callBlock()
                 } else {
                     parsingField = true
@@ -66,7 +66,7 @@ extension CSV {
                         innerQuotes = false
                         fields.append(String(field))
                         field = [Character]()
-                    } else if CSV.isNewline(char) {
+                    } else if CSV.isNewline(char: char) {
                         atStart = true
                         parsingField = false
                         innerQuotes = false
@@ -86,7 +86,7 @@ extension CSV {
                         innerQuotes = false
                         fields.append(String(field))
                         field = [Character]()
-                    } else if CSV.isNewline(char) {
+                    } else if CSV.isNewline(char: char) {
                         atStart = true
                         parsingQuotes = false
                         innerQuotes = false
@@ -111,8 +111,8 @@ extension CSV {
             let char = text[currentIndex]
             if changeState(char) {
                 break
-            }
-            currentIndex = currentIndex.successor()
+            }        
+            currentIndex = text.index(after: currentIndex)
         }
         
         if fields.count != 0 || field.count != 0 || (doLimit && count < limitTo!) {
