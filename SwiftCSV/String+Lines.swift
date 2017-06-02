@@ -8,11 +8,11 @@
 
 extension String {
     var firstLine: String {
-        var index = startIndex
+        var current = startIndex
         let chars = characters
-        while index < endIndex && chars[index] != "\r\n" && chars[index] != "\n" && chars[index] != "\r" {
-            index = index.successor()
+        while current < endIndex && chars[current] != "\r\n" && chars[current] != "\n" && chars[current] != "\r" {
+            current = self.index(after: current)
         }
-        return substringToIndex(index)
+        return substring(to: current)
     }
 }

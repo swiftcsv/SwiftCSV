@@ -21,37 +21,61 @@ class CSVTests: XCTestCase {
     }
     
     func testInit_makesRows() {
-        XCTAssertEqual(csv.rows, [
+        let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
-        ])
+        ]
+        for (index, row) in csv.namedRows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
     }
     
     func testInit_whenThereAreIncompleteRows_makesRows() {
         csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
-        XCTAssertEqual(csv.rows, [
+        let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": ""]
-        ])
+        ]
+        for (index, row) in csv.namedRows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
+    }
+    func testInit_whenThereAreextraCarriageReturns() {
+        csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie\r\n")
+        let expected = [
+            ["id": "1", "name": "Alice", "age": "18"],
+            ["id": "2", "name": "Bob", "age": "19"],
+            ["id": "3", "name": "Charlie", "age": ""]
+        ]
+        for (index, row) in csv.namedRows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
     }
     
     func testInit_whenThereAreCRLFs_makesRows() {
         csv = CSV(string: "id,name,age\r\n1,Alice,18\r\n2,Bob,19\r\n3,Charlie,20\r\n")
-        XCTAssertEqual(csv.rows, [
+        let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
-        ])
+        ]
+        for (index, row) in csv.namedRows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
     }
     
     func testInit_makesColumns() {
-        XCTAssertEqual(csv.columns, [
+        let expected = [
             "id": ["1", "2", "3"],
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
-        ])
+        ]
+        XCTAssertEqual(Array(csv.namedColumns.keys), Array(expected.keys))
+        for (key, value) in csv.namedColumns {
+            XCTAssertEqual(expected[key] ?? [], value)
+        }
     }
     
     func testDescription() {
@@ -73,11 +97,14 @@ class CSVTests: XCTestCase {
     
     func testIgnoreColumns() {
         csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
-        XCTAssertEqual(csv.columns.isEmpty, true)
-        XCTAssertEqual(csv.rows, [
+        XCTAssertEqual(csv.namedColumns.isEmpty, true)
+        let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
-        ])
+        ]
+        for (index, row) in csv.namedRows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
     }
 }
