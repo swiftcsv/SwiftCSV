@@ -13,7 +13,8 @@ class PerformanceTest: XCTestCase {
     var csv: CSV!
 
     override func setUp() {
-        let csvURL = Bundle(for: CSVTests.self).url(forResource: "large", withExtension: "csv")!
+        // Load files this way so tests run in Xcode and with `swift test`
+        let csvURL = NSURL(fileURLWithPath: #file).deletingLastPathComponent!.appendingPathComponent("large.csv")
         csv = try! CSV(url: csvURL)
     }
 

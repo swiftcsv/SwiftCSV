@@ -13,7 +13,8 @@ class URLTests: XCTestCase {
     var csv: CSV!
     
     func testEmptyFields() {
-        let csvURL = Bundle(for: CSVTests.self).url(forResource: "empty_fields", withExtension: "csv")!
+        // Load files this way so tests run in Xcode and with `swift test`
+        let csvURL = NSURL(fileURLWithPath: #file).deletingLastPathComponent!.appendingPathComponent("empty_fields.csv")
         csv = try! CSV(url: csvURL)
         let expected = [
             ["id": "1", "name": "John", "age": "23"],
@@ -29,7 +30,8 @@ class URLTests: XCTestCase {
     }
     
     func testQuotes() {
-        let csvURL = Bundle(for: CSVTests.self).url(forResource: "quotes", withExtension: "csv")!
+        // Load files this way so tests run in Xcode and with `swift test`
+        let csvURL = NSURL(fileURLWithPath: #file).deletingLastPathComponent!.appendingPathComponent("quotes.csv")
         csv = try! CSV(url: csvURL)
         let expected = [
             ["id": "4", "name, first": "Alex", "name, last": "Smith"],

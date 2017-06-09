@@ -236,7 +236,8 @@
 				BE06B67F1CB726B5009578CC /* URLTests.swift */,
 				E46085931CCB1F5C00385286 /* PerformanceTest.swift */,
 			);
-			path = Tests;
+			name = Tests;
+			path = Tests/SwiftCSVTests;
 			sourceTree = "<group>";
 		};
 		BE06B67E1CB72680009578CC /* Res */ = {
