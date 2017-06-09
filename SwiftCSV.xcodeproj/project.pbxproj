@@ -188,8 +188,8 @@
 		3D1E59AA1945FFAC001CF760 = {
 			isa = PBXGroup;
 			children = (
-				3D1E59B61945FFAC001CF760 /* SwiftCSV */,
-				3D1E59C31945FFAD001CF760 /* SwiftCSVTests */,
+				3D1E59B61945FFAC001CF760 /* Sources */,
+				3D1E59C31945FFAD001CF760 /* Tests */,
 				3D1E59B51945FFAC001CF760 /* Products */,
 			);
 			indentWidth = 4;
@@ -210,7 +210,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3D1E59B61945FFAC001CF760 /* SwiftCSV */ = {
+		3D1E59B61945FFAC001CF760 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				3DAAEE9B1C74C7EC00A933DB /* CSV.swift */,
@@ -222,10 +222,10 @@
 				BE9B02D71CBE57B8009FE424 /* Parser.swift */,
 				508975D61DBF34CF006F3DBE /* ParsingState.swift */,
 			);
-			path = SwiftCSV;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		3D1E59C31945FFAD001CF760 /* SwiftCSVTests */ = {
+		3D1E59C31945FFAD001CF760 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				BE06B67E1CB72680009578CC /* Res */,
@@ -236,7 +236,7 @@
 				BE06B67F1CB726B5009578CC /* URLTests.swift */,
 				E46085931CCB1F5C00385286 /* PerformanceTest.swift */,
 			);
-			path = SwiftCSVTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		BE06B67E1CB72680009578CC /* Res */ = {
