@@ -24,3 +24,13 @@ class PerformanceTest: XCTestCase {
         }
     }
 }
+
+// MARK: Manifest for Linux
+
+extension PerformanceTest {
+    
+    static let allTests = [
+        ("testParsePerformance", testParsePerformance),
+    ]
+    
+}

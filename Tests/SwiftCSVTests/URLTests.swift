@@ -64,3 +64,14 @@ class URLTests: XCTestCase {
     }
     
 }
+
+// MARK: Manifest for Linux
+
+extension URLTests {
+    
+    static let allTests = [
+        ("testEmptyFields", testEmptyFields),
+        ("testQuotes", testQuotes),
+    ]
+    
+}

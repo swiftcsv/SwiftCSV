@@ -108,3 +108,20 @@ class CSVTests: XCTestCase {
         }
     }
 }
+
+// MARK: Manifest for Linux
+
+extension CSVTests {
+    
+    static let allTests = [
+        ("testInit_makesHeader", testInit_makesHeader),
+        ("testInit_makesRows", testInit_makesRows),
+        ("testInit_whenThereAreIncompleteRows_makesRows", testInit_whenThereAreIncompleteRows_makesRows),
+        ("testInit_whenThereAreextraCarriageReturns", testInit_whenThereAreextraCarriageReturns),
+        ("testInit_whenThereAreCRLFs_makesRows", testInit_whenThereAreCRLFs_makesRows),
+        ("testInit_makesColumns", testInit_makesColumns),
+        ("testDescription", testDescription),
+        ("testIgnoreColumns", testIgnoreColumns),
+    ]
+    
+}

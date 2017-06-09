@@ -57,3 +57,14 @@ class EnumeratedViewTests: XCTestCase {
         XCTAssertEqual(actual[2].rows, ["18", "19", "20"])
     }
 }
+
+// MARK: Manifest for Linux
+
+extension EnumeratedViewTests {
+    
+    static let allTests = [
+        ("testExposesRows", testExposesRows),
+        ("testExposesColumns", testExposesColumns),
+    ]
+    
+}

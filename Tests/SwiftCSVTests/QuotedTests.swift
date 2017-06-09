@@ -39,3 +39,14 @@ class QuotedTests: XCTestCase {
         ])
     }
 }
+
+// MARK: Manifest for Linux
+
+extension QuotedTests {
+    
+    static let allTests = [
+        ("testQuotedHeader", testQuotedHeader),
+        ("testQuotedContent", testQuotedContent),
+    ]
+    
+}

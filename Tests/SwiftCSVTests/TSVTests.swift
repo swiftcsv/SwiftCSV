@@ -44,3 +44,16 @@ class TSVTests: XCTestCase {
         }
     }
 }
+
+// MARK: Manifest for Linux
+
+extension TSVTests {
+    
+    static let allTests = [
+        ("testInit_makesHeader", testInit_makesHeader),
+        ("testInit_makesRows", testInit_makesRows),
+        ("testInit_makesColumns", testInit_makesColumns),
+    ]
+    
+}
+
