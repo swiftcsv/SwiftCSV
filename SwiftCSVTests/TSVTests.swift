@@ -12,15 +12,15 @@ import Foundation
 
 class TSVTests: XCTestCase {
     var tsv: CSV!
-    
+
     override func setUp() {
         tsv = CSV(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: "\t")
     }
-    
+
     func testInit_makesHeader() {
         XCTAssertEqual(tsv.header, ["id", "name", "age"])
     }
-    
+
     func testInit_makesRows() {
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
@@ -31,7 +31,7 @@ class TSVTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
     func testInit_makesColumns() {
         let expected = [
             "id": ["1", "2", "3"],

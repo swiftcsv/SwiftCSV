@@ -11,15 +11,15 @@ import XCTest
 
 class CSVTests: XCTestCase {
     var csv: CSV!
-    
+
     override func setUp() {
         csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
-    
+
     func testInit_makesHeader() {
         XCTAssertEqual(csv.header, ["id", "name", "age"])
     }
-    
+
     func testInit_makesRows() {
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
@@ -30,7 +30,7 @@ class CSVTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
     func testInit_whenThereAreIncompleteRows_makesRows() {
         csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
         let expected = [
@@ -53,7 +53,7 @@ class CSVTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
     func testInit_whenThereAreCRLFs_makesRows() {
         csv = CSV(string: "id,name,age\r\n1,Alice,18\r\n2,Bob,19\r\n3,Charlie,20\r\n")
         let expected = [
@@ -65,7 +65,7 @@ class CSVTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
     func testInit_makesColumns() {
         let expected = [
             "id": ["1", "2", "3"],
@@ -77,7 +77,7 @@ class CSVTests: XCTestCase {
             XCTAssertEqual(expected[key] ?? [], value)
         }
     }
-    
+
     func testDescription() {
         XCTAssertEqual(csv.description, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
@@ -94,7 +94,7 @@ class CSVTests: XCTestCase {
 //            index += 1
 //        }
 //    }
-    
+
     func testIgnoreColumns() {
         csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
         XCTAssertEqual(csv.namedColumns.isEmpty, true)

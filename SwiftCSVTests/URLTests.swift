@@ -11,7 +11,7 @@ import SwiftCSV
 
 class URLTests: XCTestCase {
     var csv: CSV!
-    
+
     func testEmptyFields() {
         let csvURL = Bundle(for: CSVTests.self).url(forResource: "empty_fields", withExtension: "csv")!
         csv = try! CSV(url: csvURL)
@@ -27,7 +27,7 @@ class URLTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
     func testQuotes() {
         let csvURL = Bundle(for: CSVTests.self).url(forResource: "quotes", withExtension: "csv")!
         csv = try! CSV(url: csvURL)
@@ -60,5 +60,5 @@ class URLTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
 }
