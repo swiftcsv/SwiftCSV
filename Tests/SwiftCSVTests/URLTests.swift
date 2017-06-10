@@ -11,7 +11,7 @@ import SwiftCSV
 
 class URLTests: XCTestCase {
     var csv: CSV!
-    
+
     func testEmptyFields() {
         // Load files this way so tests run in Xcode and with `swift test`
         let csvURL = NSURL(fileURLWithPath: #file).deletingLastPathComponent!.appendingPathComponent("empty_fields.csv")
@@ -28,7 +28,7 @@ class URLTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
     func testQuotes() {
         // Load files this way so tests run in Xcode and with `swift test`
         let csvURL = NSURL(fileURLWithPath: #file).deletingLastPathComponent!.appendingPathComponent("quotes.csv")
@@ -62,7 +62,7 @@ class URLTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
 }
 
 // MARK: Manifest for Linux

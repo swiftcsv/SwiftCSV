@@ -16,7 +16,7 @@ class QuotedTests: XCTestCase {
         super.setUp()
         csv = CSV(string: "id,\"name, person\",age\n\"5\",\"Smith, John\",67\n8,Joe Bloggs,\"8\"")
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -24,7 +24,7 @@ class QuotedTests: XCTestCase {
     func testQuotedHeader() {
         XCTAssertEqual(csv.header, ["id", "name, person", "age"])
     }
-    
+
     func testQuotedContent() {
         let cols = csv.namedRows
         XCTAssertEqual(cols[0], [
