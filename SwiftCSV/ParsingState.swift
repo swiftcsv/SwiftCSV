@@ -8,7 +8,7 @@
 
 fileprivate extension Character {
     var isNewline: Bool {
-        return self == "\n" || self == "\r\n"
+        return self == "\n" || self == "\r\n" || self == "\r"
     }
 }
 
