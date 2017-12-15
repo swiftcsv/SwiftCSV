@@ -1,8 +1,5 @@
 language: objective-c
 osx_image: xcode9.2
-before_install:
-  - gem install xcpretty -N
-  - gem install fastlane
 script:
-  - fastlane scan --scheme SwiftCSV
+  - bundle exec fastlane scan --scheme SwiftCSV
   - pod lib lint --quick
