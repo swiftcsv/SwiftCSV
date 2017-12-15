@@ -2,8 +2,7 @@ language: objective-c
 osx_image: xcode9.2
 before_install:
   - gem install xcpretty -N
+  - gem install fastlane
 script:
-  - set -o pipefail
-  - xcodebuild -project SwiftCSV.xcodeproj -scheme "SwiftCSV" -sdk iphonesimulator
-    -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO test | xcpretty -c
+  - fastlane scan --scheme SwiftCSV
   - pod lib lint --quick
