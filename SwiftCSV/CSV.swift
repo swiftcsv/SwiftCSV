@@ -8,37 +8,64 @@
 
 import Foundation
 
+public enum Variant {
+    case named
+    case enumerated
+}
+
+public enum View {
+    case named(NamedView)
+    case enumerated(EnumeratedView)
+}
+
 open class CSV {
     static public let comma: Character = ","
     
     public let header: [String]
 
     lazy var _namedView: NamedView = {
+        return try! CSV.namedView(
+            header: self.header,
+            text: self.text,
+            delimiter: self.delimiter,
+            loadColumns: self.loadColumns)
+    }()
+
+    static func namedView(header: [String], text: String, delimiter: Character, limitTo: Int? = nil, loadColumns: Bool = false) throws -> NamedView {
 
         var rows = [[String: String]]()
         var columns = [String: [String]]()
 
-        self.enumerateAsDict { dict in
+        try self.enumerateAsDict(header: header, content: text, delimiter: delimiter, limitTo: limitTo) { dict in
             rows.append(dict)
         }
 
-        if self.loadColumns {
-            for field in self.header {
+        if loadColumns {
+            for field in header {
                 columns[field] = rows.map { $0[field] ?? "" }
             }
         }
 
         return NamedView(rows: rows, columns: columns)
-    }()
+    }
 
     lazy var _enumeratedView: EnumeratedView = {
 
+        return try! CSV.enumeratedView(
+            header: self.header,
+            text: self.text,
+            delimiter: self.delimiter,
+            loadColumns: self.loadColumns)
+    }()
+
+    static func enumeratedView(header: [String], text: String, delimiter: Character, limitTo: Int? = nil, loadColumns: Bool = false) throws -> EnumeratedView {
+
         var rows = [[String]]()
         var columns: [EnumeratedView.Column] = []
-        self.enumerateAsArray { rows.append($0) }
+        try self.enumerateAsArray(text: text, delimiter: delimiter, limitTo: limitTo, startAt: 1) { rows.append($0) }
 
-        if self.loadColumns {
-            columns = self.header.enumerated().map { (index: Int, header: String) -> EnumeratedView.Column in
+        if loadColumns {
+            columns = header.enumerated().map { (index: Int, header: String) -> EnumeratedView.Column in
 
                 return EnumeratedView.Column(
                     header: header,
@@ -47,11 +74,11 @@ open class CSV {
         }
 
         return EnumeratedView(rows: rows, columns: columns)
-    }()
+    }
     
     var text: String
     var delimiter: Character
-    
+
     let loadColumns: Bool
 
     /// List of dictionaries that contains the CSV data
@@ -95,11 +122,11 @@ open class CSV {
     /// - parameter string: Contents of the CSV file
     /// - parameter delimiter: Character to split row and header fields by (default is ',')
     /// - parameter loadColumns: Whether to populate the columns dictionary (default is true)
-    public init(string: String, delimiter: Character = comma, loadColumns: Bool = true) {
+    public init(string: String, variant: Variant = .named, delimiter: Character = comma, loadColumns: Bool = true) throws {
         self.text = string
         self.delimiter = delimiter
         self.loadColumns = loadColumns
-        self.header = CSV.array(text: string, delimiter: delimiter).first ?? []
+        self.header = try CSV.array(text: string, delimiter: delimiter).first ?? []
     }
     
     /// Load a CSV file
@@ -108,10 +135,10 @@ open class CSV {
     /// - parameter delimiter: character to split row and header fields by (default is ',')
     /// - parameter encoding: encoding used to read file (default is UTF-8)
     /// - parameter loadColumns: whether to populate the columns dictionary (default is true)
-    public convenience init(name: String, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+    public convenience init(name: String, variant: Variant = .named, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOfFile: name, encoding: encoding)
     
-        self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
+        try self.init(string: contents, variant: variant, delimiter: delimiter, loadColumns: loadColumns)
     }
     
     /// Load a CSV file from a URL
@@ -120,10 +147,10 @@ open class CSV {
     /// - parameter delimiter: character to split row and header fields by (default is ',')
     /// - parameter encoding: encoding used to read file (default is UTF-8)
     /// - parameter loadColumns: whether to populate the columns dictionary (default is true)
-    public convenience init(url: URL, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+    public convenience init(url: URL, variant: Variant = .named, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOf: url, encoding: encoding)
         
-        self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
+        try self.init(string: contents, variant: variant, delimiter: delimiter, loadColumns: loadColumns)
     }
     
     /// Turn the CSV data into NSData using a given encoding
