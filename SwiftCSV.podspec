@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name         = "SwiftCSV"
   s.version      = "0.5.0"
   s.summary      = "CSV parser for Swift"
-  s.homepage     = "https://github.com/naoty/SwiftCSV"
+  s.homepage     = "https://github.com/swiftcsv/SwiftCSV"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = {
     "Naoto Kaneko" => "naoty.k@gmail.com",
