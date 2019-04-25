@@ -19,7 +19,7 @@ class PerformanceTest: XCTestCase {
 
     func testParsePerformance() {
         measure {
-            _ = self.csv.rows
+            _ = self.csv.namedRows
         }
     }
 }
