@@ -6,12 +6,6 @@
 //  Copyright © 2016 Naoto Kaneko. All rights reserved.
 //
 
-fileprivate extension Character {
-    var isNewline: Bool {
-        return self == "\n" || self == "\r\n"
-    }
-}
-
 /// State machine of parsing CSV contents character by character.
 struct ParsingState {
 

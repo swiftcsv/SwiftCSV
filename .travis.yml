@@ -1,11 +1,53 @@
 language: objective-c
-osx_image: xcode8
-before_install:
+
+branches:
+  except:
+    - gh-pages
+
+install:
+  - gem install cocoapods --pre -N
   - gem install xcpretty -N
+
+env:
+  global:
+    - LC_CTYPE=en_US.UTF-8
+    - LANG=en_US.UTF-8
+    - FRAMEWORK_NAME="SwiftCSV"
+
+matrix:
+  include:
+    - osx_image: xcode9
+      env: SCHEME="macOS"    SDK="macosx10.13"        DESTINATION="arch=x86_64"                    SWIFT_VERSION="3.2" ACTION="test"
+    - osx_image: xcode9.3
+      env: SCHEME="macOS"    SDK="macosx10.13"        DESTINATION="arch=x86_64"                    SWIFT_VERSION="4.1" ACTION="test"
+    - osx_image: xcode10.1
+      env: SCHEME="macOS"    SDK="macosx10.14"        DESTINATION="arch=x86_64"                    SWIFT_VERSION="4.2" ACTION="test"
+    - osx_image: xcode10.2
+      env: SCHEME="macOS"    SDK="macosx10.14"        DESTINATION="arch=x86_64"                    SWIFT_VERSION="5.0" ACTION="test"
+    - osx_image: xcode10.2
+      env: SCHEME="iOS"      SDK="iphonesimulator"    DESTINATION="OS=12.0,name=iPhone 8"          SWIFT_VERSION="5.0" ACTION="test"
+    - osx_image: xcode10.2
+      env: SCHEME="watchOS"  SDK="watchsimulator"     DESTINATION="OS=4.0,name=Apple Watch - 42mm" SWIFT_VERSION="5.0" ACTION="build"
+    - osx_image: xcode10.2
+      env: SCHEME="tvOS"     SDK="appletvsimulator"   DESTINATION="OS=12.0,name=Apple TV 4K"       SWIFT_VERSION="5.0" ACTION="test"
+
 script:
   - set -o pipefail
-  - xcodebuild -project SwiftCSV.xcodeproj -scheme "SwiftCSV" -sdk iphonesimulator
-    -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO GCC_GENERATE_TEST_COVERAGE_FILES=YES test | xcpretty -c
+  - pod --version
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  - xcodebuild
+    "$ACTION"
+    -project "$FRAMEWORK_NAME.xcodeproj"
+    -scheme "$FRAMEWORK_NAME-$SCHEME"
+    -sdk "$SDK"
+    -destination "$DESTINATION"
+    -configuration Debug
+    ONLY_ACTIVE_ARCH=YES
+    GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
+    GCC_GENERATE_TEST_COVERAGE_FILES=YES
+    SWIFT_VERSION=$SWIFT_VERSION
   - pod lib lint --quick
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
