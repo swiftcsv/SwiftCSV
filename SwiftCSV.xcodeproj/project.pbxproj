@@ -423,34 +423,34 @@
 				TargetAttributes = {
 					3D1E59B31945FFAC001CF760 = {
 						CreatedOnToolsVersion = 6.0;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Manual;
 					};
 					3D1E59BE1945FFAD001CF760 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = 2X7R4W3Y3Q;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 						TestTargetID = 3D1E59B31945FFAC001CF760;
 					};
 					5FB74B901CCB9274009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 					};
 					5FB74B991CCB9274009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 					};
 					5FB74BAC1CCB929D009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 					};
 					5FB74BB51CCB929D009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 					};
 					5FB74BC81CCB92BA009DDBF1 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -792,7 +792,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -811,7 +811,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -832,7 +832,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -848,7 +848,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -874,7 +874,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -901,7 +901,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -920,7 +920,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSXTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -940,7 +940,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSXTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = macosx;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -963,7 +963,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -989,7 +989,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
@@ -1007,7 +1007,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOSTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Debug;
@@ -1025,7 +1025,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOSTests";
 				PRODUCT_NAME = SwiftCSVTests;
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 			};
 			name = Release;
@@ -1050,7 +1050,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -1077,7 +1077,7 @@
 				PRODUCT_NAME = SwiftCSV;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
