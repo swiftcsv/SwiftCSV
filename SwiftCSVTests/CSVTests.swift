@@ -42,6 +42,17 @@ class CSVTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
+    func testInit_whenThereAreextraCarriageReturns() {
+        csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie\r\n")
+        let expected = [
+            ["id": "1", "name": "Alice", "age": "18"],
+            ["id": "2", "name": "Bob", "age": "19"],
+            ["id": "3", "name": "Charlie", "age": ""]
+        ]
+        for (index, row) in csv.namedRows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
+    }
     
     func testInit_whenThereAreCRLFs_makesRows() {
         csv = CSV(string: "id,name,age\r\n1,Alice,18\r\n2,Bob,19\r\n3,Charlie,20\r\n")
