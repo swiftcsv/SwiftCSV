@@ -13,9 +13,14 @@ public enum Variant {
     case enumerated
 }
 
-public enum View {
-    case named(NamedView)
-    case enumerated(EnumeratedView)
+public protocol View {
+    associatedtype Rows
+    associatedtype Columns
+
+    var rows: Rows { get }
+    var columns: Columns { get }
+
+    init(header: [String], text: String, delimiter: Character, limitTo: Int?, loadColumns: Bool) throws
 }
 
 open class CSV {
@@ -24,58 +29,21 @@ open class CSV {
     public let header: [String]
 
     lazy var _namedView: NamedView = {
-        return try! CSV.namedView(
+        return try! NamedView(
             header: self.header,
             text: self.text,
             delimiter: self.delimiter,
             loadColumns: self.loadColumns)
     }()
-
-    static func namedView(header: [String], text: String, delimiter: Character, limitTo: Int? = nil, loadColumns: Bool = false) throws -> NamedView {
-
-        var rows = [[String: String]]()
-        var columns = [String: [String]]()
-
-        try self.enumerateAsDict(header: header, content: text, delimiter: delimiter, limitTo: limitTo) { dict in
-            rows.append(dict)
-        }
-
-        if loadColumns {
-            for field in header {
-                columns[field] = rows.map { $0[field] ?? "" }
-            }
-        }
-
-        return NamedView(rows: rows, columns: columns)
-    }
 
     lazy var _enumeratedView: EnumeratedView = {
-
-        return try! CSV.enumeratedView(
+        return try! EnumeratedView(
             header: self.header,
             text: self.text,
             delimiter: self.delimiter,
             loadColumns: self.loadColumns)
     }()
 
-    static func enumeratedView(header: [String], text: String, delimiter: Character, limitTo: Int? = nil, loadColumns: Bool = false) throws -> EnumeratedView {
-
-        var rows = [[String]]()
-        var columns: [EnumeratedView.Column] = []
-        try self.enumerateAsArray(text: text, delimiter: delimiter, limitTo: limitTo, startAt: 1) { rows.append($0) }
-
-        if loadColumns {
-            columns = header.enumerated().map { (index: Int, header: String) -> EnumeratedView.Column in
-
-                return EnumeratedView.Column(
-                    header: header,
-                    rows: rows.map { $0[index] })
-            }
-        }
-
-        return EnumeratedView(rows: rows, columns: columns)
-    }
-    
     var text: String
     var delimiter: Character
 
@@ -126,7 +94,7 @@ open class CSV {
         self.text = string
         self.delimiter = delimiter
         self.loadColumns = loadColumns
-        self.header = try CSV.array(text: string, delimiter: delimiter).first ?? []
+        self.header = try Parser.array(text: string, delimiter: delimiter, limitTo: 1).first ?? []
     }
     
     /// Load a CSV file

@@ -11,8 +11,16 @@ extension CSV {
     /// limitTo will limit the result to a certain number of lines
     public func enumerateAsArray(limitTo: Int? = nil, startAt: Int = 0, _ block: @escaping ([String]) -> ()) throws {
 
-        try CSV.enumerateAsArray(text: self.text, delimiter: self.delimiter, limitTo: limitTo, startAt: startAt, block: block)
+        try Parser.enumerateAsArray(text: self.text, delimiter: self.delimiter, limitTo: limitTo, startAt: startAt, block: block)
     }
+
+    public func enumerateAsDict(_ block: @escaping ([String : String]) -> ()) throws {
+
+        try Parser.enumerateAsDict(header: self.header, content: self.text, delimiter: self.delimiter, block: block)
+    }
+}
+
+enum Parser {
 
     static func array(text: String, delimiter: Character, limitTo: Int? = nil, startAt: Int = 0) throws -> [[String]] {
 
@@ -88,7 +96,7 @@ extension CSV {
         }
     }
 
-    public static func enumerateAsDict(header: [String], content: String, delimiter: Character, limitTo: Int? = nil, block: @escaping ([String : String]) -> ()) throws {
+    static func enumerateAsDict(header: [String], content: String, delimiter: Character, limitTo: Int? = nil, block: @escaping ([String : String]) -> ()) throws {
 
         let enumeratedHeader = header.enumerated()
 
@@ -99,10 +107,5 @@ extension CSV {
             }
             block(dict)
         }
-    }
-
-    public func enumerateAsDict(_ block: @escaping ([String : String]) -> ()) throws {
-
-        try CSV.enumerateAsDict(header: self.header, content: self.text, delimiter: self.delimiter, block: block)
     }
 }
