@@ -5,6 +5,7 @@ branches:
     - gh-pages
 
 install:
+  - gem install cocoapods --pre -N
   - gem install xcpretty -N
 
 env:
@@ -32,6 +33,7 @@ matrix:
 
 script:
   - set -o pipefail
+  - pod --version
   - xcodebuild -version
   - xcodebuild -showsdks
   - xcodebuild
