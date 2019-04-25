@@ -42,8 +42,9 @@ class CSVTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    func testInit_whenThereAreextraCarriageReturns() {
-        csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie\r\n")
+
+    func testInit_whenThereAreextraCarriageReturns() throws {
+        csv = try CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie\r\n")
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
