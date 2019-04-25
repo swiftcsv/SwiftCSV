@@ -8,4 +8,4 @@ script:
     -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO GCC_GENERATE_TEST_COVERAGE_FILES=YES test | xcpretty -c
   - pod lib lint --quick
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -J SwiftCSV
+  - bash <(curl -s https://codecov.io/bash)
