@@ -1,13 +1,23 @@
 # SwiftCSV
-[![Version](http://img.shields.io/cocoapods/v/SwiftCSV.svg?style=flat)](http://cocoadocs.org/docsets/SwiftCSV)
 
-_Simple CSV parsing, for OSX and iOS._
+[![Build Status](https://img.shields.io/travis/swiftcsv/SwiftCSV/master.svg?style=flat-square)](https://travis-ci.org/swiftcsv/SwiftCSV) 
+[![Code coverage status](https://img.shields.io/codecov/c/github/swiftcsv/SwiftCSV.svg?style=flat-square)](http://codecov.io/github/swiftcsv/SwiftCSV) 
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftCSV.svg?style=flat-square)](https://cocoapods.org/pods/SwiftCSV) 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Platform support](https://img.shields.io/badge/platform-ios%20%7C%20osx%20%7C%20tvos%20%7C%20watchos-lightgrey.svg?style=flat-square)](https://github.com/swiftcsv/SwiftCSV/blob/master/LICENSE.md) 
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/swiftcsv/SwiftCSV/blob/master/LICENSE.md) 
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg?style=flat-square)](https://houndci.com)
+
+
+Simple CSV parsing for macOS, iOS, tvOS, and watchOS.
 
 ## Usage
 
 CSV content can be loaded using the `CSV` class:
 
 ```swift
+import SwiftCSV
+
 // As a string
 let csv = CSV(string: "id,name,age\n1,Alice,18")
 // With a custom delimiter character
@@ -63,5 +73,5 @@ pod "SwiftCSV"
 ### Carthage
 
 ```
-github "naoty/SwiftCSV"
+github "swiftcsv/SwiftCSV"
 ```
