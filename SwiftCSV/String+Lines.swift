@@ -9,10 +9,9 @@
 extension String {
     var firstLine: String {
         var current = startIndex
-        let chars = characters
-        while current < endIndex && chars[current] != "\r\n" && chars[current] != "\n" && chars[current] != "\r" {
+        while current < endIndex && self[current] != "\r\n" && self[current] != "\n" && self[current] != "\r" {
             current = self.index(after: current)
         }
-        return substring(to: current)
+        return String(self[..<current])
     }
 }

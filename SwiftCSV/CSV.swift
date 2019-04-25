@@ -11,7 +11,7 @@ import Foundation
 open class CSV {
     static public let comma: Character = ","
     
-    open let header: [String]
+    public let header: [String]
 
     lazy var _namedView: NamedView = {
 
