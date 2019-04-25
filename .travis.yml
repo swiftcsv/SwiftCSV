@@ -7,3 +7,5 @@ script:
   - xcodebuild -project SwiftCSV.xcodeproj -scheme "SwiftCSV" -sdk iphonesimulator
     -destination "platform=iOS Simulator,name=iPhone 6" ONLY_ACTIVE_ARCH=NO test | xcpretty -c
   - pod lib lint --quick
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
