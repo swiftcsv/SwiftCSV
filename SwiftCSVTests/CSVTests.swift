@@ -72,7 +72,7 @@ class CSVTests: XCTestCase {
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
         ]
-        XCTAssertEqual(Array(csv.namedColumns.keys), Array(expected.keys))
+        XCTAssertEqual(Set(csv.namedColumns.keys), Set(expected.keys))
         for (key, value) in csv.namedColumns {
             XCTAssertEqual(expected[key] ?? [], value)
         }

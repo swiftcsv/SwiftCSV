@@ -38,7 +38,7 @@ class TSVTests: XCTestCase {
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
         ]
-        XCTAssertEqual(Array(tsv.namedColumns.keys), Array(expected.keys))
+        XCTAssertEqual(Set(tsv.namedColumns.keys), Set(expected.keys))
         for (key, value) in tsv.namedColumns {
             XCTAssertEqual(expected[key] ?? [], value)
         }
