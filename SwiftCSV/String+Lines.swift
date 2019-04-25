@@ -7,12 +7,17 @@
 //
 
 extension String {
-    var firstLine: String {
+    internal var firstLine: String {
         var current = startIndex
-        let chars = characters
-        while current < endIndex && chars[current] != "\r\n" && chars[current] != "\n" && chars[current] != "\r" {
+        while current < endIndex && self[current].isNewline == false {
             current = self.index(after: current)
         }
-        return substring(to: current)
+        return String(self[..<current])
+    }
+}
+
+extension Character {
+    internal var isNewline: Bool {
+        return self == "\n" || self == "\r\n" || self == "\r"
     }
 }
