@@ -1,4 +1,4 @@
-language: objective-c
+language: swift
 
 branches:
   except:
@@ -48,3 +48,6 @@ script:
     GCC_GENERATE_TEST_COVERAGE_FILES=YES
     SWIFT_VERSION=$SWIFT_VERSION
   - pod lib lint --quick
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
