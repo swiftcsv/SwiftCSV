@@ -90,6 +90,7 @@ open class CSV {
     /// - parameter string: Contents of the CSV file
     /// - parameter delimiter: Character to split row and header fields by (default is ',')
     /// - parameter loadColumns: Whether to populate the columns dictionary (default is true)
+    /// - throws: CSVParseError when parsing `string` fails.
     public init(string: String, variant: Variant = .named, delimiter: Character = comma, loadColumns: Bool = true) throws {
         self.text = string
         self.delimiter = delimiter
@@ -103,6 +104,7 @@ open class CSV {
     /// - parameter delimiter: character to split row and header fields by (default is ',')
     /// - parameter encoding: encoding used to read file (default is UTF-8)
     /// - parameter loadColumns: whether to populate the columns dictionary (default is true)
+    /// - throws: CSVParseError when parsing the contents of `name` fails, or file loading errors.
     public convenience init(name: String, variant: Variant = .named, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOfFile: name, encoding: encoding)
     
@@ -115,6 +117,7 @@ open class CSV {
     /// - parameter delimiter: character to split row and header fields by (default is ',')
     /// - parameter encoding: encoding used to read file (default is UTF-8)
     /// - parameter loadColumns: whether to populate the columns dictionary (default is true)
+    /// - throws: CSVParseError when parsing the contents of `url` fails, or file loading errors.
     public convenience init(url: URL, variant: Variant = .named, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOf: url, encoding: encoding)
         
