@@ -16,7 +16,7 @@ class EnumeratedViewTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: true)
+        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: true)
     }
 
     func testExposesRows() {
@@ -29,7 +29,7 @@ class EnumeratedViewTests: XCTestCase {
 
         // Abort if counts don't match to not raise index-out-of-bounds exception
         guard actual.count == expected.count else {
-            XCTFail("expected actual.count to equal expected.count")
+            XCTFail("expected actual.count (\(actual.count)) to equal expected.count (\(expected.count))")
             return
         }
 
