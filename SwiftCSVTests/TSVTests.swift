@@ -14,7 +14,7 @@ class TSVTests: XCTestCase {
     var tsv: CSV!
     
     override func setUp() {
-        tsv = CSV(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: "\t")
+        tsv = try! CSV(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: "\t")
     }
     
     func testInit_makesHeader() {

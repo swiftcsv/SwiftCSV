@@ -19,25 +19,77 @@ CSV content can be loaded using the `CSV` class:
 ```swift
 import SwiftCSV
 
-// As a string
-let csv = CSV(string: "id,name,age\n1,Alice,18")
-// With a custom delimiter character
-let tsv = CSV(string: "id\tname\tage\n1\tAlice\t18", delimiter: "\t")
-// From a file (with errors)
 do {
+    // As a string
+    let csv = try CSV(string: "id,name,age\n1,Alice,18")
+
+    // With a custom delimiter character
+    let tsv = try CSV(string: "id\tname\tage\n1\tAlice\t18", delimiter: "\t")
+
+    // From a file (with errors)
     let csv = try CSV(name: "users.csv")
-} catch {
-    // Catch errors or something
-}
-// With a custom delimiter, errors, and custom encoding
-do {
+
+    // With a custom delimiter, errors, and custom encoding
     let tsv = try CSV(name: "users.tsv", delimiter: tab, encoding: NSUTF8StringEncoding)
+} catch parseError as CSVParseError {
+    // Catch errors from parsing invalid formed CSV
 } catch {
-    // Error handling
+    // Catch errors from trying to load files
 }
 ```
 
+### API
+
 If you don't care about the columns, you can set the `loadColumns` argument to `false` and the columns Dictionary will not be populated.
+
+```swift
+class CSV {
+    /// Load a CSV file from a string
+    ///
+    /// - parameter string: Contents of the CSV file
+    /// - parameter delimiter: Character to split row and header fields by (default is ',')
+    /// - parameter loadColumns: Whether to populate the columns dictionary (default is true)
+    /// - throws: CSVParseError when parsing `string` fails.
+    public init(
+        string: String, 
+        variant: Variant = .named, 
+        delimiter: Character = comma, 
+        loadColumns: Bool = true) throws
+         
+    /// Load a CSV file
+    ///
+    /// - parameter name: name of the file (will be passed to String(contentsOfFile:encoding:) to load)
+    /// - parameter delimiter: character to split row and header fields by (default is ',')
+    /// - parameter encoding: encoding used to read file (default is UTF-8)
+    /// - parameter loadColumns: whether to populate the columns dictionary (default is true) 
+    /// - throws: CSVParseError when parsing `string` fails, or file loading errors.
+    public convenience init(
+        name: String, 
+        variant: Variant = .named, 
+        delimiter: Character = comma, 
+        encoding: String.Encoding = .utf8, 
+        loadColumns: Bool = true) throws
+    
+    /// Load a CSV file from a URL
+    ///
+    /// - parameter url: url pointing to the file (will be passed to String(contentsOfURL:encoding:) to load)
+    /// - parameter delimiter: character to split row and header fields by (default is ',')
+    /// - parameter encoding: encoding used to read file (default is UTF-8)
+    /// - parameter loadColumns: whether to populate the columns dictionary (default is true)
+    /// - throws: CSVParseError when parsing `string` fails, or file loading errors.
+    public convenience init(
+        url: URL, 
+        variant: Variant = .named, 
+        delimiter: Character = comma, 
+        encoding: String.Encoding = .utf8, 
+        loadColumns: Bool = true) throws
+}
+
+public enum CSVParseError: Error {
+    case generic(message: String)
+    case quotation(message: String)
+}
+```
 
 ### Reading Data
 

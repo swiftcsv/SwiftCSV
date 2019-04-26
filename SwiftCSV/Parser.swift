@@ -9,16 +9,24 @@
 extension CSV {
     /// Parse the file and call a block on each row, passing it in as a list of fields
     /// limitTo will limit the result to a certain number of lines
-    func enumerateAsArray(_ block: @escaping ([String]) -> (), limitTo: Int?, startAt: Int = 0) {
+    public func enumerateAsArray(limitTo: Int? = nil, startAt: Int = 0, _ block: @escaping ([String]) -> ()) throws {
 
-        CSV.enumerateAsArray(text: self.text, delimiter: self.delimiter, limitTo: limitTo, startAt: startAt, block: block)
+        try Parser.enumerateAsArray(text: self.text, delimiter: self.delimiter, limitTo: limitTo, startAt: startAt, block: block)
     }
 
-    static func array(text: String, delimiter: Character, limitTo: Int? = nil, startAt: Int = 0) -> [[String]] {
+    public func enumerateAsDict(_ block: @escaping ([String : String]) -> ()) throws {
+
+        try Parser.enumerateAsDict(header: self.header, content: self.text, delimiter: self.delimiter, block: block)
+    }
+}
+
+enum Parser {
+
+    static func array(text: String, delimiter: Character, limitTo: Int? = nil, startAt: Int = 0) throws -> [[String]] {
 
         var rows = [[String]]()
 
-        enumerateAsArray(text: text, delimiter: delimiter) { row in
+        try enumerateAsArray(text: text, delimiter: delimiter) { row in
             rows.append(row)
         }
 
@@ -33,7 +41,7 @@ extension CSV {
     ///   at the row with index `limitTo` (or on end-of-text, whichever is earlier.
     /// - parameter startAt: Offset of rows to ignore before invoking `block` for the first time. Default is 0.
     /// - parameter block: Callback invoked for every parsed row between `startAt` and `limitTo` in `text`.
-    static func enumerateAsArray(text: String, delimiter: Character, limitTo: Int? = nil, startAt: Int = 0, block: @escaping ([String]) -> ()) {
+    static func enumerateAsArray(text: String, delimiter: Character, limitTo: Int? = nil, startAt: Int = 0, block: @escaping ([String]) -> ()) throws {
         var currentIndex = text.startIndex
         let endIndex = text.endIndex
 
@@ -73,7 +81,7 @@ extension CSV {
         while currentIndex < endIndex {
             let char = text[currentIndex]
 
-            state.change(char)
+            try state.change(char)
 
             if limitReached(count) {
                 break
@@ -88,4 +96,16 @@ extension CSV {
         }
     }
 
+    static func enumerateAsDict(header: [String], content: String, delimiter: Character, limitTo: Int? = nil, block: @escaping ([String : String]) -> ()) throws {
+
+        let enumeratedHeader = header.enumerated()
+
+        try enumerateAsArray(text: content, delimiter: delimiter, startAt: 1) { fields in
+            var dict = [String: String]()
+            for (index, head) in enumeratedHeader {
+                dict[head] = index < fields.count ? fields[index] : ""
+            }
+            block(dict)
+        }
+    }
 }
