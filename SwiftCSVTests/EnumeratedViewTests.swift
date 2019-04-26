@@ -11,12 +11,12 @@ import XCTest
 
 class EnumeratedViewTests: XCTestCase {
 
-    var csv: CSV!
+    var csv: CSV<EnumeratedView>!
 
     override func setUp() {
         super.setUp()
 
-        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: true)
+        csv = try! CSV<EnumeratedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: true)
     }
 
     func testExposesRows() {
@@ -25,7 +25,7 @@ class EnumeratedViewTests: XCTestCase {
             ["2", "Bob", "19"],
             ["3", "Charlie", "20"]
         ]
-        let actual = csv.enumeratedRows
+        let actual = csv.rows
 
         // Abort if counts don't match to not raise index-out-of-bounds exception
         guard actual.count == expected.count else {
@@ -39,7 +39,7 @@ class EnumeratedViewTests: XCTestCase {
     }
 
     func testExposesColumns() {
-        let actual = csv.enumeratedColumns
+        let actual = csv.columns
 
         // Abort if counts don't match to not raise index-out-of-bounds exception
         guard actual.count == 3 else {

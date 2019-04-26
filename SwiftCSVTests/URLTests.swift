@@ -10,11 +10,11 @@ import XCTest
 import SwiftCSV
 
 class URLTests: XCTestCase {
-    var csv: CSV!
+    var csv: CSV<NamedView>!
     
     func testEmptyFields() {
         let csvURL = Bundle(for: CSVTests.self).url(forResource: "empty_fields", withExtension: "csv")!
-        csv = try! CSV(url: csvURL)
+        csv = try! CSV<NamedView>(url: csvURL)
         let expected = [
             ["id": "1", "name": "John", "age": "23"],
             ["id": "2", "name": "James", "age": "32"],
@@ -23,14 +23,14 @@ class URLTests: XCTestCase {
             ["id": "", "name": "", "age": ""],
             ["id": "", "name": "Tom", "age": ""]
         ]
-        for (index, row) in csv.namedRows.enumerated() {
+        for (index, row) in csv.rows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
     
     func testQuotes() {
         let csvURL = Bundle(for: CSVTests.self).url(forResource: "quotes", withExtension: "csv")!
-        csv = try! CSV(url: csvURL)
+        csv = try! CSV<NamedView>(url: csvURL)
         let expected = [
             ["id": "4", "name, first": "Alex", "name, last": "Smith"],
             ["id": "5", "name, first": "Joe", "name, last": "Bloggs"],
@@ -56,7 +56,7 @@ class URLTests: XCTestCase {
             ],
             [:]
         ]
-        for (index, row) in csv.namedRows.enumerated() {
+        for (index, row) in csv.rows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
