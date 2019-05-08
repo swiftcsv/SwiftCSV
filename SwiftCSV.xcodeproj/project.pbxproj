@@ -65,6 +65,7 @@
 		BEE5461E1CBBB15900C0666F /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5461D1CBBB15900C0666F /* Description.swift */; };
 		E46085921CCB1E8F00385286 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
 		E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46085931CCB1F5C00385286 /* PerformanceTest.swift */; };
+		F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		BEE5461D1CBBB15900C0666F /* Description.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Description.swift; sourceTree = "<group>"; };
 		E46085911CCB1E8F00385286 /* large.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = large.csv; sourceTree = "<group>"; };
 		E46085931CCB1F5C00385286 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
+		F5C19F4F2283243C00920B06 /* ResourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 				BE06B67C1CB7267B009578CC /* empty_fields.csv */,
 				BE06B6811CB7287F009578CC /* quotes.csv */,
 				E46085911CCB1E8F00385286 /* large.csv */,
+				F5C19F4F2283243C00920B06 /* ResourceHelper.swift */,
 			);
 			name = Res;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 			files = (
 				E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */,
 				3D1E59C71945FFAD001CF760 /* CSVTests.swift in Sources */,
+				F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */,
 				508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */,
 				BE06B6801CB726B5009578CC /* URLTests.swift in Sources */,
