@@ -66,6 +66,8 @@
 		E46085921CCB1E8F00385286 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
 		E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46085931CCB1F5C00385286 /* PerformanceTest.swift */; };
 		F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
+		F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
+		F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -589,6 +591,7 @@
 			files = (
 				5FB74BE01CCB9312009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE11CCB9312009DDBF1 /* QuotedTests.swift in Sources */,
+				F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */,
 				508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE21CCB9312009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE31CCB9312009DDBF1 /* URLTests.swift in Sources */,
@@ -616,6 +619,7 @@
 			files = (
 				5FB74BE51CCB931F009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE61CCB931F009DDBF1 /* QuotedTests.swift in Sources */,
+				F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */,
 				508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE71CCB931F009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE81CCB931F009DDBF1 /* URLTests.swift in Sources */,
