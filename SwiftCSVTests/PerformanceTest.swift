@@ -13,7 +13,7 @@ class PerformanceTest: XCTestCase {
     var csv: CSV!
 
     override func setUp() {
-        let csvURL = Bundle(for: CSVTests.self).url(forResource: "large", withExtension: "csv")!
+        let csvURL = ResourceHelper.url(forResource: "large", withExtension: "csv")!
         csv = try! CSV(url: csvURL)
     }
 
