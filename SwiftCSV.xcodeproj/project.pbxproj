@@ -61,6 +61,9 @@
 		BE9B02D81CBE57B8009FE424 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B02D71CBE57B8009FE424 /* Parser.swift */; };
 		E46085921CCB1E8F00385286 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
 		E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46085931CCB1F5C00385286 /* PerformanceTest.swift */; };
+		F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
+		F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
+		F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,7 @@
 		BE9B02D71CBE57B8009FE424 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		E46085911CCB1E8F00385286 /* large.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = large.csv; sourceTree = "<group>"; };
 		E46085931CCB1F5C00385286 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
+		F5C19F4F2283243C00920B06 /* ResourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +241,7 @@
 				BE06B67C1CB7267B009578CC /* empty_fields.csv */,
 				BE06B6811CB7287F009578CC /* quotes.csv */,
 				E46085911CCB1E8F00385286 /* large.csv */,
+				F5C19F4F2283243C00920B06 /* ResourceHelper.swift */,
 			);
 			name = Res;
 			sourceTree = "<group>";
@@ -551,6 +556,7 @@
 			files = (
 				E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */,
 				3D1E59C71945FFAD001CF760 /* CSVTests.swift in Sources */,
+				F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */,
 				508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */,
 				BE06B6801CB726B5009578CC /* URLTests.swift in Sources */,
@@ -577,6 +583,7 @@
 			files = (
 				5FB74BE01CCB9312009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE11CCB9312009DDBF1 /* QuotedTests.swift in Sources */,
+				F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */,
 				508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE21CCB9312009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE31CCB9312009DDBF1 /* URLTests.swift in Sources */,
@@ -603,6 +610,7 @@
 			files = (
 				5FB74BE51CCB931F009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE61CCB931F009DDBF1 /* QuotedTests.swift in Sources */,
+				F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */,
 				508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE71CCB931F009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE81CCB931F009DDBF1 /* URLTests.swift in Sources */,
