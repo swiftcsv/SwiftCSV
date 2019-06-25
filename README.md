@@ -52,7 +52,6 @@ class CSV {
     /// - throws: CSVParseError when parsing `string` fails.
     public init(
         string: String, 
-        variant: Variant = .named, 
         delimiter: Character = comma, 
         loadColumns: Bool = true) throws
          
@@ -65,7 +64,6 @@ class CSV {
     /// - throws: CSVParseError when parsing `string` fails, or file loading errors.
     public convenience init(
         name: String, 
-        variant: Variant = .named, 
         delimiter: Character = comma, 
         encoding: String.Encoding = .utf8, 
         loadColumns: Bool = true) throws
@@ -79,7 +77,6 @@ class CSV {
     /// - throws: CSVParseError when parsing `string` fails, or file loading errors.
     public convenience init(
         url: URL, 
-        variant: Variant = .named, 
         delimiter: Character = comma, 
         encoding: String.Encoding = .utf8, 
         loadColumns: Bool = true) throws

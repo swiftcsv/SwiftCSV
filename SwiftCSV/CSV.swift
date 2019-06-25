@@ -8,11 +8,6 @@
 
 import Foundation
 
-public enum Variant {
-    case named
-    case enumerated
-}
-
 public protocol View {
     associatedtype Rows
     associatedtype Columns
@@ -105,23 +100,23 @@ open class CSV {
     /// - parameter encoding: encoding used to read file (default is UTF-8)
     /// - parameter loadColumns: whether to populate the columns dictionary (default is true)
     /// - throws: CSVParseError when parsing the contents of `name` fails, or file loading errors.
-    public convenience init(name: String, variant: Variant = .named, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+    public convenience init(name: String, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOfFile: name, encoding: encoding)
     
-        try self.init(string: contents, variant: variant, delimiter: delimiter, loadColumns: loadColumns)
+        try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
     }
     
     /// Load a CSV file from a URL
     ///
-    /// - parameter url: url pointing to the file (will be passed to String(contentsOfURL:encoding:) to load)
+    /// - parameter url: url pointing to the file (will be passed to `String(contentsOfURL:encoding:)` to load)
     /// - parameter delimiter: character to split row and header fields by (default is ',')
     /// - parameter encoding: encoding used to read file (default is UTF-8)
     /// - parameter loadColumns: whether to populate the columns dictionary (default is true)
     /// - throws: CSVParseError when parsing the contents of `url` fails, or file loading errors.
-    public convenience init(url: URL, variant: Variant = .named, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+    public convenience init(url: URL, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOf: url, encoding: encoding)
         
-        try self.init(string: contents, variant: variant, delimiter: delimiter, loadColumns: loadColumns)
+        try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
     }
     
     /// Turn the CSV data into NSData using a given encoding
