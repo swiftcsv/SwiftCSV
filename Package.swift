@@ -10,7 +10,6 @@ let package = Package(
             targets: ["SwiftCSV"]),
     ],
     dependencies: [], // No dependencies
-    swiftLanguageVersions: [.v4, .v5],
     targets: [
         .target(
             name: "SwiftCSV",
