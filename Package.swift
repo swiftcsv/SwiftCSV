@@ -4,22 +4,24 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftCSV",
+    platforms: [
+        .macOS("10.10"), .iOS("8.0"), .tvOS("9.2"), .watchOS("2.2")
+    ],
     products: [
-        // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "SwiftCSV",
             targets: ["SwiftCSV"]),
     ],
-    swiftLanguageVersions: [.v5],
+    dependencies: [], // No dependencies
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "SwiftCSV",
+            dependencies: [],
             path: "SwiftCSV"),
         .testTarget(
             name: "SwiftCSVTests",
             dependencies: ["SwiftCSV"],
             path: "SwiftCSVTests"),
-    ]
+    ],
+    swiftLanguageVersions: [.v5, .v4_2]
 )
