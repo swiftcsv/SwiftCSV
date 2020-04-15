@@ -101,9 +101,9 @@ public enum CSVParseError: Error {
 
 ```swift
 let csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19")
-csv.header    //=> ["id", "name", "age"]
-csv.rows      //=> [["id": "1", "name": "Alice", "age": "18"], ["id": "2", "name": "Bob", "age": "19"]]
-csv.columns   //=> ["id": ["1", "2"], "name": ["Alice", "Bob"], "age": ["18", "19"]]
+csv.header         //=> ["id", "name", "age"]
+csv.namedRows      //=> [["id": "1", "name": "Alice", "age": "18"], ["id": "2", "name": "Bob", "age": "19"]]
+csv.namedColumns   //=> ["id": ["1", "2"], "name": ["Alice", "Bob"], "age": ["18", "19"]]
 ```
 
 The rows can also parsed and passed to a block on the fly, reducing the memory needed to store the whole lot in an array:
