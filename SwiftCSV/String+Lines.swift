@@ -18,6 +18,8 @@ extension String {
 
 extension Character {
     internal var isNewline: Bool {
-        return self == "\n" || self == "\r\n" || self == "\r"
+        return self == "\n"
+            || self == "\r\n"
+            || self == "\r"
     }
 }

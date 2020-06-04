@@ -27,6 +27,9 @@
 		508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */; };
 		508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */; };
 		508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */; };
+		50A2B23424894DC900B168A9 /* NewlineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2B23324894DC900B168A9 /* NewlineTests.swift */; };
+		50A2B23524894DC900B168A9 /* NewlineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2B23324894DC900B168A9 /* NewlineTests.swift */; };
+		50A2B23624894DC900B168A9 /* NewlineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A2B23324894DC900B168A9 /* NewlineTests.swift */; };
 		5FB74B9B1CCB9274009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BB71CCB929D009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
@@ -110,6 +113,7 @@
 		508975D61DBF34CF006F3DBE /* ParsingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingState.swift; sourceTree = "<group>"; };
 		508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedView.swift; sourceTree = "<group>"; };
 		508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedViewTests.swift; sourceTree = "<group>"; };
+		50A2B23324894DC900B168A9 /* NewlineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewlineTests.swift; sourceTree = "<group>"; };
 		5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74B9A1CCB9274009DDBF1 /* SwiftCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +231,7 @@
 				BE06B67E1CB72680009578CC /* Res */,
 				3D1E59C61945FFAD001CF760 /* CSVTests.swift */,
 				508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */,
+				50A2B23324894DC900B168A9 /* NewlineTests.swift */,
 				BE6C86061CB5CE44009A351D /* QuotedTests.swift */,
 				3D3749E2194D6DF7008F262A /* TSVTests.swift */,
 				BE06B67F1CB726B5009578CC /* URLTests.swift */,
@@ -556,6 +561,7 @@
 			files = (
 				E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */,
 				3D1E59C71945FFAD001CF760 /* CSVTests.swift in Sources */,
+				50A2B23424894DC900B168A9 /* NewlineTests.swift in Sources */,
 				F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */,
 				508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */,
@@ -583,6 +589,7 @@
 			files = (
 				5FB74BE01CCB9312009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE11CCB9312009DDBF1 /* QuotedTests.swift in Sources */,
+				50A2B23524894DC900B168A9 /* NewlineTests.swift in Sources */,
 				F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */,
 				508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE21CCB9312009DDBF1 /* TSVTests.swift in Sources */,
@@ -610,6 +617,7 @@
 			files = (
 				5FB74BE51CCB931F009DDBF1 /* CSVTests.swift in Sources */,
 				5FB74BE61CCB931F009DDBF1 /* QuotedTests.swift in Sources */,
+				50A2B23624894DC900B168A9 /* NewlineTests.swift in Sources */,
 				F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */,
 				508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5FB74BE71CCB931F009DDBF1 /* TSVTests.swift in Sources */,
