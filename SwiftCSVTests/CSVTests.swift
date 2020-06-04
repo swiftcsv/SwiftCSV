@@ -79,10 +79,15 @@ class CSVTests: XCTestCase {
         }
     }
     
-    func testDescription() {
-        XCTAssertEqual(csv.description, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
+    func testSerialization() {
+        XCTAssertEqual(csv.serialized, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
-
+  
+    func testSerializationWithDoubleQuotes() {
+        csv = try! CSV<NamedView>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+        XCTAssertEqual(csv.serialized, "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+    }
+  
     func testEnumerate() throws {
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],

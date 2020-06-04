@@ -44,9 +44,14 @@ public struct EnumeratedView: View {
 
     public func serialize(header: [String], delimiter: Character) -> String {
 
-        let head = header.joined(separator: ",") + "\n"
+        let head = header
+            .map(enquoteContentsIfNeeded(cell:))
+            .joined(separator: ",") + "\n"
 
-        let content = rows.map { $0.joined(separator: String(delimiter)) }.joined(separator: "\n")
+        let content = rows.map { row in
+            row.map(enquoteContentsIfNeeded(cell:))
+                .joined(separator: String(delimiter))
+        }.joined(separator: "\n")
 
         return head + content
     }

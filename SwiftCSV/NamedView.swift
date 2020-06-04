@@ -34,10 +34,15 @@ public struct NamedView: View {
 
     public func serialize(header: [String], delimiter: Character) -> String {
 
-        let head = header.joined(separator: ",") + "\n"
+        let head = header
+            .map(enquoteContentsIfNeeded(cell:))
+            .joined(separator: ",") + "\n"
 
         let content = rows.map { row in
-            header.map { row[$0]! }.joined(separator: ",")
+            header
+                .map { cellID in row[cellID]! }
+                .map(enquoteContentsIfNeeded(cell:))
+                .joined(separator: ",")
         }.joined(separator: "\n")
 
         return head + content

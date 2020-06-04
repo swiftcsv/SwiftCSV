@@ -56,4 +56,13 @@ class EnumeratedViewTests: XCTestCase {
         XCTAssertEqual(actual[2].header, "age")
         XCTAssertEqual(actual[2].rows, ["18", "19", "20"])
     }
+
+    func testSerialization() {
+        XCTAssertEqual(csv.serialized, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
+    }
+
+    func testSerializationWithDoubleQuotes() {
+        csv = try! CSV<EnumeratedView>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+        XCTAssertEqual(csv.serialized, "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+    }
 }

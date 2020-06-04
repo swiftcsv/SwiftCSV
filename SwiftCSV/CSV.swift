@@ -128,3 +128,11 @@ extension CSV: CustomStringConvertible {
         return self.serialized
     }
 }
+
+func enquoteContentsIfNeeded(cell: String) -> String {
+    // Add quotes if value contains a comma
+    if cell.contains(",") {
+        return "\"\(cell)\""
+    }
+    return cell
+}
