@@ -19,6 +19,18 @@ class EnumeratedViewTests: XCTestCase {
         csv = try! CSV<EnumeratedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: true)
     }
 
+    func testInit_whenThereAreIncompleteRows_makesRows() throws {
+        csv = try CSV<EnumeratedView>(string: "id,name,age\n1,Alice,18\n2\n3,Charlie", delimiter: ",", loadColumns: true)
+        let expected = [
+            ["1", "Alice", "18"],
+            ["2", "", ""],
+            ["3", "Charlie", ""]
+        ]
+        for (index, row) in csv.rows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
+    }
+
     func testExposesRows() {
         let expected: [[String]] = [
             ["1", "Alice", "18"],

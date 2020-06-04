@@ -31,8 +31,8 @@ class CSVTests: XCTestCase {
         }
     }
     
-    func testInit_whenThereAreIncompleteRows_makesRows() {
-        csv = try! CSV<NamedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
+    func testInit_whenThereAreIncompleteRows_makesRows() throws {
+        csv = try CSV<NamedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
