@@ -11,10 +11,10 @@ import Foundation
 @testable import SwiftCSV
 
 class TSVTests: XCTestCase {
-    var tsv: CSV!
+    var tsv: CSV<NamedView>!
     
     override func setUp() {
-        tsv = try! CSV(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: "\t")
+        tsv = try! CSV<NamedView>(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: "\t")
     }
     
     func testInit_makesHeader() {
@@ -27,7 +27,7 @@ class TSVTests: XCTestCase {
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
-        for (index, row) in tsv.namedRows.enumerated() {
+        for (index, row) in tsv.rows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
@@ -38,8 +38,8 @@ class TSVTests: XCTestCase {
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
         ]
-        XCTAssertEqual(Set(tsv.namedColumns.keys), Set(expected.keys))
-        for (key, value) in tsv.namedColumns {
+        XCTAssertEqual(Set(tsv.columns.keys), Set(expected.keys))
+        for (key, value) in tsv.columns {
             XCTAssertEqual(expected[key] ?? [], value)
         }
     }

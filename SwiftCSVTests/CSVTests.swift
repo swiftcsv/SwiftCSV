@@ -10,10 +10,10 @@ import XCTest
 @testable import SwiftCSV
 
 class CSVTests: XCTestCase {
-    var csv: CSV!
+    var csv: CSV<NamedView>!
     
     override func setUp() {
-        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
+        csv = try! CSV<NamedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
     
     func testInit_makesHeader() {
@@ -26,43 +26,19 @@ class CSVTests: XCTestCase {
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
-        for (index, row) in csv.namedRows.enumerated() {
+        for (index, row) in csv.rows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
     
-    func testInit_whenThereAreIncompleteRows_makesRows() {
-        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
+    func testInit_whenThereAreIncompleteRows_makesRows() throws {
+        csv = try CSV<NamedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": ""]
         ]
-        for (index, row) in csv.namedRows.enumerated() {
-            XCTAssertEqual(expected[index], row)
-        }
-    }
-
-    func testInit_whenThereAreextraCarriageReturns() throws {
-        csv = try CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie\r\n")
-        let expected = [
-            ["id": "1", "name": "Alice", "age": "18"],
-            ["id": "2", "name": "Bob", "age": "19"],
-            ["id": "3", "name": "Charlie", "age": ""]
-        ]
-        for (index, row) in csv.namedRows.enumerated() {
-            XCTAssertEqual(expected[index], row)
-        }
-    }
-    
-    func testInit_whenThereAreCRLFs_makesRows() {
-        csv = try! CSV(string: "id,name,age\r\n1,Alice,18\r\n2,Bob,19\r\n3,Charlie,20\r\n")
-        let expected = [
-            ["id": "1", "name": "Alice", "age": "18"],
-            ["id": "2", "name": "Bob", "age": "19"],
-            ["id": "3", "name": "Charlie", "age": "20"]
-        ]
-        for (index, row) in csv.namedRows.enumerated() {
+        for (index, row) in csv.rows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
@@ -73,19 +49,19 @@ class CSVTests: XCTestCase {
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
         ]
-        XCTAssertEqual(Set(csv.namedColumns.keys), Set(expected.keys))
-        for (key, value) in csv.namedColumns {
+        XCTAssertEqual(Set(csv.columns.keys), Set(expected.keys))
+        for (key, value) in csv.columns {
             XCTAssertEqual(expected[key] ?? [], value)
         }
     }
     
-    func testDescription() {
-        XCTAssertEqual(csv.description, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
+    func testSerialization() {
+        XCTAssertEqual(csv.serialized, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
   
-    func testDescriptionWithDoubleQuotes() {
-        csv = try! CSV(string: "id,name,age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
-        XCTAssertEqual(csv.description, "id,name,age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+    func testSerializationWithDoubleQuotes() {
+        csv = try! CSV<NamedView>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+        XCTAssertEqual(csv.serialized, "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
     }
   
     func testEnumerate() throws {
@@ -102,21 +78,21 @@ class CSVTests: XCTestCase {
     }
 
     func testIgnoreColumns() {
-        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
-        XCTAssertEqual(csv.namedColumns.isEmpty, true)
+        csv = try! CSV<NamedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
+        XCTAssertEqual(csv.columns.isEmpty, true)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
-        for (index, row) in csv.namedRows.enumerated() {
+        for (index, row) in csv.rows.enumerated() {
             XCTAssertEqual(expected[index], row)
         }
     }
 
     func testThrowsOnInvalidData() {
         do {
-            _ = try CSV(string: "\n\n<html lang=\"en\">\n \n <meta charset=\"utf-8\"></html>", delimiter: ",", loadColumns: false)
+            _ = try CSV<NamedView>(string: "\n\n<html lang=\"en\">\n \n <meta charset=\"utf-8\"></html>", delimiter: ",", loadColumns: false)
             XCTFail("Expected to throw")
         } catch {
             XCTAssert(error is CSVParseError)

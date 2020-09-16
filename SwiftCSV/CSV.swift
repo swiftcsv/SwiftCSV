@@ -9,72 +9,56 @@
 import Foundation
 
 public protocol View {
-    associatedtype Rows
+    associatedtype Row
     associatedtype Columns
 
-    var rows: Rows { get }
+    var rows: [Row] { get }
     var columns: Columns { get }
 
-    init(header: [String], text: String, delimiter: Character, limitTo: Int?, loadColumns: Bool) throws
+    init(header: [String], text: String, delimiter: Character, loadColumns: Bool) throws
+
+    func serialize(header: [String], delimiter: Character) -> String
 }
 
-open class CSV {
-    static public let comma: Character = ","
+/// CSV variant for which unique column names are assumed.
+///
+/// Example:
+///
+///     let csv = NamedCSV(...)
+///     let allIds = csv.columns["id"]
+///     let firstEntry = csv.rows[0]
+///     let fullName = firstEntry["firstName"] + " " + firstEntry["lastName"]
+///
+public typealias NamedCSV = CSV<NamedView>
+
+/// CSV variant that exposes columns and rows as arrays.
+/// Example:
+///
+///     let csv = EnumeratedCSV(...)
+///     let allIds = csv.columns.filter { $0.header == "id" }.rows
+///
+public typealias EnumeratedCSV = CSV<EnumeratedView>
+
+open class CSV<DataView : View>  {
+    public static var comma: Character { return "," }
     
     public let header: [String]
 
-    lazy var _namedView: NamedView = {
-        return try! NamedView(
-            header: self.header,
-            text: self.text,
-            delimiter: self.delimiter,
-            loadColumns: self.loadColumns)
-    }()
+    /// Unparsed contents.
+    public let text: String
 
-    lazy var _enumeratedView: EnumeratedView = {
-        return try! EnumeratedView(
-            header: self.header,
-            text: self.text,
-            delimiter: self.delimiter,
-            loadColumns: self.loadColumns)
-    }()
+    /// Used delimiter to parse `text` and to serialize the data again.
+    public let delimiter: Character
 
-    var text: String
-    var delimiter: Character
+    /// Underlying data representation of the CSV contents.
+    public let content: DataView
 
-    let loadColumns: Bool
-
-    /// List of dictionaries that contains the CSV data
-    public var namedRows: [[String : String]] {
-        return _namedView.rows
+    public var rows: [DataView.Row] {
+        return content.rows
     }
 
-    /// Dictionary of header name to list of values in that column
-    /// Will not be loaded if loadColumns in init is false
-    public var namedColumns: [String : [String]] {
-        return _namedView.columns
-    }
-
-    /// Collection of column fields that contain the CSV data
-    public var enumeratedRows: [[String]] {
-        return _enumeratedView.rows
-    }
-
-    /// Collection of columns with metadata.
-    /// Will not be loaded if loadColumns in init is false
-    public var enumeratedColumns: [EnumeratedView.Column] {
-        return _enumeratedView.columns
-    }
-
-
-    @available(*, unavailable, renamed: "namedRows")
-    public var rows: [[String : String]] {
-        return namedRows
-    }
-
-    @available(*, unavailable, renamed: "namedColumns")
-    public var columns: [String : [String]] {
-        return namedColumns
+    public var columns: DataView.Columns {
+        return content.columns
     }
 
     
@@ -87,11 +71,12 @@ open class CSV {
     public init(string: String, delimiter: Character = comma, loadColumns: Bool = true) throws {
         self.text = string
         self.delimiter = delimiter
-        self.loadColumns = loadColumns
         self.header = try Parser.array(text: string, delimiter: delimiter, limitTo: 1).first ?? []
+
+        self.content = try DataView.init(header: header, text: text, delimiter: delimiter, loadColumns: loadColumns)
     }
 
-    @available(*, deprecated, message: "Use init(url:delimiter:encoding:loadColumns:) instead of this path-based approach. Also, calling the parameter `name` instead of `path` was a mistake.")
+    @available(*, deprecated, message: "Use init(url:delimiter:encoding:loadColumns:) instead of this path-based approach. Also, calling the parameter `name` instead of `path` was an API design mistake.")
     public convenience init(name: String, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         try self.init(url: URL(fileURLWithPath: name), delimiter: delimiter, encoding: encoding, loadColumns: loadColumns)
     }
@@ -126,8 +111,28 @@ open class CSV {
         try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
     }
     
-    /// Turn the CSV data into NSData using a given encoding
+    /// Turn the CSV contents into Data using a given encoding
     open func dataUsingEncoding(_ encoding: String.Encoding) -> Data? {
-        return description.data(using: encoding)
+        return serialized.data(using: encoding)
     }
+
+    /// Serialized form of the CSV data; depending on the View used, this may
+    /// perform additional normalizations.
+    open var serialized: String {
+        return self.content.serialize(header: self.header, delimiter: self.delimiter)
+    }
+}
+
+extension CSV: CustomStringConvertible {
+    public var description: String {
+        return self.serialized
+    }
+}
+
+func enquoteContentsIfNeeded(cell: String) -> String {
+    // Add quotes if value contains a comma
+    if cell.contains(",") {
+        return "\"\(cell)\""
+    }
+    return cell
 }
