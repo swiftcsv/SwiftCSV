@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol View {
+public protocol CSVView {
     associatedtype Rows
     associatedtype Columns
 
