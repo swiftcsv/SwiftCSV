@@ -6,7 +6,7 @@
 //  Copyright © 2016 Naoto Kaneko. All rights reserved.
 //
 
-public struct NamedView: View {
+public struct NamedView: CSVView {
 
     public var rows: [[String : String]]
     public var columns: [String : [String]]
