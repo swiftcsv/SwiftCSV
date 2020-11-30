@@ -1,12 +1,12 @@
 # SwiftCSV
 
-![Swift 5.0](https://img.shields.io/badge/Swift-5.0-blue.svg?style=flat)
-[![Platform support](https://img.shields.io/badge/platform-ios%20%7C%20osx%20%7C%20tvos%20%7C%20watchos-lightgrey.svg?style=flat-square)](https://github.com/swiftcsv/SwiftCSV/blob/master/LICENSE.md) 
-[![Build Status](https://img.shields.io/travis/swiftcsv/SwiftCSV/master.svg?style=flat-square)](https://travis-ci.org/swiftcsv/SwiftCSV) 
+![Swift 5.3](https://img.shields.io/badge/Swift-5.3-blue.svg?style=flat)
+[![Platform support](https://img.shields.io/badge/platform-ios%20%7C%20osx%20%7C%20tvos%20%7C%20watchos-lightgrey.svg?style=flat-square)](https://github.com/swiftcsv/SwiftCSV/blob/master/LICENSE.md)
+[![Build Status](https://img.shields.io/travis/swiftcsv/SwiftCSV/master.svg?style=flat-square)](https://travis-ci.org/swiftcsv/SwiftCSV)
 [![Code coverage status](https://codecov.io/gh/swiftcsv/SwiftCSV/branch/master/graph/badge.svg)](https://codecov.io/gh/swiftcsv/SwiftCSV)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftCSV.svg?style=flat-square)](https://cocoapods.org/pods/SwiftCSV) 
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftCSV.svg?style=flat-square)](https://cocoapods.org/pods/SwiftCSV)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/swiftcsv/SwiftCSV/blob/master/LICENSE.md) 
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/swiftcsv/SwiftCSV/blob/master/LICENSE.md)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg?style=flat-square)](https://houndci.com)
 
 
@@ -31,10 +31,10 @@ do {
 
     // From a file inside the app bundle, with a custom delimiter, errors, and custom encoding
     let resource: CSV? = try CSV(
-        name: "users", 
-        extension: "tsv", 
-        bundle: .main, 
-        delimiter: "\t", 
+        name: "users",
+        extension: "tsv",
+        bundle: .main,
+        delimiter: "\t",
         encoding: .utf8)
 } catch parseError as CSVParseError {
     // Catch errors from parsing invalid formed CSV
@@ -55,10 +55,10 @@ class CSV {
     /// - parameter delimiter: Character used to separate  row and header fields (default is ',')
     /// - parameter loadColumns: Whether to populate the `columns` dictionary (default is `true`)
     /// - throws: `CSVParseError` when parsing `string` fails.
-    public init(string: String, 
-                delimiter: Character = comma, 
+    public init(string: String,
+                delimiter: Character = comma,
                 loadColumns: Bool = true) throws
-                
+
     /// Load a CSV file as a named resource from `bundle`.
     ///
     /// - parameter name: Name of the file resource inside `bundle`.
@@ -70,11 +70,11 @@ class CSV {
     /// - throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
     /// - returns: `nil` if the resource could not be found
     public convenience init?(
-        name: String, 
-        extension ext: String? = nil, 
-        bundle: Bundle = .main, 
-        delimiter: Character = comma, 
-        encoding: String.Encoding = .utf8, 
+        name: String,
+        extension ext: String? = nil,
+        bundle: Bundle = .main,
+        delimiter: Character = comma,
+        encoding: String.Encoding = .utf8,
         loadColumns: Bool = true) throws
 
     /// Load a CSV file from `url`.
@@ -85,9 +85,9 @@ class CSV {
     /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
     public convenience init(
-        url: URL, 
-        delimiter: Character = comma, 
-        encoding: String.Encoding = .utf8, 
+        url: URL,
+        delimiter: Character = comma,
+        encoding: String.Encoding = .utf8,
         loadColumns: Bool = true)
 }
 
