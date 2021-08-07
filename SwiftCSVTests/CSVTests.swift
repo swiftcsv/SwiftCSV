@@ -122,4 +122,14 @@ class CSVTests: XCTestCase {
             XCTAssert(error is CSVParseError)
         }
     }
+  
+    func testInit_ParseFileWithQuotesAndSpaces() {
+        let failingCsv = """
+        "a"   ,   "b"
+        "A"   ,     "B"
+        """
+        let csv = try! CSV(string: failingCsv)
+        
+        XCTAssertEqual(csv.namedRows, [["b": "B", "a": "A"]])
+    }
 }
