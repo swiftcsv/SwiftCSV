@@ -123,10 +123,14 @@ class CSVTests: XCTestCase {
         }
     }
   
-    func testInit_ParseFileWithQuotesAndSpaces() {
+    func testInit_ParseFileWithQuotesAndWhitespaces() {
+        let tab = "\t"
+        let paragraphSeparator = "\u{2029}"
+        let ideographicSpace = "\u{3000}"
+      
         let failingCsv = """
-        "a"   ,   "b"
-        "A"   ,     "B"
+        "a" \(tab)  ,  \(paragraphSeparator)  "b"
+        "A" \(ideographicSpace)  ,  \(tab)   "B"
         """
         let csv = try! CSV(string: failingCsv)
         
