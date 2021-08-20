@@ -122,4 +122,18 @@ class CSVTests: XCTestCase {
             XCTAssert(error is CSVParseError)
         }
     }
+  
+    func testInit_ParseFileWithQuotesAndWhitespaces() {
+        let tab = "\t"
+        let paragraphSeparator = "\u{2029}"
+        let ideographicSpace = "\u{3000}"
+      
+        let failingCsv = """
+        "a" \(tab)  ,  \(paragraphSeparator)  "b"
+        "A" \(ideographicSpace)  ,  \(tab)   "B"
+        """
+        let csv = try! CSV(string: failingCsv)
+        
+        XCTAssertEqual(csv.namedRows, [["b": "B", "a": "A"]])
+    }
 }
