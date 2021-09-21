@@ -26,7 +26,7 @@ enum Parser {
 
         var rows = [[String]]()
 
-        try enumerateAsArray(text: text, delimiter: delimiter) { row in
+        try enumerateAsArray(text: text, delimiter: delimiter, limitTo: limitTo) { row in
             rows.append(row)
         }
 
