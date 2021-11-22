@@ -76,11 +76,6 @@ open class CSV<DataView : CSVView>  {
         self.content = try DataView.init(header: header, text: text, delimiter: delimiter, loadColumns: loadColumns)
     }
 
-    @available(*, deprecated, message: "Use init(url:delimiter:encoding:loadColumns:) instead of this path-based approach. Also, calling the parameter `name` instead of `path` was an API design mistake.")
-    public convenience init(name: String, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        try self.init(url: URL(fileURLWithPath: name), delimiter: delimiter, encoding: encoding, loadColumns: loadColumns)
-    }
-
     /// Load a CSV file as a named resource from `bundle`.
     ///
     /// - parameter name: Name of the file resource inside `bundle`.
