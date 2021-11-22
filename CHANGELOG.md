@@ -8,6 +8,12 @@ Bugfixes:
 Other:
 -->
 
+## 0.6.1
+
+Bugfixes:
+
+- Fix enumeration limit being ignored in `Parser` (#98) - @jasonmedeiros 
+
 
 ## 0.6.0
 
