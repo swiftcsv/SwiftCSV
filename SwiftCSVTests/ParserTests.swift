@@ -14,47 +14,49 @@ class ParserTests: XCTestCase {
         let string = "id,name\n1,foo\n2,bar\n3,baz"
 
 
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: nil, startAt: 0),
-                       [["id","name"], ["1","foo"], ["2","bar"], ["3","baz"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: -1, startAt: 0),
-                       [["id","name"], ["1","foo"], ["2","bar"], ["3","baz"]])
-
-
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: nil, startAt: 1),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 1, rowLimit: nil),
                        [["1","foo"], ["2","bar"], ["3","baz"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: nil, startAt: 2),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 2, rowLimit: nil),
                        [["2","bar"], ["3","baz"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: nil, startAt: 3),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 3, rowLimit: nil),
                        [["3","baz"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: nil, startAt: 4),
-                       [])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 1, startAt: 5),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 4, rowLimit: nil),
                        [])
 
 
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 0, startAt: 0),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 0, rowLimit: nil),
+                       [["id","name"], ["1","foo"], ["2","bar"], ["3","baz"]])
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 0, rowLimit: -1),
+                       [["id","name"], ["1","foo"], ["2","bar"], ["3","baz"]])
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 0, rowLimit: 0),
+                       [])
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 0, rowLimit: 1),
                        [["id","name"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 1, startAt: 0),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 0, rowLimit: 2),
                        [["id","name"], ["1","foo"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 2, startAt: 0),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 0, rowLimit: 3),
                        [["id","name"], ["1","foo"], ["2","bar"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 3, startAt: 0),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 0, rowLimit: 4),
                        [["id","name"], ["1","foo"], ["2","bar"], ["3","baz"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 4, startAt: 0),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 0, rowLimit: 5),
                        [["id","name"], ["1","foo"], ["2","bar"], ["3","baz"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 999, startAt: 0),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 0, rowLimit: 999),
                        [["id","name"], ["1","foo"], ["2","bar"], ["3","baz"]])
 
 
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 1, startAt: 1),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 1, rowLimit: 1),
                        [["1","foo"]])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 2, startAt: 1),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 1, rowLimit: 2),
                        [["1","foo"], ["2","bar"]])
 
 
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 1, startAt: 2),
-                       [])
-        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", limitTo: 2, startAt: 2),
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 2, rowLimit: 1),
                        [["2","bar"]])
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 2, rowLimit: 2),
+                       [["2","bar"], ["3","baz"]])
+
+
+        XCTAssertEqual(try Parser.array(text: string, delimiter: ",", startAt: 5, rowLimit: 1),
+                       [])
     }
 }

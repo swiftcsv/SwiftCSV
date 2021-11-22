@@ -16,7 +16,7 @@ public struct NamedView: CSVView {
         var rows = [[String: String]]()
         var columns = [String: [String]]()
 
-        try Parser.enumerateAsDict(header: header, content: text, delimiter: delimiter, limitTo: limitTo) { dict in
+        try Parser.enumerateAsDict(header: header, content: text, delimiter: delimiter, rowLimit: limitTo.map { $0 + 1 }) { dict in
             rows.append(dict)
         }
 

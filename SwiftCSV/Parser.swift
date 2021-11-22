@@ -7,11 +7,23 @@
 //
 
 extension CSV {
-    /// Parse the file and call a block on each row, passing it in as a list of fields
-    /// limitTo will limit the result to a certain number of lines
-    public func enumerateAsArray(limitTo: Int? = nil, startAt: Int = 0, _ rowCallback: @escaping ([String]) -> ()) throws {
+    /// Parse the file and call a block on each row, passing it in as a list of fields.
+    /// - Parameters limitTo: Maximum absolute line number in the content, *not* maximum amount of rows.
+    @available(*, deprecated, message: "Use enumerateAsArray(startAt:rowLimit:_:) instead")
+    public func enumerateAsArray(limitTo maxRow: Int? = nil, startAt: Int = 0, _ rowCallback: @escaping ([String]) -> ()) throws {
 
-        try Parser.enumerateAsArray(text: self.text, delimiter: self.delimiter, limitTo: limitTo, startAt: startAt, rowCallback: rowCallback)
+        try Parser.enumerateAsArray(text: self.text, delimiter: self.delimiter, startAt: startAt, rowLimit: maxRow.map { $0 - startAt }, rowCallback: rowCallback)
+    }
+
+    /// Parse the CSV contents row by row from `start` for `rowLimit` amount of rows, or until the end of the input.
+    /// - Parameters:
+    ///   - startAt: Skip lines before this. Default value is `0` to start at the beginning.
+    ///   - rowLimit: Amount of rows to consume, beginning to count at `startAt`. Default value is `nil` to consume
+    ///     the whole input string.
+    ///   - rowCallback: Array of each row's columnar values, in order.
+    public func enumerateAsArray(startAt: Int = 0, rowLimit: Int? = nil, _ rowCallback: @escaping ([String]) -> ()) throws {
+
+        try Parser.enumerateAsArray(text: self.text, delimiter: self.delimiter, startAt: startAt, rowLimit: rowLimit, rowCallback: rowCallback)
     }
 
     public func enumerateAsDict(_ block: @escaping ([String : String]) -> ()) throws {
@@ -22,32 +34,35 @@ extension CSV {
 
 enum Parser {
 
-    static func array(text: String, delimiter: Character, limitTo limit: Int? = nil, startAt offset: Int = 0) throws -> [[String]] {
+    static func array(text: String, delimiter: Character, startAt offset: Int = 0, rowLimit: Int? = nil) throws -> [[String]] {
 
         var rows = [[String]]()
 
-        try enumerateAsArray(text: text, delimiter: delimiter, limitTo: limit, startAt: offset) { row in
+        try enumerateAsArray(text: text, delimiter: delimiter, startAt: offset, rowLimit: rowLimit) { row in
             rows.append(row)
         }
 
         return rows
     }
 
-    /// Parse the text and call a block on each row, passing it in as a list of fields.
+    /// Parse `text` and provide each row to `rowCallback` as an array of field values, one for each column per
+    /// line of text, separated by `delimiter`.
     ///
-    /// - parameter text: Text to parse.
-    /// - parameter delimiter: Character to split row and header fields by (default is ',')
-    /// - parameter limit: If set to non-nil value, enumeration stops at the row with index `limitTo`
-    ///   (or on end-of-text, whichever comes first). Values below 0 are ignored.
-    /// - parameter offset: Offset of rows to ignore before invoking `rowCallback` for the first time. Default is 0.
-    /// - parameter rowCallback: Callback invoked for every parsed row between `startAt` and `limitTo` in `text`.
+    /// - Parameters:
+    ///   - text: Text to parse.
+    ///   - delimiter: Character to split row and header fields by (default is ',')
+    ///   - offset: Skip lines before this. Default value is `0` to start at the beginning.
+    ///   - rowLimit: Amount of rows to consume, beginning to count at `startAt`. Default value is `nil` to consume
+    ///     the whole input string.
+    ///   - rowCallback: Callback invoked for every parsed row between `startAt` and `limitTo` in `text`.
+    /// - Throws: `CSVParseError`
     static func enumerateAsArray(text: String,
                                  delimiter: Character,
-                                 limitTo limit: Int? = nil,
                                  startAt offset: Int = 0,
+                                 rowLimit: Int? = nil,
                                  rowCallback: @escaping ([String]) -> ()) throws {
-        // Ignore values <0
-        let limit = limit.flatMap { $0 < 0 ? nil : $0 }
+
+        let maxRowIndex = rowLimit.flatMap { $0 < 0 ? nil : offset + $0 }
 
         var currentIndex = text.startIndex
         let endIndex = text.endIndex
@@ -55,16 +70,16 @@ enum Parser {
         var fields = [String]()
         var field = ""
 
-        var rowNumber = 0
+        var rowIndex = 0
 
         func finishRow() {
             defer {
-                rowNumber += 1
+                rowIndex += 1
                 fields = []
                 field = ""
             }
 
-            guard rowNumber >= offset else { return }
+            guard rowIndex >= offset else { return }
             fields.append(String(field))
             rowCallback(fields)
         }
@@ -73,25 +88,22 @@ enum Parser {
             delimiter: delimiter,
             finishRow: finishRow,
             appendChar: {
-                guard rowNumber >= offset else { return }
+                guard rowIndex >= offset else { return }
                 field.append($0)
             },
             finishField: {
-                guard rowNumber >= offset else { return }
+                guard rowIndex >= offset else { return }
                 fields.append(field)
                 field = ""
             })
 
         func limitReached(_ rowNumber: Int) -> Bool {
-            guard let limit = limit,
-                rowNumber > limit
-            else { return false }
-
-            return true
+            guard let maxRowIndex = maxRowIndex else { return false }
+            return rowNumber >= maxRowIndex
         }
 
         while currentIndex < endIndex,
-              !limitReached(rowNumber) {
+              !limitReached(rowIndex) {
             let char = text[currentIndex]
 
             try state.change(char)
@@ -100,7 +112,7 @@ enum Parser {
         }
 
         // Append remainder of the cache, unless we're past the limit already.
-        if !limitReached(rowNumber) {
+        if !limitReached(rowIndex) {
             if !field.isEmpty {
                 fields.append(field)
             }
@@ -111,12 +123,12 @@ enum Parser {
         }
     }
 
-    static func enumerateAsDict(header: [String], content: String, delimiter: Character, limitTo limit: Int? = nil, block: @escaping ([String : String]) -> ()) throws {
+    static func enumerateAsDict(header: [String], content: String, delimiter: Character, rowLimit: Int? = nil, block: @escaping ([String : String]) -> ()) throws {
 
         let enumeratedHeader = header.enumerated()
 
         // Start after the header
-        try enumerateAsArray(text: content, delimiter: delimiter, limitTo: limit, startAt: 1) { fields in
+        try enumerateAsArray(text: content, delimiter: delimiter, startAt: 1, rowLimit: rowLimit) { fields in
             var dict = [String: String]()
             for (index, head) in enumeratedHeader {
                 dict[head] = index < fields.count ? fields[index] : ""

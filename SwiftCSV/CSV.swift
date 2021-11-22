@@ -88,7 +88,7 @@ open class CSV {
         self.text = string
         self.delimiter = delimiter
         self.loadColumns = loadColumns
-        self.header = try Parser.array(text: string, delimiter: delimiter, limitTo: 1).first ?? []
+        self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
     }
 
     @available(*, deprecated, message: "Use init(url:delimiter:encoding:loadColumns:) instead of this path-based approach. Also, calling the parameter `name` instead of `path` was a mistake.")

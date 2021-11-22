@@ -35,6 +35,7 @@ struct ParsingState {
         self.finishField = finishField
     }
 
+    /// - Throws: `CSVParseError`
     mutating func change(_ char: Character) throws {
         if atStart {
             if char == "\"" {

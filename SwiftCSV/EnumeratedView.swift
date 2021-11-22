@@ -23,7 +23,7 @@ public struct EnumeratedView: CSVView {
         var rows = [[String]]()
         var columns: [EnumeratedView.Column] = []
 
-        try Parser.enumerateAsArray(text: text, delimiter: delimiter, limitTo: limitTo, startAt: 1) { fields in
+        try Parser.enumerateAsArray(text: text, delimiter: delimiter, startAt: 1, rowLimit: limitTo.map { $0 - 1 }) { fields in
             rows.append(fields)
         }
 
