@@ -13,12 +13,12 @@ public struct Named: CSVView {
     public var rows: [Row]
     public var columns: [String : [String]]
 
-    public init(header: [String], text: String, delimiter: Character, loadColumns: Bool = false) throws {
+    public init(header: [String], text: String, delimiter: Character, loadColumns: Bool = false, rowLimit: Int? = nil) throws {
 
         var rows = [[String: String]]()
         var columns = [String: [String]]()
 
-        try Parser.enumerateAsDict(header: header, content: text, delimiter: delimiter) { dict in
+        try Parser.enumerateAsDict(header: header, content: text, delimiter: delimiter, rowLimit: rowLimit) { dict in
             rows.append(dict)
         }
 

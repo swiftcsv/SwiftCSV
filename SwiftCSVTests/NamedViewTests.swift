@@ -10,10 +10,11 @@ import XCTest
 @testable import SwiftCSV
 
 class CSVTests: XCTestCase {
+    let string = "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20"
     var csv: CSV<Named>!
     
     override func setUp() {
-        csv = try! CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
+        csv = try! CSV<Named>(string: string)
     }
 
     override func tearDown() {
@@ -21,45 +22,65 @@ class CSVTests: XCTestCase {
         super.tearDown()
     }
 
-    func testInit_makesHeader() {
+    func testHeader() {
         XCTAssertEqual(csv.header, ["id", "name", "age"])
     }
     
-    func testInit_makesRows() {
+    func testRows() {
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
             ["id": "3", "name": "Charlie", "age": "20"]
         ]
-        for (index, row) in csv.rows.enumerated() {
-            XCTAssertEqual(expected[index], row)
-        }
+        XCTAssertEqual(csv.rows, expected)
     }
-    
-    func testInit_whenThereAreIncompleteRows_makesRows() throws {
-        csv = try CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
+
+    func testRows_WithLimit() {
+        csv = try! CSV<Named>(string: string, rowLimit: 2)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
-            ["id": "3", "name": "Charlie", "age": ""]
         ]
-        for (index, row) in csv.rows.enumerated() {
-            XCTAssertEqual(expected[index], row)
-        }
+        XCTAssertEqual(csv.rows, expected)
     }
-    
-    func testInit_makesColumns() {
+
+    func testColumns() {
         let expected = [
             "id": ["1", "2", "3"],
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
         ]
-        XCTAssertEqual(Set(csv.columns.keys), Set(expected.keys))
-        for (key, value) in csv.columns {
-            XCTAssertEqual(expected[key] ?? [], value)
-        }
+        XCTAssertEqual(csv.columns, expected)
     }
-    
+
+    func testColumns_WithLimit() {
+        csv = try! CSV<Named>(string: string, rowLimit: 2)
+        let expected = [
+            "id": ["1", "2"],
+            "name": ["Alice", "Bob"],
+            "age": ["18", "19"]
+        ]
+        XCTAssertEqual(csv.columns, expected)
+    }
+
+    func testFillsIncompleteRows() throws {
+        csv = try CSV<Named>(string: "id,name,age\n1,Alice,18\n2,,19\n3,Charlie")
+
+        let expectedRows = [
+            ["id": "1", "name": "Alice", "age": "18"],
+            ["id": "2", "name": "", "age": "19"],
+            ["id": "3", "name": "Charlie", "age": ""]
+        ]
+        XCTAssertEqual(csv.rows, expectedRows)
+
+        let expectedColumns = [
+            "id": ["1", "2", "3"],
+            "name": ["Alice", "", "Charlie"],
+            "age": ["18", "19", ""]
+        ]
+        XCTAssertEqual(csv.columns, expectedColumns)
+    }
+
     func testSerialization() {
         XCTAssertEqual(csv.serialized, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }

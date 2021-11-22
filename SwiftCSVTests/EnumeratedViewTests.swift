@@ -10,12 +10,13 @@ import XCTest
 @testable import SwiftCSV
 
 class EnumeratedViewTests: XCTestCase {
+    let string = "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20"
     var csv: CSV<Enumerated>!
 
     override func setUp() {
         super.setUp()
 
-        csv = try! CSV<Enumerated>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: true)
+        csv = try! CSV<Enumerated>(string: string, delimiter: ",", loadColumns: true)
     }
 
     override func tearDown() {
@@ -23,54 +24,59 @@ class EnumeratedViewTests: XCTestCase {
         super.tearDown()
     }
 
-    func testInit_whenThereAreIncompleteRows_makesRows() throws {
-        csv = try CSV<Enumerated>(string: "id,name,age\n1,Alice,18\n2\n3,Charlie", delimiter: ",", loadColumns: true)
+    func testRows() {
         let expected = [
-            ["1", "Alice", "18"],
-            ["2", "", ""],
-            ["3", "Charlie", ""]
-        ]
-        for (index, row) in csv.rows.enumerated() {
-            XCTAssertEqual(expected[index], row)
-        }
-    }
-
-    func testExposesRows() {
-        let expected: [[String]] = [
             ["1", "Alice", "18"],
             ["2", "Bob", "19"],
             ["3", "Charlie", "20"]
         ]
-        let actual = csv.rows
-
-        // Abort if counts don't match to not raise index-out-of-bounds exception
-        guard actual.count == expected.count else {
-            XCTFail("expected actual.count (\(actual.count)) to equal expected.count (\(expected.count))")
-            return
-        }
-
-        for i in actual.indices {
-            XCTAssertEqual(actual[i], expected[i])
-        }
+        XCTAssertEqual(csv.rows, expected)
     }
 
-    func testExposesColumns() {
-        let actual = csv.columns
+    func testRows_WithLimit() throws {
+        csv = try! CSV<Enumerated>(string: string, rowLimit: 2)
+        let expected = [
+            ["1", "Alice", "18"],
+            ["2", "Bob", "19"]
+        ]
+        XCTAssertEqual(csv.rows, expected)
+    }
 
-        // Abort if counts don't match to not raise index-out-of-bounds exception
-        guard actual.count == 3 else {
-            XCTFail("expected actual.count to equal 3")
-            return
-        }
+    func testColumns() {
+        let expected = [
+            Enumerated.Column(header: "id", rows: ["1", "2", "3"]),
+            Enumerated.Column(header: "name", rows: ["Alice", "Bob", "Charlie"]),
+            Enumerated.Column(header: "age", rows: ["18", "19", "20"])
+        ]
+        XCTAssertEqual(csv.columns, expected)
+    }
 
-        XCTAssertEqual(actual[0].header, "id")
-        XCTAssertEqual(actual[0].rows, ["1", "2", "3"])
+    func testColumns_WithLimit() {
+        csv = try! CSV<Enumerated>(string: string, rowLimit: 2)
+        let expected = [
+            Enumerated.Column(header: "id", rows: ["1", "2"]),
+            Enumerated.Column(header: "name", rows: ["Alice", "Bob"]),
+            Enumerated.Column(header: "age", rows: ["18", "19"])
+        ]
+        XCTAssertEqual(csv.columns, expected)
+    }
 
-        XCTAssertEqual(actual[1].header, "name")
-        XCTAssertEqual(actual[1].rows, ["Alice", "Bob", "Charlie"])
+    func testFillsIncompleteRows() throws {
+        csv = try CSV<Enumerated>(string: "id,name,age\n1,Alice,18\n2\n3,Charlie", delimiter: ",", loadColumns: true)
 
-        XCTAssertEqual(actual[2].header, "age")
-        XCTAssertEqual(actual[2].rows, ["18", "19", "20"])
+        let expectedRows = [
+            ["1", "Alice", "18"],
+            ["2", "", ""],
+            ["3", "Charlie", ""]
+        ]
+        XCTAssertEqual(csv.rows, expectedRows)
+
+        let expectedColumns = [
+            Enumerated.Column(header: "id", rows: ["1", "2", "3"]),
+            Enumerated.Column(header: "name", rows: ["Alice", "", "Charlie"]),
+            Enumerated.Column(header: "age", rows: ["18", "", ""])
+        ]
+        XCTAssertEqual(csv.columns, expectedColumns)
     }
 
     func testSerialization() {

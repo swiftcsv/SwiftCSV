@@ -10,7 +10,7 @@ import Foundation
 
 public struct Enumerated: CSVView {
 
-    public struct Column {
+    public struct Column: Equatable {
         public let header: String
         public let rows: [String]
     }
@@ -20,11 +20,11 @@ public struct Enumerated: CSVView {
     public private(set) var rows: [Row]
     public private(set) var columns: [Column]
 
-    public init(header: [String], text: String, delimiter: Character, loadColumns: Bool = false) throws {
+    public init(header: [String], text: String, delimiter: Character, loadColumns: Bool = false, rowLimit: Int? = nil) throws {
         var rows = [[String]]()
         var columns: [Enumerated.Column] = []
 
-        try Parser.enumerateAsArray(text: text, delimiter: delimiter, startAt: 1) { fields in
+        try Parser.enumerateAsArray(text: text, delimiter: delimiter, startAt: 1, rowLimit: rowLimit) { fields in
             rows.append(fields)
         }
 

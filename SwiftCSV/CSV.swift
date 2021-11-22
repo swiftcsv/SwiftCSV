@@ -15,7 +15,7 @@ public protocol CSVView {
     var rows: [Row] { get }
     var columns: Columns { get }
 
-    init(header: [String], text: String, delimiter: Character, loadColumns: Bool) throws
+    init(header: [String], text: String, delimiter: Character, loadColumns: Bool, rowLimit: Int?) throws
 
     func serialize(header: [String], delimiter: Character) -> String
 }
@@ -25,7 +25,7 @@ public protocol CSVView {
 /// Example:
 ///
 ///     let csv = NamedCSV(...)
-///     let allIds = csv.columns["id"]
+///     let allIDs = csv.columns["id"]
 ///     let firstEntry = csv.rows[0]
 ///     let fullName = firstEntry["firstName"] + " " + firstEntry["lastName"]
 ///
@@ -39,6 +39,8 @@ public typealias NamedCSV = CSV<Named>
 ///
 public typealias EnumeratedCSV = CSV<Enumerated>
 
+/// For convenience, there's `EnumeratedCSV` to access fields in rows by their column index,
+/// and `NamedCSV` to access fields by their column names as defined in a header row.
 open class CSV<DataView : CSVView>  {
     public static var comma: Character { return "," }
     
@@ -61,31 +63,34 @@ open class CSV<DataView : CSVView>  {
         return content.columns
     }
 
-    
+
     /// Load CSV data from a string.
     ///
-    /// - parameter string: CSV contents to parse.
-    /// - parameter delimiter: Character used to separate  row and header fields (default is ',')
-    /// - parameter loadColumns: Whether to populate the `columns` dictionary (default is `true`)
-    /// - throws: `CSVParseError` when parsing `string` fails.
-    public init(string: String, delimiter: Character = comma, loadColumns: Bool = true) throws {
+    /// - Parameters:
+    ///   - string: CSV contents to parse.
+    ///   - delimiter: Character used to separate  row and header fields (default is ',')
+    ///   - loadColumns: Whether to populate the `columns` dictionary (default is `true`)
+    ///   - rowLimit: Amount of rows to parse (default is `nil`).
+    /// - Throws: `CSVParseError` when parsing `string` fails.
+    public init(string: String, delimiter: Character = comma, loadColumns: Bool = true, rowLimit: Int? = nil) throws {
         self.text = string
         self.delimiter = delimiter
         self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
 
-        self.content = try DataView(header: header, text: text, delimiter: delimiter, loadColumns: loadColumns)
+        self.content = try DataView(header: header, text: text, delimiter: delimiter, loadColumns: loadColumns, rowLimit: rowLimit)
     }
 
     /// Load a CSV file as a named resource from `bundle`.
     ///
-    /// - parameter name: Name of the file resource inside `bundle`.
-    /// - parameter ext: File extension of the resource; use `nil` to load the first file matching the name (default is `nil`)
-    /// - parameter bundle: `Bundle` to use for resource lookup (default is `.main`)
-    /// - parameter delimiter: Character used to separate row and header fields (default is ',')
-    /// - parameter encoding: encoding used to read file (default is `.utf8`)
-    /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
-    /// - throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
-    /// - returns: `nil` if the resource could not be found
+    /// - Parameters:
+    ///   - name: Name of the file resource inside `bundle`.
+    ///   - ext: File extension of the resource; use `nil` to load the first file matching the name (default is `nil`)
+    ///   - bundle: `Bundle` to use for resource lookup (default is `.main`)
+    ///   - delimiter: Character used to separate row and header fields (default is ',')
+    ///   - encoding: encoding used to read file (default is `.utf8`)
+    ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - Throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
+    /// - Returns: `nil` if the resource could not be found
     public convenience init?(named name: String, extension ext: String? = nil, bundle: Bundle = .main, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         guard let url = bundle.url(forResource: name, withExtension: ext) else {
             return nil
