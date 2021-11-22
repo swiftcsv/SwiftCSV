@@ -9,7 +9,7 @@
 import XCTest
 @testable import SwiftCSV
 
-class CSVTests: XCTestCase {
+class NamedViewTests: XCTestCase {
     let string = "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20"
     var csv: CSV<Named>!
     
