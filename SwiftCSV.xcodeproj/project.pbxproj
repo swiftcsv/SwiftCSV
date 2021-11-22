@@ -426,7 +426,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Naoto Kaneko";
 				TargetAttributes = {
 					3D1E59B31945FFAC001CF760 = {
