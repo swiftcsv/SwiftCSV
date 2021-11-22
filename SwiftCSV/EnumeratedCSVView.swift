@@ -1,5 +1,5 @@
 //
-//  EnumeratedView.swift
+//  EnumeratedCSVView.swift
 //  SwiftCSV
 //
 //  Created by Christian Tietze on 25/10/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct EnumeratedView: CSVView {
+public struct Enumerated: CSVView {
 
     public struct Column {
         public let header: String
@@ -22,7 +22,7 @@ public struct EnumeratedView: CSVView {
 
     public init(header: [String], text: String, delimiter: Character, loadColumns: Bool = false) throws {
         var rows = [[String]]()
-        var columns: [EnumeratedView.Column] = []
+        var columns: [Enumerated.Column] = []
 
         try Parser.enumerateAsArray(text: text, delimiter: delimiter, startAt: 1) { fields in
             rows.append(fields)
@@ -32,8 +32,8 @@ public struct EnumeratedView: CSVView {
         rows = makingRectangular(rows: rows)
 
         if loadColumns {
-            columns = header.enumerated().map { (index: Int, header: String) -> EnumeratedView.Column in
-                return EnumeratedView.Column(
+            columns = header.enumerated().map { (index: Int, header: String) -> Enumerated.Column in
+                return Enumerated.Column(
                     header: header,
                     rows: rows.map { $0[safe: index] ?? "" })
             }

@@ -10,11 +10,11 @@ import XCTest
 @testable import SwiftCSV
 
 class PerformanceTest: XCTestCase {
-    var csv: CSV<NamedView>!
+    var csv: CSV<Named>!
 
     override func setUp() {
         let csvURL = ResourceHelper.url(forResource: "large", withExtension: "csv")!
-        csv = try! CSV<NamedView>(url: csvURL)
+        csv = try! CSV<Named>(url: csvURL)
     }
 
     func testParsePerformance() {

@@ -1,5 +1,5 @@
 //
-//  CSVTests.swift
+//  NamedViewTests.swift
 //  CSVTests
 //
 //  Created by naoty on 2014/06/09.
@@ -10,10 +10,10 @@ import XCTest
 @testable import SwiftCSV
 
 class CSVTests: XCTestCase {
-    var csv: CSV<NamedView>!
+    var csv: CSV<Named>!
     
     override func setUp() {
-        csv = try! CSV<NamedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
+        csv = try! CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
     
     func testInit_makesHeader() {
@@ -32,7 +32,7 @@ class CSVTests: XCTestCase {
     }
     
     func testInit_whenThereAreIncompleteRows_makesRows() throws {
-        csv = try CSV<NamedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
+        csv = try CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie")
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
@@ -60,7 +60,7 @@ class CSVTests: XCTestCase {
     }
   
     func testSerializationWithDoubleQuotes() {
-        csv = try! CSV<NamedView>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+        csv = try! CSV<Named>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
         XCTAssertEqual(csv.serialized, "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
     }
   
@@ -78,7 +78,7 @@ class CSVTests: XCTestCase {
     }
 
     func testIgnoreColumns() {
-        csv = try! CSV<NamedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
+        csv = try! CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
         XCTAssertEqual(csv.columns.isEmpty, true)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
@@ -99,7 +99,7 @@ class CSVTests: XCTestCase {
         "a" \(tab)  ,  \(paragraphSeparator)  "b"
         "A" \(ideographicSpace)  ,  \(tab)   "B"
         """
-        let csv = try! CSV<NamedView>(string: failingCsv)
+        let csv = try! CSV<Named>(string: failingCsv)
         
         XCTAssertEqual(csv.rows, [["b": "B", "a": "A"]])
     }

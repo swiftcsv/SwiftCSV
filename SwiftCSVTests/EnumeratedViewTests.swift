@@ -11,16 +11,16 @@ import XCTest
 
 class EnumeratedViewTests: XCTestCase {
 
-    var csv: CSV<EnumeratedView>!
+    var csv: CSV<Enumerated>!
 
     override func setUp() {
         super.setUp()
 
-        csv = try! CSV<EnumeratedView>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: true)
+        csv = try! CSV<Enumerated>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: true)
     }
 
     func testInit_whenThereAreIncompleteRows_makesRows() throws {
-        csv = try CSV<EnumeratedView>(string: "id,name,age\n1,Alice,18\n2\n3,Charlie", delimiter: ",", loadColumns: true)
+        csv = try CSV<Enumerated>(string: "id,name,age\n1,Alice,18\n2\n3,Charlie", delimiter: ",", loadColumns: true)
         let expected = [
             ["1", "Alice", "18"],
             ["2", "", ""],
@@ -74,7 +74,7 @@ class EnumeratedViewTests: XCTestCase {
     }
 
     func testSerializationWithDoubleQuotes() {
-        csv = try! CSV<EnumeratedView>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+        csv = try! CSV<Enumerated>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
         XCTAssertEqual(csv.serialized, "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
     }
 }

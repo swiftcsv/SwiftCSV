@@ -1,12 +1,12 @@
 //
-//  NamedView.swift
+//  NamedCSVView.swift
 //  SwiftCSV
 //
 //  Created by Christian Tietze on 22/10/16.
 //  Copyright © 2016 Naoto Kaneko. All rights reserved.
 //
 
-public struct NamedView: CSVView {
+public struct Named: CSVView {
 
     public typealias Row = [String : String]
 
