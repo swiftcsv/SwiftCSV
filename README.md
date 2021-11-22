@@ -1,14 +1,14 @@
 # SwiftCSV
 
-![Swift 5.3](https://img.shields.io/badge/Swift-5.3-blue.svg?style=flat)
+![Swift 5.5](https://img.shields.io/badge/Swift-5.5-blue.svg?style=flat)
 [![Platform support](https://img.shields.io/badge/platform-ios%20%7C%20osx%20%7C%20tvos%20%7C%20watchos-lightgrey.svg?style=flat-square)](https://github.com/swiftcsv/SwiftCSV/blob/master/LICENSE.md)
 [![Build Status](https://img.shields.io/travis/swiftcsv/SwiftCSV/master.svg?style=flat-square)](https://travis-ci.org/swiftcsv/SwiftCSV)
 [![Code coverage status](https://codecov.io/gh/swiftcsv/SwiftCSV/branch/master/graph/badge.svg)](https://codecov.io/gh/swiftcsv/SwiftCSV)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftCSV.svg?style=flat-square)](https://cocoapods.org/pods/SwiftCSV)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/swiftcsv/SwiftCSV/blob/master/LICENSE.md)
-[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg?style=flat-square)](https://houndci.com)
-
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fswiftcsv%2FSwiftCSV%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/swiftcsv/SwiftCSV)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fswiftcsv%2FSwiftCSV%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/swiftcsv/SwiftCSV)
 
 Simple CSV parsing for macOS, iOS, tvOS, and watchOS.
 
@@ -131,4 +131,10 @@ pod "SwiftCSV"
 
 ```
 github "swiftcsv/SwiftCSV"
+```
+
+### SwiftPM
+
+```
+.package(url: "https://github.com/swiftcsv/SwiftCSV.git", from: "0.6.1")
 ```
