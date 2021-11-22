@@ -12,6 +12,9 @@
 		3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3749E2194D6DF7008F262A /* TSVTests.swift */; };
 		3D444BCD1C7D88290001C60C /* String+Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D444BCC1C7D88290001C60C /* String+Lines.swift */; };
 		3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
+		5015AD8A274BA20A0050F975 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015AD89274BA20A0050F975 /* ParserTests.swift */; };
+		5015AD8B274BA20A0050F975 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015AD89274BA20A0050F975 /* ParserTests.swift */; };
+		5015AD8C274BA20A0050F975 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015AD89274BA20A0050F975 /* ParserTests.swift */; };
 		508975D21DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
 		508975D31DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
 		508975D41DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
@@ -108,6 +111,7 @@
 		3D3749E2194D6DF7008F262A /* TSVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSVTests.swift; sourceTree = "<group>"; };
 		3D444BCC1C7D88290001C60C /* String+Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Lines.swift"; sourceTree = "<group>"; };
 		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; tabWidth = 4; };
+		5015AD89274BA20A0050F975 /* ParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
 		5034F4712272E0DC001C02D1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5034F4722272E0E4001C02D1 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		508975D11DBB897A006F3DBE /* NamedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedView.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 				3D3749E2194D6DF7008F262A /* TSVTests.swift */,
 				BE06B67F1CB726B5009578CC /* URLTests.swift */,
 				E46085931CCB1F5C00385286 /* PerformanceTest.swift */,
+				5015AD89274BA20A0050F975 /* ParserTests.swift */,
 			);
 			path = SwiftCSVTests;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 				3D1E59C71945FFAD001CF760 /* CSVTests.swift in Sources */,
 				F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */,
 				508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
+				5015AD8A274BA20A0050F975 /* ParserTests.swift in Sources */,
 				3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */,
 				BE06B6801CB726B5009578CC /* URLTests.swift in Sources */,
 				BE6C86071CB5CE44009A351D /* QuotedTests.swift in Sources */,
@@ -593,6 +599,7 @@
 				5FB74BE11CCB9312009DDBF1 /* QuotedTests.swift in Sources */,
 				F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */,
 				508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
+				5015AD8B274BA20A0050F975 /* ParserTests.swift in Sources */,
 				5FB74BE21CCB9312009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE31CCB9312009DDBF1 /* URLTests.swift in Sources */,
 				5FB74BE41CCB9312009DDBF1 /* PerformanceTest.swift in Sources */,
@@ -621,6 +628,7 @@
 				5FB74BE61CCB931F009DDBF1 /* QuotedTests.swift in Sources */,
 				F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */,
 				508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
+				5015AD8C274BA20A0050F975 /* ParserTests.swift in Sources */,
 				5FB74BE71CCB931F009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE81CCB931F009DDBF1 /* URLTests.swift in Sources */,
 				5FB74BE91CCB931F009DDBF1 /* PerformanceTest.swift in Sources */,

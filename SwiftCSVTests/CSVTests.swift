@@ -113,15 +113,6 @@ class CSVTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-
-    func testThrowsOnInvalidData() {
-        do {
-            _ = try CSV(string: "\n\n<html lang=\"en\">\n \n <meta charset=\"utf-8\"></html>", delimiter: ",", loadColumns: false)
-            XCTFail("Expected to throw")
-        } catch {
-            XCTAssert(error is CSVParseError)
-        }
-    }
   
     func testInit_ParseFileWithQuotesAndWhitespaces() {
         let tab = "\t"
