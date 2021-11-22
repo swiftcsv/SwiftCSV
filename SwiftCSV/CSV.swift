@@ -73,7 +73,7 @@ open class CSV<DataView : CSVView>  {
         self.delimiter = delimiter
         self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
 
-        self.content = try DataView.init(header: header, text: text, delimiter: delimiter, loadColumns: loadColumns)
+        self.content = try DataView(header: header, text: text, delimiter: delimiter, loadColumns: loadColumns)
     }
 
     /// Load a CSV file as a named resource from `bundle`.
@@ -86,7 +86,7 @@ open class CSV<DataView : CSVView>  {
     /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
     /// - returns: `nil` if the resource could not be found
-    public convenience init?(name: String, extension ext: String? = nil, bundle: Bundle = .main, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+    public convenience init?(named name: String, extension ext: String? = nil, bundle: Bundle = .main, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         guard let url = bundle.url(forResource: name, withExtension: ext) else {
             return nil
         }
