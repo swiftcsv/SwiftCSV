@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct EnumeratedView: View {
+public struct EnumeratedView: CSVView {
+
     public struct Column {
         public let header: String
         public let rows: [String]

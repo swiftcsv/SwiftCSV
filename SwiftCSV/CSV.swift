@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol View {
+public protocol CSVView {
     associatedtype Row
     associatedtype Columns
 
@@ -39,7 +39,7 @@ public typealias NamedCSV = CSV<NamedView>
 ///
 public typealias EnumeratedCSV = CSV<EnumeratedView>
 
-open class CSV<DataView : View>  {
+open class CSV<DataView : CSVView>  {
     public static var comma: Character { return "," }
     
     public let header: [String]
@@ -71,7 +71,7 @@ open class CSV<DataView : View>  {
     public init(string: String, delimiter: Character = comma, loadColumns: Bool = true) throws {
         self.text = string
         self.delimiter = delimiter
-        self.header = try Parser.array(text: string, delimiter: delimiter, limitTo: 1).first ?? []
+        self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
 
         self.content = try DataView.init(header: header, text: text, delimiter: delimiter, loadColumns: loadColumns)
     }

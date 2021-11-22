@@ -35,6 +35,7 @@ struct ParsingState {
         self.finishField = finishField
     }
 
+    /// - Throws: `CSVParseError`
     mutating func change(_ char: Character) throws {
         if atStart {
             if char == "\"" {
@@ -44,6 +45,8 @@ struct ParsingState {
                 finishField()
             } else if char.isNewline {
                 finishRow()
+            } else if char.isWhitespace {
+              // ignore whitespaces between fields
             } else {
                 parsingField = true
                 atStart = false
@@ -89,6 +92,8 @@ struct ParsingState {
                     parsingQuotes = false
                     innerQuotes = false
                     finishRow()
+                } else if char.isWhitespace {
+                  // ignore whitespaces between fields
                 } else {
                     throw CSVParseError.quotation(message: "Can't have non-quote here: \(char)")
                 }

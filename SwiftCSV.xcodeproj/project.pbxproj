@@ -12,6 +12,9 @@
 		3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3749E2194D6DF7008F262A /* TSVTests.swift */; };
 		3D444BCD1C7D88290001C60C /* String+Lines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D444BCC1C7D88290001C60C /* String+Lines.swift */; };
 		3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
+		5015AD8A274BA20A0050F975 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015AD89274BA20A0050F975 /* ParserTests.swift */; };
+		5015AD8B274BA20A0050F975 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015AD89274BA20A0050F975 /* ParserTests.swift */; };
+		5015AD8C274BA20A0050F975 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015AD89274BA20A0050F975 /* ParserTests.swift */; };
 		508975D21DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
 		508975D31DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
 		508975D41DBB897A006F3DBE /* NamedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508975D11DBB897A006F3DBE /* NamedView.swift */; };
@@ -107,6 +110,7 @@
 		3D3749E2194D6DF7008F262A /* TSVTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSVTests.swift; sourceTree = "<group>"; };
 		3D444BCC1C7D88290001C60C /* String+Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Lines.swift"; sourceTree = "<group>"; };
 		3DAAEE9B1C74C7EC00A933DB /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; tabWidth = 4; };
+		5015AD89274BA20A0050F975 /* ParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
 		5034F4712272E0DC001C02D1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5034F4722272E0E4001C02D1 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		508975D11DBB897A006F3DBE /* NamedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedView.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 		508975DB1DBF3B70006F3DBE /* EnumeratedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedView.swift; sourceTree = "<group>"; };
 		508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedViewTests.swift; sourceTree = "<group>"; };
 		50A2B23324894DC900B168A9 /* NewlineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewlineTests.swift; sourceTree = "<group>"; };
+		50F241A4274BB8DB00520A69 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74B9A1CCB9274009DDBF1 /* SwiftCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +195,7 @@
 			children = (
 				5034F4712272E0DC001C02D1 /* README.md */,
 				5034F4722272E0E4001C02D1 /* LICENSE */,
+				50F241A4274BB8DB00520A69 /* CHANGELOG.md */,
 				3D1E59B61945FFAC001CF760 /* SwiftCSV */,
 				3D1E59C31945FFAD001CF760 /* SwiftCSVTests */,
 				3D1E59B51945FFAC001CF760 /* Products */,
@@ -236,6 +242,7 @@
 				3D3749E2194D6DF7008F262A /* TSVTests.swift */,
 				BE06B67F1CB726B5009578CC /* URLTests.swift */,
 				E46085931CCB1F5C00385286 /* PerformanceTest.swift */,
+				5015AD89274BA20A0050F975 /* ParserTests.swift */,
 			);
 			path = SwiftCSVTests;
 			sourceTree = "<group>";
@@ -420,7 +427,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Naoto Kaneko";
 				TargetAttributes = {
 					3D1E59B31945FFAC001CF760 = {
@@ -564,6 +571,7 @@
 				50A2B23424894DC900B168A9 /* NewlineTests.swift in Sources */,
 				F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */,
 				508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
+				5015AD8A274BA20A0050F975 /* ParserTests.swift in Sources */,
 				3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */,
 				BE06B6801CB726B5009578CC /* URLTests.swift in Sources */,
 				BE6C86071CB5CE44009A351D /* QuotedTests.swift in Sources */,
@@ -592,6 +600,7 @@
 				50A2B23524894DC900B168A9 /* NewlineTests.swift in Sources */,
 				F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */,
 				508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
+				5015AD8B274BA20A0050F975 /* ParserTests.swift in Sources */,
 				5FB74BE21CCB9312009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE31CCB9312009DDBF1 /* URLTests.swift in Sources */,
 				5FB74BE41CCB9312009DDBF1 /* PerformanceTest.swift in Sources */,
@@ -620,6 +629,7 @@
 				50A2B23624894DC900B168A9 /* NewlineTests.swift in Sources */,
 				F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */,
 				508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
+				5015AD8C274BA20A0050F975 /* ParserTests.swift in Sources */,
 				5FB74BE71CCB931F009DDBF1 /* TSVTests.swift in Sources */,
 				5FB74BE81CCB931F009DDBF1 /* URLTests.swift in Sources */,
 				5FB74BE91CCB931F009DDBF1 /* PerformanceTest.swift in Sources */,
@@ -688,6 +698,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -713,7 +724,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -747,6 +758,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -765,7 +777,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -788,6 +800,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 0.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -808,6 +821,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 0.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -869,6 +883,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 0.6.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSX";
 				PRODUCT_NAME = SwiftCSV;
@@ -896,6 +911,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 0.6.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSX";
 				PRODUCT_NAME = SwiftCSV;
@@ -958,6 +974,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 0.6.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOS";
 				PRODUCT_NAME = SwiftCSV;
@@ -984,6 +1001,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 0.6.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOS";
 				PRODUCT_NAME = SwiftCSV;
@@ -1047,6 +1065,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 0.6.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-watchOS";
 				PRODUCT_NAME = SwiftCSV;
@@ -1074,6 +1093,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 0.6.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-watchOS";
 				PRODUCT_NAME = SwiftCSV;
