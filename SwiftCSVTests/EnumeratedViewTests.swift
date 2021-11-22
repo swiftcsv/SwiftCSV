@@ -10,13 +10,17 @@ import XCTest
 @testable import SwiftCSV
 
 class EnumeratedViewTests: XCTestCase {
-
     var csv: CSV<Enumerated>!
 
     override func setUp() {
         super.setUp()
 
         csv = try! CSV<Enumerated>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: true)
+    }
+
+    override func tearDown() {
+        csv = nil
+        super.tearDown()
     }
 
     func testInit_whenThereAreIncompleteRows_makesRows() throws {

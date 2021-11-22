@@ -15,7 +15,12 @@ class CSVTests: XCTestCase {
     override func setUp() {
         csv = try! CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
-    
+
+    override func tearDown() {
+        csv = nil
+        super.tearDown()
+    }
+
     func testInit_makesHeader() {
         XCTAssertEqual(csv.header, ["id", "name", "age"])
     }
