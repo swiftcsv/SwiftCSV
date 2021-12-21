@@ -20,6 +20,12 @@ public protocol CSVView {
 
 open class CSV {
     static public let comma: Character = ","
+
+    /// Used by exporters such as DEVONthink, Excel.
+    static public let semicolon: Character = ";"
+
+    /// Used by exporters producing TSV, or tab-separated values.
+    static public let tab: Character = "\t"
     
     public let header: [String]
 
