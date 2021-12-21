@@ -83,16 +83,28 @@ open class CSV {
         return namedColumns
     }
 
-    
+
     /// Load CSV data from a string.
     ///
     /// - parameter string: CSV contents to parse.
-    /// - parameter delimiter: Character used to separate  row and header fields (default is ',')
+    /// - parameter delimiter: Character used to separate  row and header fields (default is '","')
     /// - parameter loadColumns: Whether to populate the `columns` dictionary (default is `true`)
     /// - throws: `CSVParseError` when parsing `string` fails.
     public init(string: String, delimiter: Character = comma, loadColumns: Bool = true) throws {
         self.text = string
         self.delimiter = delimiter
+        self.loadColumns = loadColumns
+        self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
+    }
+
+    /// Load CSV data from a string and guess its delimiter from `CSV.recognizedDelimiters`, falling back to comma (`","`).
+    ///
+    /// - parameter string: CSV contents to parse.
+    /// - parameter loadColumns: Whether to populate the `columns` dictionary (default is `true`)
+    /// - throws: `CSVParseError` when parsing `string` fails.
+    public init(string: String, loadColumns: Bool = true) throws {
+        self.text = string
+        self.delimiter = CSV.guessedDelimiter(string: string)
         self.loadColumns = loadColumns
         self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
     }
