@@ -26,6 +26,35 @@ open class CSV {
 
     /// Used by exporters producing TSV, or tab-separated values.
     static public let tab: Character = "\t"
+
+    public enum Delimiter: Equatable, ExpressibleByUnicodeScalarLiteral {
+        public typealias UnicodeScalarLiteralType = Character
+
+        case comma, semicolon, tab
+        case character(Character)
+
+        public init(unicodeScalarLiteral: Character) {
+            self.init(rawValue: unicodeScalarLiteral)
+        }
+
+        init(rawValue: Character) {
+            switch rawValue {
+            case ",":  self = .comma
+            case ";":  self = .semicolon
+            case "\t": self = .tab
+            default:   self = .character(rawValue)
+            }
+        }
+
+        public var rawValue: Character {
+            switch self {
+            case .comma: return ","
+            case .semicolon: return ";"
+            case .tab: return "\t"
+            case .character(let character): return character
+            }
+        }
+    }
     
     public let header: [String]
 

@@ -37,6 +37,9 @@
 		508CA1002771F32C0084C8E8 /* CSV+DelimiterGuessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CA0FA2771F2E70084C8E8 /* CSV+DelimiterGuessing.swift */; };
 		508CA1022771F32D0084C8E8 /* CSV+DelimiterGuessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CA0FA2771F2E70084C8E8 /* CSV+DelimiterGuessing.swift */; };
 		508CA1032771F32E0084C8E8 /* CSV+DelimiterGuessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CA0FA2771F2E70084C8E8 /* CSV+DelimiterGuessing.swift */; };
+		508CA1052772039E0084C8E8 /* CSVDelimiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CA1042772039E0084C8E8 /* CSVDelimiterTests.swift */; };
+		508CA1062772039E0084C8E8 /* CSVDelimiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CA1042772039E0084C8E8 /* CSVDelimiterTests.swift */; };
+		508CA1072772039E0084C8E8 /* CSVDelimiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CA1042772039E0084C8E8 /* CSVDelimiterTests.swift */; };
 		5FB74B9B1CCB9274009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BB71CCB929D009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
@@ -127,6 +130,7 @@
 		508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedViewTests.swift; sourceTree = "<group>"; };
 		508CA0FA2771F2E70084C8E8 /* CSV+DelimiterGuessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CSV+DelimiterGuessing.swift"; sourceTree = "<group>"; };
 		508CA0FC2771F3260084C8E8 /* CSV+DelimiterGuessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CSV+DelimiterGuessingTests.swift"; sourceTree = "<group>"; };
+		508CA1042772039E0084C8E8 /* CSVDelimiterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDelimiterTests.swift; sourceTree = "<group>"; };
 		50F241A4274BB8DB00520A69 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74B9A1CCB9274009DDBF1 /* SwiftCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,6 +253,7 @@
 				BE06B67E1CB72680009578CC /* Res */,
 				3D1E59C61945FFAD001CF760 /* CSVTests.swift */,
 				508CA0FC2771F3260084C8E8 /* CSV+DelimiterGuessingTests.swift */,
+				508CA1042772039E0084C8E8 /* CSVDelimiterTests.swift */,
 				508975E01DBF3E51006F3DBE /* EnumeratedViewTests.swift */,
 				BE6C86061CB5CE44009A351D /* QuotedTests.swift */,
 				3D3749E2194D6DF7008F262A /* TSVTests.swift */,
@@ -584,6 +589,7 @@
 				3D1E59C71945FFAD001CF760 /* CSVTests.swift in Sources */,
 				508CA0FD2771F3260084C8E8 /* CSV+DelimiterGuessingTests.swift in Sources */,
 				F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */,
+				508CA1052772039E0084C8E8 /* CSVDelimiterTests.swift in Sources */,
 				508975E11DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5015AD8A274BA20A0050F975 /* ParserTests.swift in Sources */,
 				3D3749E3194D6DF7008F262A /* TSVTests.swift in Sources */,
@@ -615,6 +621,7 @@
 				5FB74BE11CCB9312009DDBF1 /* QuotedTests.swift in Sources */,
 				508CA0FE2771F3260084C8E8 /* CSV+DelimiterGuessingTests.swift in Sources */,
 				F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */,
+				508CA1062772039E0084C8E8 /* CSVDelimiterTests.swift in Sources */,
 				508975E21DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5015AD8B274BA20A0050F975 /* ParserTests.swift in Sources */,
 				5FB74BE21CCB9312009DDBF1 /* TSVTests.swift in Sources */,
@@ -646,6 +653,7 @@
 				5FB74BE61CCB931F009DDBF1 /* QuotedTests.swift in Sources */,
 				508CA0FF2771F3260084C8E8 /* CSV+DelimiterGuessingTests.swift in Sources */,
 				F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */,
+				508CA1072772039E0084C8E8 /* CSVDelimiterTests.swift in Sources */,
 				508975E31DBF3E51006F3DBE /* EnumeratedViewTests.swift in Sources */,
 				5015AD8C274BA20A0050F975 /* ParserTests.swift in Sources */,
 				5FB74BE71CCB931F009DDBF1 /* TSVTests.swift in Sources */,
