@@ -123,13 +123,45 @@ open class CSV {
     /// - parameter string: CSV contents to parse.
     /// - parameter loadColumns: Whether to populate the `columns` dictionary (default is `true`)
     /// - throws: `CSVParseError` when parsing `string` fails.
-    public init(string: String, loadColumns: Bool = true) throws {
-        self.text = string
-        self.delimiter = CSV.guessedDelimiter(string: string)
-        self.loadColumns = loadColumns
-        self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
+    public convenience init(string: String, loadColumns: Bool = true) throws {
+        let delimiter = CSV.guessedDelimiter(string: string)
+        try self.init(string: string, delimiter: delimiter, loadColumns: loadColumns)
     }
 
+    /// Turn the CSV data into NSData using a given encoding
+    open func dataUsingEncoding(_ encoding: String.Encoding) -> Data? {
+        return description.data(using: encoding)
+    }
+}
+
+extension CSV {
+    /// Load a CSV file from `url`.
+    ///
+    /// - parameter url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
+    /// - parameter delimiter: Character used to separate cells from one another in rows.
+    /// - parameter encoding: Character encoding to read file (default is `.utf8`)
+    /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
+    public convenience init(url: URL, delimiter: Delimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+        let contents = try String(contentsOf: url, encoding: encoding)
+
+        try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
+    }
+
+    /// Load a CSV file from `url` and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
+    ///
+    /// - parameter url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
+    /// - parameter encoding: Character encoding to read file (default is `.utf8`)
+    /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
+    public convenience init(url: URL, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+        let contents = try String(contentsOf: url, encoding: encoding)
+
+        try self.init(string: contents, loadColumns: loadColumns)
+    }
+}
+
+extension CSV {
     /// Load a CSV file as a named resource from `bundle`.
     ///
     /// - parameter name: Name of the file resource inside `bundle`.
@@ -146,34 +178,20 @@ open class CSV {
         }
         try self.init(url: url, delimiter: delimiter, encoding: encoding, loadColumns: loadColumns)
     }
-    
-    /// Load a CSV file from `url`.
-    ///
-    /// - parameter url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
-    /// - parameter delimiter: Character used to separate cells from one another in rows.
-    /// - parameter encoding: Character encoding to read file (default is `.utf8`)
-    /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
-    /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
-    public convenience init(url: URL, delimiter: Delimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        let contents = try String(contentsOf: url, encoding: encoding)
-        
-        try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
-    }
 
-    /// Load a CSV file from `url` and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
+    /// Load a CSV file as a named resource from `bundle` and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
     ///
-    /// - parameter url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
-    /// - parameter encoding: Character encoding to read file (default is `.utf8`)
+    /// - parameter name: Name of the file resource inside `bundle`.
+    /// - parameter ext: File extension of the resource; use `nil` to load the first file matching the name (default is `nil`)
+    /// - parameter bundle: `Bundle` to use for resource lookup (default is `.main`)
+    /// - parameter encoding: encoding used to read file (default is `.utf8`)
     /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
-    /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
-    public convenience init(url: URL, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        let contents = try String(contentsOf: url, encoding: encoding)
-
-        try self.init(string: contents, loadColumns: loadColumns)
-    }
-    
-    /// Turn the CSV data into NSData using a given encoding
-    open func dataUsingEncoding(_ encoding: String.Encoding) -> Data? {
-        return description.data(using: encoding)
+    /// - throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
+    /// - returns: `nil` if the resource could not be found
+    public convenience init?(name: String, extension ext: String? = nil, bundle: Bundle = .main, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+        guard let url = bundle.url(forResource: name, withExtension: ext) else {
+            return nil
+        }
+        try self.init(url: url, encoding: encoding, loadColumns: loadColumns)
     }
 }
