@@ -34,7 +34,7 @@ extension CSV {
 
 enum Parser {
 
-    static func array(text: String, delimiter: Character, startAt offset: Int = 0, rowLimit: Int? = nil) throws -> [[String]] {
+    static func array(text: String, delimiter: CSV.Delimiter, startAt offset: Int = 0, rowLimit: Int? = nil) throws -> [[String]] {
 
         var rows = [[String]]()
 
@@ -57,17 +57,17 @@ enum Parser {
     ///   - rowCallback: Callback invoked for every parsed row between `startAt` and `limitTo` in `text`.
     /// - Throws: `CSVParseError`
     static func enumerateAsArray(text: String,
-                                 delimiter: Character,
+                                 delimiter: CSV.Delimiter,
                                  startAt offset: Int = 0,
                                  rowLimit: Int? = nil,
                                  rowCallback: @escaping ([String]) -> ()) throws {
-
         let maxRowIndex = rowLimit.flatMap { $0 < 0 ? nil : offset + $0 }
 
         var currentIndex = text.startIndex
         let endIndex = text.endIndex
 
         var fields = [String]()
+        let delimiter = delimiter.rawValue
         var field = ""
 
         var rowIndex = 0
@@ -123,7 +123,7 @@ enum Parser {
         }
     }
 
-    static func enumerateAsDict(header: [String], content: String, delimiter: Character, rowLimit: Int? = nil, block: @escaping ([String : String]) -> ()) throws {
+    static func enumerateAsDict(header: [String], content: String, delimiter: CSV.Delimiter, rowLimit: Int? = nil, block: @escaping ([String : String]) -> ()) throws {
 
         let enumeratedHeader = header.enumerated()
 

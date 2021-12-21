@@ -18,7 +18,7 @@ public struct EnumeratedView: CSVView {
     public private(set) var rows: [[String]]
     public private(set) var columns: [Column]
 
-    public init(header: [String], text: String, delimiter: Character, limitTo: Int? = nil, loadColumns: Bool = false) throws {
+    public init(header: [String], text: String, delimiter: CSV.Delimiter, limitTo: Int? = nil, loadColumns: Bool = false) throws {
 
         var rows = [[String]]()
         var columns: [EnumeratedView.Column] = []

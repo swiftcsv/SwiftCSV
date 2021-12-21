@@ -9,10 +9,12 @@
 import Foundation
 
 extension CSV {
-    public static let recognizedDelimiters = [CSV.comma, CSV.tab, CSV.semicolon]
+    public static let recognizedDelimiters: [Delimiter] = [.comma, .tab, .semicolon]
 
-    /// - Returns: Delimiter between cells based on the first line in the CSV. Falls back to comma.
-    public static func guessedDelimiter(string: String) -> Character {
+    /// - Returns: Delimiter between cells based on the first line in the CSV. Falls back to `.comma`.
+    public static func guessedDelimiter(string: String) -> Delimiter {
+        let recognizedDelimiterCharacters = recognizedDelimiters.map(\.rawValue)
+
         // Trim newline and spaces, but keep tabs (as delimiters)
         var trimmedCharacters = CharacterSet.whitespacesAndNewlines
         trimmedCharacters.remove("\t")
@@ -36,14 +38,14 @@ extension CSV {
                 } else {
                     index = line.endIndex
                 }
-            case _ where recognizedDelimiters.contains(character):
-                return character
+            case _ where recognizedDelimiterCharacters.contains(character):
+                return Delimiter(rawValue: character)
             default:
                 index = line.index(after: index)
             }
         }
 
         // Fallback value
-        return comma
+        return .comma
     }
 }

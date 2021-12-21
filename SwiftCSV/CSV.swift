@@ -15,18 +15,10 @@ public protocol CSVView {
     var rows: Rows { get }
     var columns: Columns { get }
 
-    init(header: [String], text: String, delimiter: Character, limitTo: Int?, loadColumns: Bool) throws
+    init(header: [String], text: String, delimiter: CSV.Delimiter, limitTo: Int?, loadColumns: Bool) throws
 }
 
 open class CSV {
-    static public let comma: Character = ","
-
-    /// Used by exporters such as DEVONthink, Excel.
-    static public let semicolon: Character = ";"
-
-    /// Used by exporters producing TSV, or tab-separated values.
-    static public let tab: Character = "\t"
-
     public enum Delimiter: Equatable, ExpressibleByUnicodeScalarLiteral {
         public typealias UnicodeScalarLiteralType = Character
 
@@ -75,7 +67,7 @@ open class CSV {
     }()
 
     var text: String
-    var delimiter: Character
+    var delimiter: Delimiter
 
     let loadColumns: Bool
 
@@ -116,17 +108,17 @@ open class CSV {
     /// Load CSV data from a string.
     ///
     /// - parameter string: CSV contents to parse.
-    /// - parameter delimiter: Character used to separate  row and header fields (default is '","')
+    /// - parameter delimiter: Character used to separate cells from one another in rows.
     /// - parameter loadColumns: Whether to populate the `columns` dictionary (default is `true`)
     /// - throws: `CSVParseError` when parsing `string` fails.
-    public init(string: String, delimiter: Character = comma, loadColumns: Bool = true) throws {
+    public init(string: String, delimiter: Delimiter, loadColumns: Bool = true) throws {
         self.text = string
         self.delimiter = delimiter
         self.loadColumns = loadColumns
         self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
     }
 
-    /// Load CSV data from a string and guess its delimiter from `CSV.recognizedDelimiters`, falling back to comma (`","`).
+    /// Load CSV data from a string and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
     ///
     /// - parameter string: CSV contents to parse.
     /// - parameter loadColumns: Whether to populate the `columns` dictionary (default is `true`)
@@ -138,22 +130,17 @@ open class CSV {
         self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
     }
 
-    @available(*, deprecated, message: "Use init(url:delimiter:encoding:loadColumns:) instead of this path-based approach. Also, calling the parameter `name` instead of `path` was a mistake.")
-    public convenience init(name: String, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        try self.init(url: URL(fileURLWithPath: name), delimiter: delimiter, encoding: encoding, loadColumns: loadColumns)
-    }
-
     /// Load a CSV file as a named resource from `bundle`.
     ///
     /// - parameter name: Name of the file resource inside `bundle`.
     /// - parameter ext: File extension of the resource; use `nil` to load the first file matching the name (default is `nil`)
     /// - parameter bundle: `Bundle` to use for resource lookup (default is `.main`)
-    /// - parameter delimiter: Character used to separate row and header fields (default is ',')
+    /// - parameter delimiter: Character used to separate cells from one another in rows.
     /// - parameter encoding: encoding used to read file (default is `.utf8`)
     /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
     /// - returns: `nil` if the resource could not be found
-    public convenience init?(name: String, extension ext: String? = nil, bundle: Bundle = .main, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+    public convenience init?(name: String, extension ext: String? = nil, bundle: Bundle = .main, delimiter: Delimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         guard let url = bundle.url(forResource: name, withExtension: ext) else {
             return nil
         }
@@ -163,14 +150,26 @@ open class CSV {
     /// Load a CSV file from `url`.
     ///
     /// - parameter url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
-    /// - parameter delimiter: Character used to separate row and header fields (default is ',')
+    /// - parameter delimiter: Character used to separate cells from one another in rows.
     /// - parameter encoding: Character encoding to read file (default is `.utf8`)
     /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
-    public convenience init(url: URL, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+    public convenience init(url: URL, delimiter: Delimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOf: url, encoding: encoding)
         
         try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
+    }
+
+    /// Load a CSV file from `url` and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
+    ///
+    /// - parameter url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
+    /// - parameter encoding: Character encoding to read file (default is `.utf8`)
+    /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
+    public convenience init(url: URL, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+        let contents = try String(contentsOf: url, encoding: encoding)
+
+        try self.init(string: contents, loadColumns: loadColumns)
     }
     
     /// Turn the CSV data into NSData using a given encoding

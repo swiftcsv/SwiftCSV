@@ -13,7 +13,7 @@ class CSVTests: XCTestCase {
     var csv: CSV!
     
     override func setUp() {
-        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: CSV.comma)
+        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: .comma)
     }
     
     func testInit_makesHeader() {
@@ -32,7 +32,7 @@ class CSVTests: XCTestCase {
     }
     
     func testInit_whenThereAreIncompleteRows_makesRows() {
-        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie", delimiter: CSV.comma)
+        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie", delimiter: .comma)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
@@ -56,7 +56,7 @@ class CSVTests: XCTestCase {
     }
     
     func testInit_whenThereAreCRLFs_makesRows() {
-        csv = try! CSV(string: "id,name,age\r\n1,Alice,18\r\n2,Bob,19\r\n3,Charlie,20\r\n", delimiter: CSV.comma)
+        csv = try! CSV(string: "id,name,age\r\n1,Alice,18\r\n2,Bob,19\r\n3,Charlie,20\r\n", delimiter: .comma)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
@@ -84,7 +84,7 @@ class CSVTests: XCTestCase {
     }
   
     func testDescriptionWithDoubleQuotes() {
-        csv = try! CSV(string: "id,name,age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20", delimiter: CSV.comma)
+        csv = try! CSV(string: "id,name,age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20", delimiter: .comma)
         XCTAssertEqual(csv.description, "id,name,age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
     }
   
@@ -102,7 +102,7 @@ class CSVTests: XCTestCase {
     }
 
     func testIgnoreColumns() {
-        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: CSV.comma, loadColumns: false)
+        csv = try! CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: .comma, loadColumns: false)
         XCTAssertEqual(csv.namedColumns.isEmpty, true)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
@@ -123,7 +123,7 @@ class CSVTests: XCTestCase {
         "a" \(tab)  ,  \(paragraphSeparator)  "b"
         "A" \(ideographicSpace)  ,  \(tab)   "B"
         """
-        let csv = try! CSV(string: failingCsv, delimiter: CSV.comma)
+        let csv = try! CSV(string: failingCsv, delimiter: .comma)
         
         XCTAssertEqual(csv.namedRows, [["b": "B", "a": "A"]])
     }
