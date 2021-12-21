@@ -429,7 +429,7 @@
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 1310;
-				ORGANIZATIONNAME = "Naoto Kaneko";
+				ORGANIZATIONNAME = SwiftCSV;
 				TargetAttributes = {
 					3D1E59B31945FFAC001CF760 = {
 						CreatedOnToolsVersion = 6.0;
