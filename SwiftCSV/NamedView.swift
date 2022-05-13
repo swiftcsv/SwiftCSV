@@ -11,7 +11,7 @@ public struct NamedView: CSVView {
     public var rows: [[String : String]]
     public var columns: [String : [String]]
 
-    public init(header: [String], text: String, delimiter: Character, limitTo: Int? = nil, loadColumns: Bool = false) throws {
+    public init(header: [String], text: String, delimiter: CSV.Delimiter, limitTo: Int? = nil, loadColumns: Bool = false) throws {
 
         var rows = [[String: String]]()
         var columns = [String: [String]]()
