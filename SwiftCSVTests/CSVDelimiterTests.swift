@@ -11,16 +11,16 @@ import XCTest
 
 class CSVDelimiterTests: XCTestCase {
     func testRawValue() {
-        XCTAssertEqual(Delimiter.comma.rawValue, ",")
-        XCTAssertEqual(Delimiter.semicolon.rawValue, ";")
-        XCTAssertEqual(Delimiter.tab.rawValue, "\t")
-        XCTAssertEqual(Delimiter.character("x").rawValue, "x")
+        XCTAssertEqual(CSVDelimiter.comma.rawValue, ",")
+        XCTAssertEqual(CSVDelimiter.semicolon.rawValue, ";")
+        XCTAssertEqual(CSVDelimiter.tab.rawValue, "\t")
+        XCTAssertEqual(CSVDelimiter.character("x").rawValue, "x")
     }
 
     func testLiteralInitializer() {
-        XCTAssertEqual(Delimiter.comma, ",")
-        XCTAssertEqual(Delimiter.semicolon, ";")
-        XCTAssertEqual(Delimiter.tab, "\t")
-        XCTAssertEqual(Delimiter.character("x"), "x")
+        XCTAssertEqual(CSVDelimiter.comma, ",")
+        XCTAssertEqual(CSVDelimiter.semicolon, ";")
+        XCTAssertEqual(CSVDelimiter.tab, "\t")
+        XCTAssertEqual(CSVDelimiter.character("x"), "x")
     }
 }

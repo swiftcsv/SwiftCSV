@@ -13,7 +13,7 @@ public struct Named: CSVView {
     public var rows: [Row]
     public var columns: [String : [String]]
 
-    public init(header: [String], text: String, delimiter: Delimiter, loadColumns: Bool = false, rowLimit: Int? = nil) throws {
+    public init(header: [String], text: String, delimiter: CSVDelimiter, loadColumns: Bool = false, rowLimit: Int? = nil) throws {
 
         var rows = [[String: String]]()
         var columns = [String: [String]]()
@@ -32,7 +32,7 @@ public struct Named: CSVView {
         self.columns = columns
     }
 
-    public func serialize(header: [String], delimiter: Delimiter) -> String {
+    public func serialize(header: [String], delimiter: CSVDelimiter) -> String {
         let separator = String(delimiter.rawValue)
 
         let head = header

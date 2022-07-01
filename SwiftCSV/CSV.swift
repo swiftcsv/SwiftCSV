@@ -15,9 +15,9 @@ public protocol CSVView {
     var rows: [Row] { get }
     var columns: Columns { get }
 
-    init(header: [String], text: String, delimiter: Delimiter, loadColumns: Bool, rowLimit: Int?) throws
+    init(header: [String], text: String, delimiter: CSVDelimiter, loadColumns: Bool, rowLimit: Int?) throws
 
-    func serialize(header: [String], delimiter: Delimiter) -> String
+    func serialize(header: [String], delimiter: CSVDelimiter) -> String
 }
 
 /// CSV variant for which unique column names are assumed.
@@ -39,36 +39,6 @@ public typealias NamedCSV = CSV<Named>
 ///
 public typealias EnumeratedCSV = CSV<Enumerated>
 
-public enum Delimiter: Equatable, ExpressibleByUnicodeScalarLiteral {
-
-    public typealias UnicodeScalarLiteralType = Character
-
-    case comma, semicolon, tab
-    case character(Character)
-
-    public init(unicodeScalarLiteral: Character) {
-        self.init(rawValue: unicodeScalarLiteral)
-    }
-
-    init(rawValue: Character) {
-        switch rawValue {
-        case ",":  self = .comma
-        case ";":  self = .semicolon
-        case "\t": self = .tab
-        default:   self = .character(rawValue)
-        }
-    }
-
-    public var rawValue: Character {
-        switch self {
-        case .comma: return ","
-        case .semicolon: return ";"
-        case .tab: return "\t"
-        case .character(let character): return character
-        }
-    }
-}
-
 /// For convenience, there's `EnumeratedCSV` to access fields in rows by their column index,
 /// and `NamedCSV` to access fields by their column names as defined in a header row.
 open class CSV<DataView : CSVView>  {
@@ -79,7 +49,7 @@ open class CSV<DataView : CSVView>  {
     public let text: String
 
     /// Used delimiter to parse `text` and to serialize the data again.
-    public let delimiter: Delimiter
+    public let delimiter: CSVDelimiter
 
     /// Underlying data representation of the CSV contents.
     public let content: DataView
@@ -100,7 +70,7 @@ open class CSV<DataView : CSVView>  {
     ///   - loadColumns: Whether to populate the `columns` dictionary (default is `true`)
     ///   - rowLimit: Amount of rows to parse (default is `nil`).
     /// - Throws: `CSVParseError` when parsing `string` fails.
-    public init(string: String, delimiter: Delimiter, loadColumns: Bool = true, rowLimit: Int? = nil) throws {
+    public init(string: String, delimiter: CSVDelimiter, loadColumns: Bool = true, rowLimit: Int? = nil) throws {
         self.text = string
         self.delimiter = delimiter
         self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
@@ -113,7 +83,7 @@ open class CSV<DataView : CSVView>  {
     /// - parameter loadColumns: Whether to populate the `columns` dictionary (default is `true`)
     /// - throws: `CSVParseError` when parsing `string` fails.
     public convenience init(string: String, loadColumns: Bool = true) throws {
-        let delimiter = Delimiter.guessed(string: string)
+        let delimiter = CSVDelimiter.guessed(string: string)
         try self.init(string: string, delimiter: delimiter, loadColumns: loadColumns)
     }
 
@@ -128,7 +98,6 @@ open class CSV<DataView : CSVView>  {
         return self.content.serialize(header: self.header, delimiter: self.delimiter)
     }
 }
-
 
 extension CSV: CustomStringConvertible {
     public var description: String {
@@ -153,7 +122,7 @@ extension CSV {
     ///   - encoding: Character encoding to read file (default is `.utf8`)
     ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - Throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
-    public convenience init(url: URL, delimiter: Delimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+    public convenience init(url: URL, delimiter: CSVDelimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         let contents = try String(contentsOf: url, encoding: encoding)
 
         try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
@@ -185,7 +154,7 @@ extension CSV {
     ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - Throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
     /// - Returns: `nil` if the resource could not be found
-    public convenience init?(name: String, extension ext: String? = nil, bundle: Bundle = .main, delimiter: Delimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+    public convenience init?(name: String, extension ext: String? = nil, bundle: Bundle = .main, delimiter: CSVDelimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
         guard let url = bundle.url(forResource: name, withExtension: ext) else {
             return nil
         }
