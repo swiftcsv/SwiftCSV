@@ -33,6 +33,11 @@ class CSVDelimiterGuessingTests: XCTestCase {
         XCTAssertEqual(CSVDelimiter.guessed(string: #""a";"b";"c""#), .semicolon)
         XCTAssertEqual(CSVDelimiter.guessed(string: #""a,";"b\t";"c""#), .semicolon,
                        "Prioritizes separator between quotations over first occurrence")
+
+        XCTAssertEqual(CSVDelimiter.guessed(string: """
+"Test";"Test_1"
+"Test";"Test_2"
+"""), .semicolon)
     }
 
     func testGuessDelimiter_Tab() throws {
