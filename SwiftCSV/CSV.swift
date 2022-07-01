@@ -15,9 +15,9 @@ public protocol CSVView {
     var rows: [Row] { get }
     var columns: Columns { get }
 
-    init(header: [String], text: String, delimiter: Character, loadColumns: Bool, rowLimit: Int?) throws
+    init(header: [String], text: String, delimiter: Delimiter, loadColumns: Bool, rowLimit: Int?) throws
 
-    func serialize(header: [String], delimiter: Character) -> String
+    func serialize(header: [String], delimiter: Delimiter) -> String
 }
 
 /// CSV variant for which unique column names are assumed.
@@ -39,18 +39,47 @@ public typealias NamedCSV = CSV<Named>
 ///
 public typealias EnumeratedCSV = CSV<Enumerated>
 
+public enum Delimiter: Equatable, ExpressibleByUnicodeScalarLiteral {
+
+    public typealias UnicodeScalarLiteralType = Character
+
+    case comma, semicolon, tab
+    case character(Character)
+
+    public init(unicodeScalarLiteral: Character) {
+        self.init(rawValue: unicodeScalarLiteral)
+    }
+
+    init(rawValue: Character) {
+        switch rawValue {
+        case ",":  self = .comma
+        case ";":  self = .semicolon
+        case "\t": self = .tab
+        default:   self = .character(rawValue)
+        }
+    }
+
+    public var rawValue: Character {
+        switch self {
+        case .comma: return ","
+        case .semicolon: return ";"
+        case .tab: return "\t"
+        case .character(let character): return character
+        }
+    }
+}
+
 /// For convenience, there's `EnumeratedCSV` to access fields in rows by their column index,
 /// and `NamedCSV` to access fields by their column names as defined in a header row.
 open class CSV<DataView : CSVView>  {
-    public static var comma: Character { return "," }
-    
+
     public let header: [String]
 
     /// Unparsed contents.
     public let text: String
 
     /// Used delimiter to parse `text` and to serialize the data again.
-    public let delimiter: Character
+    public let delimiter: Delimiter
 
     /// Underlying data representation of the CSV contents.
     public let content: DataView
@@ -63,55 +92,32 @@ open class CSV<DataView : CSVView>  {
         return content.columns
     }
 
-
     /// Load CSV data from a string.
     ///
     /// - Parameters:
     ///   - string: CSV contents to parse.
-    ///   - delimiter: Character used to separate  row and header fields (default is ',')
+    ///   - delimiter: Character used to separate cells from one another in rows.
     ///   - loadColumns: Whether to populate the `columns` dictionary (default is `true`)
     ///   - rowLimit: Amount of rows to parse (default is `nil`).
     /// - Throws: `CSVParseError` when parsing `string` fails.
-    public init(string: String, delimiter: Character = comma, loadColumns: Bool = true, rowLimit: Int? = nil) throws {
+    public init(string: String, delimiter: Delimiter, loadColumns: Bool = true, rowLimit: Int? = nil) throws {
         self.text = string
         self.delimiter = delimiter
         self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
-
         self.content = try DataView(header: header, text: text, delimiter: delimiter, loadColumns: loadColumns, rowLimit: rowLimit)
     }
 
-    /// Load a CSV file as a named resource from `bundle`.
+    /// Load CSV data from a string and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
     ///
-    /// - Parameters:
-    ///   - name: Name of the file resource inside `bundle`.
-    ///   - ext: File extension of the resource; use `nil` to load the first file matching the name (default is `nil`)
-    ///   - bundle: `Bundle` to use for resource lookup (default is `.main`)
-    ///   - delimiter: Character used to separate row and header fields (default is ',')
-    ///   - encoding: encoding used to read file (default is `.utf8`)
-    ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
-    /// - Throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
-    /// - Returns: `nil` if the resource could not be found
-    public convenience init?(named name: String, extension ext: String? = nil, bundle: Bundle = .main, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        guard let url = bundle.url(forResource: name, withExtension: ext) else {
-            return nil
-        }
-        try self.init(url: url, delimiter: delimiter, encoding: encoding, loadColumns: loadColumns)
+    /// - parameter string: CSV contents to parse.
+    /// - parameter loadColumns: Whether to populate the `columns` dictionary (default is `true`)
+    /// - throws: `CSVParseError` when parsing `string` fails.
+    public convenience init(string: String, loadColumns: Bool = true) throws {
+        let delimiter = Delimiter.guessed(string: string)
+        try self.init(string: string, delimiter: delimiter, loadColumns: loadColumns)
     }
-    
-    /// Load a CSV file from `url`.
-    ///
-    /// - parameter url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
-    /// - parameter delimiter: Character used to separate row and header fields (default is ',')
-    /// - parameter encoding: Character encoding to read file (default is `.utf8`)
-    /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
-    /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
-    public convenience init(url: URL, delimiter: Character = comma, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        let contents = try String(contentsOf: url, encoding: encoding)
-        
-        try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
-    }
-    
-    /// Turn the CSV contents into Data using a given encoding
+
+    /// Turn the CSV data into NSData using a given encoding
     open func dataUsingEncoding(_ encoding: String.Encoding) -> Data? {
         return serialized.data(using: encoding)
     }
@@ -122,6 +128,7 @@ open class CSV<DataView : CSVView>  {
         return self.content.serialize(header: self.header, delimiter: self.delimiter)
     }
 }
+
 
 extension CSV: CustomStringConvertible {
     public var description: String {
@@ -135,4 +142,70 @@ func enquoteContentsIfNeeded(cell: String) -> String {
         return "\"\(cell)\""
     }
     return cell
+}
+
+extension CSV {
+    /// Load a CSV file from `url`.
+    ///
+    /// - Parameters:
+    ///   - url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
+    ///   - delimiter: Character used to separate separate cells from one another in rows.
+    ///   - encoding: Character encoding to read file (default is `.utf8`)
+    ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - Throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
+    public convenience init(url: URL, delimiter: Delimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+        let contents = try String(contentsOf: url, encoding: encoding)
+
+        try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
+    }
+
+    /// Load a CSV file from `url` and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
+    ///
+    /// - Parameters:
+    ///   - url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
+    ///   - encoding: Character encoding to read file (default is `.utf8`)
+    ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - Throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
+    public convenience init(url: URL, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+        let contents = try String(contentsOf: url, encoding: encoding)
+
+        try self.init(string: contents, loadColumns: loadColumns)
+    }
+}
+
+extension CSV {
+    /// Load a CSV file as a named resource from `bundle`.
+    ///
+    /// - Parameters:
+    ///   - name: Name of the file resource inside `bundle`.
+    ///   - ext: File extension of the resource; use `nil` to load the first file matching the name (default is `nil`)
+    ///   - bundle: `Bundle` to use for resource lookup (default is `.main`)
+    ///   - delimiter: Character used to separate separate cells from one another in rows.
+    ///   - encoding: encoding used to read file (default is `.utf8`)
+    ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - Throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
+    /// - Returns: `nil` if the resource could not be found
+    public convenience init?(name: String, extension ext: String? = nil, bundle: Bundle = .main, delimiter: Delimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+        guard let url = bundle.url(forResource: name, withExtension: ext) else {
+            return nil
+        }
+        try self.init(url: url, delimiter: delimiter, encoding: encoding, loadColumns: loadColumns)
+    }
+
+    /// Load a CSV file as a named resource from `bundle` and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
+    ///
+    /// - Parameters:
+    ///   - name: Name of the file resource inside `bundle`.
+    ///   - ext: File extension of the resource; use `nil` to load the first file matching the name (default is `nil`)
+    ///   - bundle: `Bundle` to use for resource lookup (default is `.main`)
+    ///   - encoding: encoding used to read file (default is `.utf8`)
+    ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - Throws: `CSVParseError` when parsing the contents of the resource fails, or file loading errors.
+    /// - Returns: `nil` if the resource could not be found
+   public convenience init?(name: String, extension ext: String? = nil, bundle: Bundle = .main, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
+        guard let url = bundle.url(forResource: name, withExtension: ext) else {
+            return nil
+        }
+        try self.init(url: url, encoding: encoding, loadColumns: loadColumns)
+    }
 }

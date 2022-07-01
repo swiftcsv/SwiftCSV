@@ -20,7 +20,7 @@ public struct Enumerated: CSVView {
     public private(set) var rows: [Row]
     public private(set) var columns: [Column]
 
-    public init(header: [String], text: String, delimiter: Character, loadColumns: Bool = false, rowLimit: Int? = nil) throws {
+    public init(header: [String], text: String, delimiter: Delimiter, loadColumns: Bool = false, rowLimit: Int? = nil) throws {
         var rows = [[String]]()
         var columns: [Enumerated.Column] = []
 
@@ -43,14 +43,16 @@ public struct Enumerated: CSVView {
         self.columns = columns
     }
 
-    public func serialize(header: [String], delimiter: Character) -> String {
+    public func serialize(header: [String], delimiter: Delimiter) -> String {
+        let separator = String(delimiter.rawValue)
+
         let head = header
             .map(enquoteContentsIfNeeded(cell:))
-            .joined(separator: ",") + "\n"
+            .joined(separator: separator) + "\n"
 
         let content = rows.map { row in
             row.map(enquoteContentsIfNeeded(cell:))
-                .joined(separator: String(delimiter))
+                .joined(separator: separator)
         }.joined(separator: "\n")
 
         return head + content

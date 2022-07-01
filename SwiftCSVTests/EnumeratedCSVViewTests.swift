@@ -34,7 +34,7 @@ class EnumeratedViewTests: XCTestCase {
     }
 
     func testRows_WithLimit() throws {
-        csv = try! CSV<Enumerated>(string: string, rowLimit: 2)
+        csv = try! CSV<Enumerated>(string: string, delimiter: ",", rowLimit: 2)
         let expected = [
             ["1", "Alice", "18"],
             ["2", "Bob", "19"]
@@ -52,7 +52,7 @@ class EnumeratedViewTests: XCTestCase {
     }
 
     func testColumns_WithLimit() {
-        csv = try! CSV<Enumerated>(string: string, rowLimit: 2)
+        csv = try! CSV<Enumerated>(string: string, delimiter: ",", rowLimit: 2)
         let expected = [
             Enumerated.Column(header: "id", rows: ["1", "2"]),
             Enumerated.Column(header: "name", rows: ["Alice", "Bob"]),

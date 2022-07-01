@@ -36,7 +36,7 @@ class NamedViewTests: XCTestCase {
     }
 
     func testRows_WithLimit() {
-        csv = try! CSV<Named>(string: string, rowLimit: 2)
+        csv = try! CSV<Named>(string: string, delimiter: ",", rowLimit: 2)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
@@ -54,7 +54,7 @@ class NamedViewTests: XCTestCase {
     }
 
     func testColumns_WithLimit() {
-        csv = try! CSV<Named>(string: string, rowLimit: 2)
+        csv = try! CSV<Named>(string: string, delimiter: ",", rowLimit: 2)
         let expected = [
             "id": ["1", "2"],
             "name": ["Alice", "Bob"],
@@ -116,7 +116,7 @@ class NamedViewTests: XCTestCase {
         }
     }
   
-    func testInit_ParseFileWithQuotesAndWhitespaces() {
+    func testInit_ParseFileWithQuotesAndWhitespaces() throws {
         let tab = "\t"
         let paragraphSeparator = "\u{2029}"
         let ideographicSpace = "\u{3000}"
@@ -125,7 +125,7 @@ class NamedViewTests: XCTestCase {
         "a" \(tab)  ,  \(paragraphSeparator)  "b"
         "A" \(ideographicSpace)  ,  \(tab)   "B"
         """
-        let csv = try! CSV<Named>(string: failingCsv)
+        let csv = try CSV<Named>(string: failingCsv)
         
         XCTAssertEqual(csv.rows, [["b": "B", "a": "A"]])
     }
