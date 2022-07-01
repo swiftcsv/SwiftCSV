@@ -12,14 +12,13 @@ import XCTest
 class NamedViewTests: XCTestCase {
     let string = "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20"
     var csv: CSV<Named>!
-    
-    override func setUp() {
-        csv = try! CSV<Named>(string: string)
+
+    override func setUpWithError() throws {
+        csv = try CSV<Named>(string: string)
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         csv = nil
-        super.tearDown()
     }
 
     func testHeader() {
@@ -35,8 +34,8 @@ class NamedViewTests: XCTestCase {
         XCTAssertEqual(csv.rows, expected)
     }
 
-    func testRows_WithLimit() {
-        csv = try! CSV<Named>(string: string, delimiter: ",", rowLimit: 2)
+    func testRows_WithLimit() throws {
+        csv = try CSV<Named>(string: string, delimiter: ",", rowLimit: 2)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
@@ -53,8 +52,8 @@ class NamedViewTests: XCTestCase {
         XCTAssertEqual(csv.columns, expected)
     }
 
-    func testColumns_WithLimit() {
-        csv = try! CSV<Named>(string: string, delimiter: ",", rowLimit: 2)
+    func testColumns_WithLimit() throws {
+        csv = try CSV<Named>(string: string, delimiter: ",", rowLimit: 2)
         let expected = [
             "id": ["1", "2"],
             "name": ["Alice", "Bob"],
@@ -85,8 +84,8 @@ class NamedViewTests: XCTestCase {
         XCTAssertEqual(csv.serialized, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
   
-    func testSerializationWithDoubleQuotes() {
-        csv = try! CSV<Named>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+    func testSerializationWithDoubleQuotes() throws {
+        csv = try CSV<Named>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
         XCTAssertEqual(csv.serialized, "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
     }
   
@@ -103,8 +102,8 @@ class NamedViewTests: XCTestCase {
         }
     }
 
-    func testIgnoreColumns() {
-        csv = try! CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
+    func testIgnoreColumns() throws {
+        csv = try CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
         XCTAssertEqual(csv.columns.isEmpty, true)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],

@@ -12,15 +12,10 @@ import SwiftCSV
 class QuotedTests: XCTestCase {
     var csv: CSV<Named>!
 
-    override func setUp() {
-        super.setUp()
-        csv = try! CSV<Named>(string: "id,\"name, person\",age\n\"5\",\"Smith, John\",67\n8,Joe Bloggs,\"8\"")
+    override func setUpWithError() throws {
+        csv = try CSV<Named>(string: "id,\"name, person\",age\n\"5\",\"Smith, John\",67\n8,Joe Bloggs,\"8\"")
     }
     
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testQuotedHeader() {
         XCTAssertEqual(csv.header, ["id", "name, person", "age"])
     }

@@ -12,9 +12,9 @@ import SwiftCSV
 class URLTests: XCTestCase {
     var csv: CSV<Named>!
     
-    func testEmptyFields() {
+    func testEmptyFields() throws {
         let csvURL = ResourceHelper.url(forResource: "empty_fields", withExtension: "csv")!
-        csv = try! CSV<Named>(url: csvURL)
+        csv = try CSV<Named>(url: csvURL)
         let expected = [
             ["id": "1", "name": "John", "age": "23"],
             ["id": "2", "name": "James", "age": "32"],
@@ -28,9 +28,9 @@ class URLTests: XCTestCase {
         }
     }
     
-    func testQuotes() {
+    func testQuotes() throws {
         let csvURL = ResourceHelper.url(forResource: "quotes", withExtension: "csv")!
-        csv = try! CSV<Named>(url: csvURL)
+        csv = try CSV<Named>(url: csvURL)
         let expected = [
             ["id": "4", "name, first": "Alex", "name, last": "Smith"],
             ["id": "5", "name, first": "Joe", "name, last": "Bloggs"],

@@ -57,8 +57,8 @@ class CSV_DelimiterGuessingTests: XCTestCase {
     }
 
     
-    func testInitWithGuessedDelimiter() {
-        let semicolonCSV = try! NamedCSV(string: "id;name;age\n1;Alice;18\n2;Bob;19\n3;Charlie")
+    func testInitWithGuessedDelimiter() throws {
+        let semicolonCSV = try NamedCSV(string: "id;name;age\n1;Alice;18\n2;Bob;19\n3;Charlie")
         let expectedSemicolonCSV = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],
@@ -68,7 +68,7 @@ class CSV_DelimiterGuessingTests: XCTestCase {
             XCTAssertEqual(expectedSemicolonCSV[index], row)
         }
 
-        let tabCSV = try! NamedCSV(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie")
+        let tabCSV = try NamedCSV(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie")
         let expectedTabCSV = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],

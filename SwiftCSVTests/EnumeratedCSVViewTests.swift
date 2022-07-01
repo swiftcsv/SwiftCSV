@@ -13,15 +13,12 @@ class EnumeratedViewTests: XCTestCase {
     let string = "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20"
     var csv: CSV<Enumerated>!
 
-    override func setUp() {
-        super.setUp()
-
-        csv = try! CSV<Enumerated>(string: string, delimiter: ",", loadColumns: true)
+    override func setUpWithError() throws {
+        csv = try CSV<Enumerated>(string: string, delimiter: ",", loadColumns: true)
     }
 
-    override func tearDown() {
+    override func tearDownWithError() throws {
         csv = nil
-        super.tearDown()
     }
 
     func testRows() {
@@ -34,7 +31,7 @@ class EnumeratedViewTests: XCTestCase {
     }
 
     func testRows_WithLimit() throws {
-        csv = try! CSV<Enumerated>(string: string, delimiter: ",", rowLimit: 2)
+        csv = try CSV<Enumerated>(string: string, delimiter: ",", rowLimit: 2)
         let expected = [
             ["1", "Alice", "18"],
             ["2", "Bob", "19"]
@@ -51,8 +48,8 @@ class EnumeratedViewTests: XCTestCase {
         XCTAssertEqual(csv.columns, expected)
     }
 
-    func testColumns_WithLimit() {
-        csv = try! CSV<Enumerated>(string: string, delimiter: ",", rowLimit: 2)
+    func testColumns_WithLimit() throws {
+        csv = try CSV<Enumerated>(string: string, delimiter: ",", rowLimit: 2)
         let expected = [
             Enumerated.Column(header: "id", rows: ["1", "2"]),
             Enumerated.Column(header: "name", rows: ["Alice", "Bob"]),
@@ -83,8 +80,8 @@ class EnumeratedViewTests: XCTestCase {
         XCTAssertEqual(csv.serialized, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
     }
 
-    func testSerializationWithDoubleQuotes() {
-        csv = try! CSV<Enumerated>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
+    func testSerializationWithDoubleQuotes() throws {
+        csv = try CSV<Enumerated>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
         XCTAssertEqual(csv.serialized, "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
     }
 }

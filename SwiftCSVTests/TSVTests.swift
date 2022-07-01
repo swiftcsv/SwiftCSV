@@ -13,8 +13,8 @@ import Foundation
 class TSVTests: XCTestCase {
     var tsv: CSV<Named>!
     
-    override func setUp() {
-        tsv = try! CSV<Named>(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: "\t")
+    override func setUpWithError() throws {
+        tsv = try CSV<Named>(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: "\t")
     }
     
     func testInit_makesHeader() {

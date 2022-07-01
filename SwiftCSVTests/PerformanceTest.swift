@@ -12,9 +12,9 @@ import XCTest
 class PerformanceTest: XCTestCase {
     var csv: CSV<Named>!
 
-    override func setUp() {
+    override func setUpWithError() throws {
         let csvURL = ResourceHelper.url(forResource: "large", withExtension: "csv")!
-        csv = try! CSV<Named>(url: csvURL)
+        csv = try CSV<Named>(url: csvURL)
     }
 
     func testParsePerformance() {
