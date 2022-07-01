@@ -21,21 +21,21 @@ import SwiftCSV
 
 do {
     // As a string, guessing the delimiter
-    let csv: CSV = try CSV(string: "id,name,age\n1,Alice,18")
+    let csv: CSV = try CSV<Named>(string: "id,name,age\n1,Alice,18")
 
     // Specifying a custom delimiter
-    let tsv: CSV = try CSV(string: "id\tname\tage\n1\tAlice\t18", delimiter: "\t")
+    let tsv: CSV = try CSV<Enumerated>(string: "id\tname\tage\n1\tAlice\t18", delimiter: .tab)
 
     // From a file (propagating error during file loading)
-    let csvFile: CSV = try CSV(url: URL(fileURLWithPath: "path/to/users.csv"))
+    let csvFile: CSV = try CSV<Named>(url: URL(fileURLWithPath: "path/to/users.csv"))
 
     // From a file inside the app bundle, with a custom delimiter, errors, and custom encoding.
     // Note the result is an optional.
-    let resource: CSV? = try CSV(
+    let resource: CSV? = try CSV<Named>(
         name: "users",
         extension: "tsv",
         bundle: .main,
-        delimiter: "\t",
+        delimiter: .character("🐠"),  // Any character works!
         encoding: .utf8)
 } catch parseError as CSVParseError {
     // Catch errors from parsing invalid CSV
@@ -52,22 +52,24 @@ The `CSV` class comes with initializers that are suited for loading files from U
 extension CSV {
     /// Load a CSV file from `url`.
     ///
-    /// - parameter url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
-    /// - parameter delimiter: Character used to separate cells from one another in rows.
-    /// - parameter encoding: Character encoding to read file (default is `.utf8`)
-    /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
-    /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
+    /// - Parameters:
+    ///   - url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
+    ///   - delimiter: Character used to separate separate cells from one another in rows.
+    ///   - encoding: Character encoding to read file (default is `.utf8`)
+    ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - Throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
     public convenience init(url: URL,
-                            delimiter: Delimiter,
+                            delimiter: CSVDelimiter,
                             encoding: String.Encoding = .utf8,
                             loadColumns: Bool = true) throws
 
     /// Load a CSV file from `url` and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
     ///
-    /// - parameter url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
-    /// - parameter encoding: Character encoding to read file (default is `.utf8`)
-    /// - parameter loadColumns: Whether to populate the columns dictionary (default is `true`)
-    /// - throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
+    /// - Parameters:
+    ///   - url: URL of the file (will be passed to `String(contentsOfURL:encoding:)` to load)
+    ///   - encoding: Character encoding to read file (default is `.utf8`)
+    ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
+    /// - Throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
     public convenience init(url: URL,
                             encoding: String.Encoding = .utf8,
                             loadColumns: Bool = true)
@@ -76,7 +78,7 @@ extension CSV {
 
 ### Delimiters
 
-Delimiters are strongly typed. The recognized `CSV.Delimiter` cases are: `.comma`, `.semicolon`, and `.tab`.
+Delimiters are strongly typed. The recognized `CSVDelimiter` cases are: `.comma`, `.semicolon`, and `.tab`.
 
 You can use convenience initializers that guess the delimiter from the recognized list for you. These initializers are available for loading CSV from URLs and strings.
 
@@ -86,10 +88,10 @@ You can also use any other single-character delimiter when loading CSV data. A c
 
 ```swift
 // Recognized the comma delimiter automatically:
-let csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19")
+let csv = CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19")
 csv.header         //=> ["id", "name", "age"]
-csv.namedRows      //=> [["id": "1", "name": "Alice", "age": "18"], ["id": "2", "name": "Bob", "age": "19"]]
-csv.namedColumns   //=> ["id": ["1", "2"], "name": ["Alice", "Bob"], "age": ["18", "19"]]
+csv.rows           //=> [["id": "1", "name": "Alice", "age": "18"], ["id": "2", "name": "Bob", "age": "19"]]
+csv.columns        //=> ["id": ["1", "2"], "name": ["Alice", "Bob"], "age": ["18", "19"]]
 ```
 
 The rows can also parsed and passed to a block on the fly, reducing the memory needed to store the whole lot in an array:
@@ -107,17 +109,24 @@ csv.enumerateAsDict { dict in
 
 ### Skip Named Column Access for Large Data Sets
 
-By default, the variants of `CSV.init` will populate its `namedColumns` and `enumeratedColumns` to provide access to the CSV data on a column-by-column basis. Think of this like a cross section:
+Use `CSV<Named>` aka `NamedCSV` to access the CSV data on a column-by-column basis with named columns. Think of this like a cross section:
 
 ```swift
-let csv = CSV(string: "id,name,age\n1,Alice,18\n2,Bob,19")
-csv.namedRows[0]["name"]  //=> "Alice"
-csv.namedColumns["name"]  //=> ["Alice", "Bob"]
+let csv = NamedCSV(string: "id,name,age\n1,Alice,18\n2,Bob,19")
+csv.rows[0]["name"]  //=> "Alice"
+csv.columns["name"]  //=> ["Alice", "Bob"]
 ```
 
-If you only want to access your data row-by-row, and not by-column, then you can set the `loadColumns` argument in any initializer to `false`. This will prevent the columnar data from being populated.
+If you only want to access your data row-by-row, and not by-column, then you can use `CSV<Enumerated>` or `EnumeratedCSV`. This will prevent the columnar data from being populated.
 
-Skipping this step can increase performance for lots of data.
+```swift
+let csv = EnumeratedCSV(string: "id,name,age\n1,Alice,18\n2,Bob,19")
+csv.rows[0][1]         //=> "Alice"
+csv.columns[0].header  //=> "name"
+csv.columns[0].rows    //=> ["Alice", "Bob"]
+```
+
+Skipping this step can increase performance when loading lots of data.
 
 
 ## Installation
@@ -137,5 +146,5 @@ github "swiftcsv/SwiftCSV"
 ### SwiftPM
 
 ```
-.package(url: "https://github.com/swiftcsv/SwiftCSV.git", from: "0.6.1")
+.package(url: "https://github.com/swiftcsv/SwiftCSV.git", from: "0.8.0")
 ```
