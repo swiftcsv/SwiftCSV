@@ -104,7 +104,7 @@ class NamedViewTests: XCTestCase {
 
     func testIgnoreColumns() throws {
         csv = try CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20", delimiter: ",", loadColumns: false)
-        XCTAssertEqual(csv.columns.isEmpty, true)
+        XCTAssertNil(csv.columns)
         let expected = [
             ["id": "1", "name": "Alice", "age": "18"],
             ["id": "2", "name": "Bob", "age": "19"],

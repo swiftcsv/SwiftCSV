@@ -97,7 +97,7 @@ csv.columns        //=> ["id": ["1", "2"], "name": ["Alice", "Bob"], "age": ["18
 The rows can also parsed and passed to a block on the fly, reducing the memory needed to store the whole lot in an array:
 
 ```swift
-// Access each row as an array (array not guaranteed to be equal length to the header)
+// Access each row as an array (inner array not guaranteed to always be equal length to the header)
 csv.enumerateAsArray { array in
     print(array.first)
 }
@@ -117,16 +117,22 @@ csv.rows[0]["name"]  //=> "Alice"
 csv.columns["name"]  //=> ["Alice", "Bob"]
 ```
 
-If you only want to access your data row-by-row, and not by-column, then you can use `CSV<Enumerated>` or `EnumeratedCSV`. This will prevent the columnar data from being populated.
+If you only want to access your data row-by-row, and not by-column, then you can use `CSV<Enumerated>` or `EnumeratedCSV`:
 
 ```swift
 let csv = EnumeratedCSV(string: "id,name,age\n1,Alice,18\n2,Bob,19")
-csv.rows[0][1]         //=> "Alice"
-csv.columns[0].header  //=> "name"
-csv.columns[0].rows    //=> ["Alice", "Bob"]
+csv.rows[0][1]          //=> "Alice"
+csv.columns?[0].header  //=> "name"
+csv.columns?[0].rows    //=> ["Alice", "Bob"]
 ```
 
-Skipping this step can increase performance when loading lots of data.
+To speed things up, skip populating by-column access completely by passing `loadColums: false`. This will prevent the columnar data from being populated. For large data sets, this saves a lot of iterations (at quadratic runtime).
+
+```swift
+let csv = EnumeratedCSV(string: "id,name,age\n1,Alice,18\n2,Bob,19", loadColumns: false)
+csv.rows[0][1]  //=> "Alice"
+csv.columns     //=> nil
+```
 
 
 ## Installation

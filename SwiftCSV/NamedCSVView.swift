@@ -9,27 +9,29 @@
 public struct Named: CSVView {
 
     public typealias Row = [String : String]
+    public typealias Columns = [String : [String]]
 
     public var rows: [Row]
-    public var columns: [String : [String]]
+    public var columns: Columns?
 
     public init(header: [String], text: String, delimiter: CSVDelimiter, loadColumns: Bool = false, rowLimit: Int? = nil) throws {
 
-        var rows = [[String: String]]()
-        var columns = [String: [String]]()
+        self.rows = try {
+            var rows: [Row] = []
+            try Parser.enumerateAsDict(header: header, content: text, delimiter: delimiter, rowLimit: rowLimit) { dict in
+                rows.append(dict)
+            }
+            return rows
+        }()
 
-        try Parser.enumerateAsDict(header: header, content: text, delimiter: delimiter, rowLimit: rowLimit) { dict in
-            rows.append(dict)
-        }
-
-        if loadColumns {
+        self.columns = {
+            guard loadColumns else { return nil }
+            var columns: Columns = [:]
             for field in header {
                 columns[field] = rows.map { $0[field] ?? "" }
             }
-        }
-
-        self.rows = rows
-        self.columns = columns
+            return columns
+        }()
     }
 
     public func serialize(header: [String], delimiter: CSVDelimiter) -> String {

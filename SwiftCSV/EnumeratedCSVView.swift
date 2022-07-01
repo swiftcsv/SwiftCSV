@@ -16,31 +16,31 @@ public struct Enumerated: CSVView {
     }
 
     public typealias Row = [String]
+    public typealias Columns = [Column]
 
     public private(set) var rows: [Row]
-    public private(set) var columns: [Column]
+    public private(set) var columns: Columns?
 
     public init(header: [String], text: String, delimiter: CSVDelimiter, loadColumns: Bool = false, rowLimit: Int? = nil) throws {
-        var rows = [[String]]()
-        var columns: [Enumerated.Column] = []
 
-        try Parser.enumerateAsArray(text: text, delimiter: delimiter, startAt: 1, rowLimit: rowLimit) { fields in
-            rows.append(fields)
-        }
+        self.rows = try {
+            var rows: [Row] = []
+            try Parser.enumerateAsArray(text: text, delimiter: delimiter, startAt: 1, rowLimit: rowLimit) { fields in
+                rows.append(fields)
+            }
 
-        // Fill in gaps at the end of rows that are too short.
-        rows = makingRectangular(rows: rows)
+            // Fill in gaps at the end of rows that are too short.
+            return makingRectangular(rows: rows)
+        }()
 
-        if loadColumns {
-            columns = header.enumerated().map { (index: Int, header: String) -> Enumerated.Column in
-                return Enumerated.Column(
+        self.columns = {
+            guard loadColumns else { return nil }
+            return header.enumerated().map { (index: Int, header: String) -> Column in
+                return Column(
                     header: header,
                     rows: rows.map { $0[safe: index] ?? "" })
             }
-        }
-
-        self.rows = rows
-        self.columns = columns
+        }()
     }
 
     public func serialize(header: [String], delimiter: CSVDelimiter) -> String {

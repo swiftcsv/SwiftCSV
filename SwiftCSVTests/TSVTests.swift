@@ -32,14 +32,16 @@ class TSVTests: XCTestCase {
         }
     }
     
-    func testInit_makesColumns() {
+    func testInit_makesColumns() throws {
         let expected = [
             "id": ["1", "2", "3"],
             "name": ["Alice", "Bob", "Charlie"],
             "age": ["18", "19", "20"]
         ]
-        XCTAssertEqual(Set(tsv.columns.keys), Set(expected.keys))
-        for (key, value) in tsv.columns {
+        XCTAssertEqual(
+            Set(try XCTUnwrap(tsv.columns).keys),
+            Set(expected.keys))
+        for (key, value) in try XCTUnwrap(tsv.columns) {
             XCTAssertEqual(expected[key] ?? [], value)
         }
     }

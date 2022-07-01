@@ -13,7 +13,9 @@ public protocol CSVView {
     associatedtype Columns
 
     var rows: [Row] { get }
-    var columns: Columns { get }
+
+    /// Is `nil` if `loadColumns` was set to `false`.
+    var columns: Columns? { get }
 
     init(header: [String], text: String, delimiter: CSVDelimiter, loadColumns: Bool, rowLimit: Int?) throws
 
@@ -58,7 +60,8 @@ open class CSV<DataView : CSVView>  {
         return content.rows
     }
 
-    public var columns: DataView.Columns {
+    /// Is `nil` if `loadColumns` was set to `false` during initialization.
+    public var columns: DataView.Columns? {
         return content.columns
     }
 
