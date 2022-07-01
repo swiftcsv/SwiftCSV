@@ -8,6 +8,23 @@ Bugfixes:
 Other:
 -->
 
+## 0.8.0
+
+API Changes:
+
+- Replace namedRows/namedColumns and enumeratedRows/enumeratedColumns with CSV<Named> and CSV<Enumerated> types
+  that both expose a rows/columns property with different types. This way you cannot screw up by trying to access
+  an unpopulated array because the CSV was loaded wrongly. The type knows it all. (#76) -- @DivineDominion
+    - CSV.namedRows/CSV.namedColumns and CSV.enumeratedRows/CSV.enumeratedColumns are removed.
+    - NamedCSV/EnumeratedCSV type aliases are introduced to simplify access.
+
+## 0.7.0
+
+API Changes:
+
+- Introduce delimiter guessing (#100) - @DivineDominion
+
+
 ## 0.6.1
 
 Bugfixes:
