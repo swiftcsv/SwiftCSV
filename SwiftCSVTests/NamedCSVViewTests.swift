@@ -115,7 +115,7 @@ class NamedViewTests: XCTestCase {
         }
     }
   
-    func testInit_ParseFileWithQuotesAndWhitespaces() throws {
+    func testInit_ParseCommaSeparatedFileWithQuotesAndWhitespaces() throws {
         let tab = "\t"
         let paragraphSeparator = "\u{2029}"
         let ideographicSpace = "\u{3000}"
@@ -124,8 +124,11 @@ class NamedViewTests: XCTestCase {
         "a" \(tab)  ,  \(paragraphSeparator)  "b"
         "A" \(ideographicSpace)  ,  \(tab)   "B"
         """
-        let csv = try CSV<Named>(string: failingCsv)
+        let csv = try CSV<Named>(string: failingCsv, delimiter: .comma)
         
         XCTAssertEqual(csv.rows, [["b": "B", "a": "A"]])
+
+        XCTAssertThrowsError(try CSV<Named>(string: failingCsv),
+                             "Delimiter guessing should fail here.")
     }
 }
