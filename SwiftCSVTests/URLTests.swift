@@ -11,7 +11,7 @@ import SwiftCSV
 
 class URLTests: XCTestCase {
     var csv: CSV<Named>!
-    
+
     func testEmptyFields() throws {
         let csvURL = ResourceHelper.url(forResource: "empty_fields", withExtension: "csv")!
         csv = try CSV<Named>(url: csvURL)
@@ -27,7 +27,7 @@ class URLTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
     func testQuotes() throws {
         let csvURL = ResourceHelper.url(forResource: "quotes", withExtension: "csv")!
         csv = try CSV<Named>(url: csvURL)
@@ -60,5 +60,43 @@ class URLTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
-    
+
+    func testUTF8() {
+        let csvURL = ResourceHelper.url(forResource: "utf8_with_bom", withExtension: "csv")!
+        csv = try! CSV(url: csvURL)
+
+        XCTAssertFalse(csv.header.first!.hasPrefix("\u{FEFF}"))
+
+        let expected = [
+            [
+                "Part Number": "12345",
+                "Description": "Heizölrückstoßabdämpfung",
+                "Unit Price": "€ 100,00",
+                "Qty": "2"
+            ]
+        ]
+        for (index, row) in csv.rows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
+    }
+
+    func testUTF8Delimited() {
+        let csvURL = ResourceHelper.url(forResource: "utf8_with_bom", withExtension: "csv")!
+        csv = try! CSV(url: csvURL, delimiter: .comma)
+
+        XCTAssertFalse(csv.header.first!.hasPrefix("\u{FEFF}"))
+
+        let expected = [
+            [
+                "Part Number": "12345",
+                "Description": "Heizölrückstoßabdämpfung",
+                "Unit Price": "€ 100,00",
+                "Qty": "2"
+            ]
+        ]
+        for (index, row) in csv.rows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
+    }
+
 }

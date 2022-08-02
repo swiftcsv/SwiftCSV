@@ -8,6 +8,8 @@
 
 import Foundation
 
+fileprivate let bom = "\u{FEFF}"
+
 public protocol CSVView {
     associatedtype Row
     associatedtype Columns
@@ -126,7 +128,10 @@ extension CSV {
     ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - Throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
     public convenience init(url: URL, delimiter: CSVDelimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        let contents = try String(contentsOf: url, encoding: encoding)
+        var contents = try String(contentsOf: url, encoding: encoding)
+        if contents.hasPrefix(bom) {
+            contents.removeFirst()
+        }
 
         try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
     }
@@ -139,7 +144,10 @@ extension CSV {
     ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - Throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
     public convenience init(url: URL, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        let contents = try String(contentsOf: url, encoding: encoding)
+        var contents = try String(contentsOf: url, encoding: encoding)
+        if contents.hasPrefix(bom) {
+            contents.removeFirst()
+        }
 
         try self.init(string: contents, loadColumns: loadColumns)
     }
