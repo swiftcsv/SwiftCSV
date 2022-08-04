@@ -8,6 +8,18 @@ Bugfixes:
 Other:
 -->
 
+## 0.8.1 (current)
+
+API Changes:
+
+Bugfixes:
+
+- Strip byte order mark from Strings when importing so they don't become part of imported content's cells. 
+  See #97 for discussion. (#103) -- @lardieri
+
+Other:
+
+
 ## 0.8.0
 
 API Changes:
