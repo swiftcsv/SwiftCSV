@@ -30,6 +30,15 @@ API Changes:
     - CSV.namedRows/CSV.namedColumns and CSV.enumeratedRows/CSV.enumeratedColumns are removed.
     - NamedCSV/EnumeratedCSV type aliases are introduced to simplify access.
 
+
+## 0.7.1
+
+Bugfixes:
+
+- Backport of fix from 0.8.1 to 0.7.x: Strip byte order mark from Strings when importing so they don't become part of imported content's cells. 
+  See #97 for discussion. (#104) -- @lardieri
+
+
 ## 0.7.0
 
 API Changes:
