@@ -76,6 +76,9 @@
 		BE6C86071CB5CE44009A351D /* QuotedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C86061CB5CE44009A351D /* QuotedTests.swift */; };
 		BE9B02D81CBE57B8009FE424 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B02D71CBE57B8009FE424 /* Parser.swift */; };
 		BEE5461E1CBBB15900C0666F /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5461D1CBBB15900C0666F /* Description.swift */; };
+		DF94FE462898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
+		DF94FE472898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
+		DF94FE482898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
 		E46085921CCB1E8F00385286 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
 		E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46085931CCB1F5C00385286 /* PerformanceTest.swift */; };
 		F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
@@ -143,6 +146,7 @@
 		BE6C86061CB5CE44009A351D /* QuotedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedTests.swift; sourceTree = "<group>"; };
 		BE9B02D71CBE57B8009FE424 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		BEE5461D1CBBB15900C0666F /* Description.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Description.swift; sourceTree = "<group>"; };
+		DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = utf8_with_bom.csv; sourceTree = "<group>"; };
 		E46085911CCB1E8F00385286 /* large.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = large.csv; sourceTree = "<group>"; };
 		E46085931CCB1F5C00385286 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		F5C19F4F2283243C00920B06 /* ResourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceHelper.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 		BE06B67E1CB72680009578CC /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */,
 				BE06B67C1CB7267B009578CC /* empty_fields.csv */,
 				BE06B6811CB7287F009578CC /* quotes.csv */,
 				E46085911CCB1E8F00385286 /* large.csv */,
@@ -516,6 +521,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF94FE462898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */,
 				BE06B67D1CB7267B009578CC /* empty_fields.csv in Resources */,
 				BE06B6821CB7287F009578CC /* quotes.csv in Resources */,
 				E46085921CCB1E8F00385286 /* large.csv in Resources */,
@@ -533,6 +539,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF94FE472898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */,
 				5FB74BEA1CCB9325009DDBF1 /* empty_fields.csv in Resources */,
 				5FB74BEB1CCB9325009DDBF1 /* quotes.csv in Resources */,
 				5FB74BEC1CCB9325009DDBF1 /* large.csv in Resources */,
@@ -550,6 +557,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF94FE482898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */,
 				5FB74BED1CCB932B009DDBF1 /* empty_fields.csv in Resources */,
 				5FB74BEE1CCB932B009DDBF1 /* quotes.csv in Resources */,
 				5FB74BEF1CCB932B009DDBF1 /* large.csv in Resources */,
@@ -828,7 +836,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.6.1;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -849,7 +857,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.6.1;
+				MARKETING_VERSION = 0.7.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -911,7 +919,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 0.6.1;
+				MARKETING_VERSION = 0.7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSX";
 				PRODUCT_NAME = SwiftCSV;
@@ -939,7 +947,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = 0.6.1;
+				MARKETING_VERSION = 0.7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-OSX";
 				PRODUCT_NAME = SwiftCSV;
@@ -1002,7 +1010,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.6.1;
+				MARKETING_VERSION = 0.7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOS";
 				PRODUCT_NAME = SwiftCSV;
@@ -1029,7 +1037,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.6.1;
+				MARKETING_VERSION = 0.7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-tvOS";
 				PRODUCT_NAME = SwiftCSV;
@@ -1093,7 +1101,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.6.1;
+				MARKETING_VERSION = 0.7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-watchOS";
 				PRODUCT_NAME = SwiftCSV;
@@ -1121,7 +1129,7 @@
 				INFOPLIST_FILE = "SwiftCSV.xcodeproj/SwiftCSV-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.6.1;
+				MARKETING_VERSION = 0.7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "naoty.SwiftCSV.SwiftCSV-watchOS";
 				PRODUCT_NAME = SwiftCSV;
