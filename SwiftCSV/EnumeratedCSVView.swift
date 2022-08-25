@@ -44,19 +44,9 @@ public struct Enumerated: CSVView {
     }
 
     public func serialize(header: [String], delimiter: CSVDelimiter) -> String {
-        let separator = String(delimiter.rawValue)
-
-        let head = header
-            .map(enquoteContentsIfNeeded(cell:))
-            .joined(separator: separator) + "\n"
-
-        let content = rows.map { row in
-            row.map(enquoteContentsIfNeeded(cell:))
-                .joined(separator: separator)
-        }.joined(separator: "\n")
-
-        return head + content
+        return Serializer.serialize(header: header, rows: rows, delimiter: delimiter)
     }
+
 }
 
 extension Collection {

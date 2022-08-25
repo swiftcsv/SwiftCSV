@@ -128,14 +128,6 @@ extension CSV: CustomStringConvertible {
     }
 }
 
-func enquoteContentsIfNeeded(cell: String) -> String {
-    // Add quotes if value contains a comma
-    if cell.contains(",") {
-        return "\"\(cell)\""
-    }
-    return cell
-}
-
 extension CSV {
     /// Load a CSV file from `url`.
     ///

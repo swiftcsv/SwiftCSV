@@ -84,4 +84,15 @@ class EnumeratedViewTests: XCTestCase {
         csv = try CSV<Enumerated>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
         XCTAssertEqual(csv.serialized, "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
     }
+
+    func testSerializationWithDifferentDelimiters() throws {
+        csv = try CSV<Enumerated>(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20")
+        XCTAssertEqual(csv.serialized, "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20")
+
+        csv = try CSV<Enumerated>(string: "id\t\"the\t name\"\tage\n1\t\"Alice\t In\t Wonderland\"\t18\n2\tBob\t19\n3\tCharlie\t20")
+        XCTAssertEqual(csv.serialized, "id\t\"the\t name\"\tage\n1\t\"Alice\t In\t Wonderland\"\t18\n2\tBob\t19\n3\tCharlie\t20")
+
+        csv = try CSV<Enumerated>(string: "id\tthe, name,age\n1\tAlice, In, Wonderland\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: .tab)
+        XCTAssertEqual(csv.serialized, "id\tthe, name,age\n1\tAlice, In, Wonderland\t18\n2\tBob\t19\n3\tCharlie\t20")
+    }
 }
