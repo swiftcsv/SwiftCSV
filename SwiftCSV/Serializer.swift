@@ -7,12 +7,14 @@ import Foundation
 
 enum Serializer {
 
+    static let newline = "\n"
+
     static func serialize(header: [String], rows: [[String]], delimiter: CSVDelimiter) -> String {
-        let head = serializeRow(row: header, delimiter: delimiter) + "\n"
+        let head = serializeRow(row: header, delimiter: delimiter) + newline
 
         let content = rows.map { row in
             serializeRow(row: row, delimiter: delimiter)
-        }.joined(separator: "\n")
+        }.joined(separator: newline)
 
         return head + content
     }
