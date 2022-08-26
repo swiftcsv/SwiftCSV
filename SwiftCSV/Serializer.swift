@@ -24,19 +24,23 @@ enum Serializer {
         let separator = String(delimiter.rawValue)
 
         let content = row.map { cell in
-            enquoteContents(of: cell, containing: separator)
+            cell.enquoted(whenContaining: separator)
         }.joined(separator: separator)
 
         return content
     }
 
+}
 
-    static func enquoteContents(of cell: String, containing separator: String) -> String {
+fileprivate extension String {
+
+    func enquoted(whenContaining separator: String) -> String {
         // Add quotes if value contains a delimiter
-        if cell.contains(separator) {
-            return "\"\(cell)\""
+        if self.contains(separator) {
+            return "\"\(self)\""
         }
-        return cell
+
+        return self
     }
 
 }
