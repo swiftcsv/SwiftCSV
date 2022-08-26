@@ -76,22 +76,23 @@ class EnumeratedViewTests: XCTestCase {
         XCTAssertEqual(csv.columns, expectedColumns)
     }
 
-    func testSerialization() {
+    func testSerialization() throws {
+        // Comma-separated values.
         XCTAssertEqual(csv.serialized, "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20")
-    }
 
-    func testSerializationWithDoubleQuotes() throws {
+        // Comma-separated values with double quotes and embedded delimiters in cells.
         csv = try CSV<Enumerated>(string: "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
         XCTAssertEqual(csv.serialized, "id,\"the, name\",age\n1,\"Alice, In, Wonderland\",18\n2,Bob,19\n3,Charlie,20")
-    }
 
-    func testSerializationWithDifferentDelimiters() throws {
+        // Tab-separated values with implicit delimiter (delimiter guessing).
         csv = try CSV<Enumerated>(string: "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20")
         XCTAssertEqual(csv.serialized, "id\tname\tage\n1\tAlice\t18\n2\tBob\t19\n3\tCharlie\t20")
 
+        // Tab-separated values with double quotes and embedded delimiters in cells.
         csv = try CSV<Enumerated>(string: "id\t\"the\t name\"\tage\n1\t\"Alice\t In\t Wonderland\"\t18\n2\tBob\t19\n3\tCharlie\t20")
         XCTAssertEqual(csv.serialized, "id\t\"the\t name\"\tage\n1\t\"Alice\t In\t Wonderland\"\t18\n2\tBob\t19\n3\tCharlie\t20")
 
+        // Tab-separated values with explicit alternate delimiter (tab) and embedded default delimiters (commas) in cells.
         csv = try CSV<Enumerated>(string: "id\tthe, name,age\n1\tAlice, In, Wonderland\t18\n2\tBob\t19\n3\tCharlie\t20", delimiter: .tab)
         XCTAssertEqual(csv.serialized, "id\tthe, name,age\n1\tAlice, In, Wonderland\t18\n2\tBob\t19\n3\tCharlie\t20")
     }
