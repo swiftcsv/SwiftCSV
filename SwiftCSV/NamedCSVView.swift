@@ -35,10 +35,11 @@ public struct Named: CSVView {
     }
 
     public func serialize(header: [String], delimiter: CSVDelimiter) -> String {
-        let mappedRows = rows.map { row in
+        let rowsOrderingCellsByHeader = rows.map { row in
             header.map { cellID in row[cellID]! }
         }
 
-        return Serializer.serialize(header: header, rows: mappedRows, delimiter: delimiter)
+        return Serializer.serialize(header: header, rows: rowsOrderingCellsByHeader, delimiter: delimiter)
     }
+
 }
