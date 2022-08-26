@@ -22,11 +22,10 @@ enum Serializer {
 
     static func serializeRow(row: [String], delimiter: CSVDelimiter) -> String {
         let separator = String(delimiter.rawValue)
-        let curry = { cell in enquoteContents(of: cell, containing: separator) }
 
-        let content = row
-            .map(curry)
-            .joined(separator: separator)
+        let content = row.map { cell in
+            enquoteContents(of: cell, containing: separator)
+        }.joined(separator: separator)
 
         return content
     }
