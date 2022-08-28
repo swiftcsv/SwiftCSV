@@ -82,6 +82,7 @@
 		DF94FE462898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
 		DF94FE472898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
 		DF94FE482898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
+		DFAD8B7B28B601EB0042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
 		E46085921CCB1E8F00385286 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
 		E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46085931CCB1F5C00385286 /* PerformanceTest.swift */; };
 		F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
@@ -153,6 +154,7 @@
 		BE6C86061CB5CE44009A351D /* QuotedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedTests.swift; sourceTree = "<group>"; };
 		BE9B02D71CBE57B8009FE424 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = utf8_with_bom.csv; sourceTree = "<group>"; };
+		DFAD8B7A28B601EB0042BB56 /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
 		E46085911CCB1E8F00385286 /* large.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = large.csv; sourceTree = "<group>"; };
 		E46085931CCB1F5C00385286 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		F5C19F4F2283243C00920B06 /* ResourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceHelper.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				3D444BCC1C7D88290001C60C /* String+Lines.swift */,
 				BE9B02D71CBE57B8009FE424 /* Parser.swift */,
 				508975D61DBF34CF006F3DBE /* ParsingState.swift */,
+				DFAD8B7A28B601EB0042BB56 /* Serializer.swift */,
 			);
 			path = SwiftCSV;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B3EEA4286F8A84007B3956 /* CSVDelimiter.swift in Sources */,
+				DFAD8B7B28B601EB0042BB56 /* Serializer.swift in Sources */,
 				508975D21DBB897A006F3DBE /* NamedCSVView.swift in Sources */,
 				508CA0FB2771F2E70084C8E8 /* CSV+DelimiterGuessing.swift in Sources */,
 				3DAAEE9C1C74C7EC00A933DB /* CSV.swift in Sources */,
