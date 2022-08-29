@@ -83,6 +83,9 @@
 		DF94FE472898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
 		DF94FE482898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
 		DFAD8B7B28B601EB0042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
+		DFAD8B8028BC8B6F0042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
+		DFAD8B8128BC8B700042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
+		DFAD8B8228BC8B710042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
 		E46085921CCB1E8F00385286 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
 		E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46085931CCB1F5C00385286 /* PerformanceTest.swift */; };
 		F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
@@ -625,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B3EEA5286F8AA3007B3956 /* CSVDelimiter.swift in Sources */,
+				DFAD8B8228BC8B710042BB56 /* Serializer.swift in Sources */,
 				508975D31DBB897A006F3DBE /* NamedCSVView.swift in Sources */,
 				508CA1002771F32C0084C8E8 /* CSV+DelimiterGuessing.swift in Sources */,
 				5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */,
@@ -658,6 +662,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B3EEA6286F8AA4007B3956 /* CSVDelimiter.swift in Sources */,
+				DFAD8B8128BC8B700042BB56 /* Serializer.swift in Sources */,
 				508975D41DBB897A006F3DBE /* NamedCSVView.swift in Sources */,
 				508CA1022771F32D0084C8E8 /* CSV+DelimiterGuessing.swift in Sources */,
 				5FB74BD61CCB92EB009DDBF1 /* CSV.swift in Sources */,
@@ -691,6 +696,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B3EEA7286F8AA5007B3956 /* CSVDelimiter.swift in Sources */,
+				DFAD8B8028BC8B6F0042BB56 /* Serializer.swift in Sources */,
 				508975D51DBB897A006F3DBE /* NamedCSVView.swift in Sources */,
 				508CA1032771F32E0084C8E8 /* CSV+DelimiterGuessing.swift in Sources */,
 				5FB74BDB1CCB92F1009DDBF1 /* CSV.swift in Sources */,
