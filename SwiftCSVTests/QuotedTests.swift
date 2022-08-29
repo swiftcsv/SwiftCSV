@@ -33,4 +33,34 @@ class QuotedTests: XCTestCase {
             "age": "8"
         ])
     }
+
+    func testEmbeddedQuotes() throws {
+        let csvURL = ResourceHelper.url(forResource: "wonderland", withExtension: "csv")!
+        csv = try CSV(url: csvURL)
+
+        /*
+         The test file:
+
+         Character,Quote
+         White Rabbit,"""Where shall I begin, please your Majesty?"" he asked."
+         King,"""Begin at the beginning,"" the King said gravely, ""and go on till you come to the end: then stop."""
+         March Hare,"""Do you mean that you think you can find out the answer to it?"" said the March Hare."
+
+         Notice there are no commas (delimiters) in the 3rd line.
+         */
+
+        let expected = [
+            [ "Character" : "White Rabbit" , "Quote" : #""Where shall I begin, please your Majesty?" he asked."# ],
+            [ "Character" : "King"         , "Quote" : #""Begin at the beginning," the King said gravely, "and go on till you come to the end: then stop.""# ],
+            [ "Character" : "March Hare"   , "Quote" : #""Do you mean that you think you can find out the answer to it?" said the March Hare."# ]
+        ]
+        
+        for (index, row) in csv.rows.enumerated() {
+            XCTAssertEqual(expected[index], row)
+        }
+
+        let serialized = csv.serialized
+        let read = try String(contentsOf: csvURL, encoding: .utf8)
+        XCTAssertEqual(serialized, read)
+    }
 }

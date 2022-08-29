@@ -86,6 +86,9 @@
 		DFAD8B8028BC8B6F0042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
 		DFAD8B8128BC8B700042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
 		DFAD8B8228BC8B710042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
+		DFAD8B8428BC91D10042BB56 /* wonderland.csv in Resources */ = {isa = PBXBuildFile; fileRef = DFAD8B8328BC91D10042BB56 /* wonderland.csv */; };
+		DFAD8B8528BC91D10042BB56 /* wonderland.csv in Resources */ = {isa = PBXBuildFile; fileRef = DFAD8B8328BC91D10042BB56 /* wonderland.csv */; };
+		DFAD8B8628BC91D10042BB56 /* wonderland.csv in Resources */ = {isa = PBXBuildFile; fileRef = DFAD8B8328BC91D10042BB56 /* wonderland.csv */; };
 		E46085921CCB1E8F00385286 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
 		E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46085931CCB1F5C00385286 /* PerformanceTest.swift */; };
 		F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
@@ -158,6 +161,7 @@
 		BE9B02D71CBE57B8009FE424 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = utf8_with_bom.csv; sourceTree = "<group>"; };
 		DFAD8B7A28B601EB0042BB56 /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
+		DFAD8B8328BC91D10042BB56 /* wonderland.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wonderland.csv; sourceTree = "<group>"; };
 		E46085911CCB1E8F00385286 /* large.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = large.csv; sourceTree = "<group>"; };
 		E46085931CCB1F5C00385286 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
 		F5C19F4F2283243C00920B06 /* ResourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceHelper.swift; sourceTree = "<group>"; };
@@ -286,10 +290,11 @@
 		BE06B67E1CB72680009578CC /* Res */ = {
 			isa = PBXGroup;
 			children = (
-				DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */,
 				BE06B67C1CB7267B009578CC /* empty_fields.csv */,
 				BE06B6811CB7287F009578CC /* quotes.csv */,
 				E46085911CCB1E8F00385286 /* large.csv */,
+				DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */,
+				DFAD8B8328BC91D10042BB56 /* wonderland.csv */,
 				F5C19F4F2283243C00920B06 /* ResourceHelper.swift */,
 			);
 			name = Res;
@@ -536,6 +541,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFAD8B8428BC91D10042BB56 /* wonderland.csv in Resources */,
 				DF94FE462898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */,
 				BE06B67D1CB7267B009578CC /* empty_fields.csv in Resources */,
 				BE06B6821CB7287F009578CC /* quotes.csv in Resources */,
@@ -554,6 +560,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFAD8B8528BC91D10042BB56 /* wonderland.csv in Resources */,
 				DF94FE472898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */,
 				5FB74BEA1CCB9325009DDBF1 /* empty_fields.csv in Resources */,
 				5FB74BEB1CCB9325009DDBF1 /* quotes.csv in Resources */,
@@ -572,6 +579,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFAD8B8628BC91D10042BB56 /* wonderland.csv in Resources */,
 				DF94FE482898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */,
 				5FB74BED1CCB932B009DDBF1 /* empty_fields.csv in Resources */,
 				5FB74BEE1CCB932B009DDBF1 /* quotes.csv in Resources */,

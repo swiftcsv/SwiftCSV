@@ -61,9 +61,9 @@ class URLTests: XCTestCase {
         }
     }
 
-    func testUTF8() {
+    func testUTF8() throws {
         let csvURL = ResourceHelper.url(forResource: "utf8_with_bom", withExtension: "csv")!
-        csv = try! CSV(url: csvURL)
+        csv = try CSV(url: csvURL)
 
         XCTAssertFalse(csv.header.first!.hasPrefix("\u{FEFF}"))
 
@@ -80,9 +80,9 @@ class URLTests: XCTestCase {
         }
     }
 
-    func testUTF8Delimited() {
+    func testUTF8Delimited() throws {
         let csvURL = ResourceHelper.url(forResource: "utf8_with_bom", withExtension: "csv")!
-        csv = try! CSV(url: csvURL, delimiter: .comma)
+        csv = try CSV(url: csvURL, delimiter: .comma)
 
         XCTAssertFalse(csv.header.first!.hasPrefix("\u{FEFF}"))
 
