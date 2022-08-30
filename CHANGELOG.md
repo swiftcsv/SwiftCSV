@@ -10,8 +10,6 @@ Other:
 
 ## 0.8.1 (current)
 
-API Changes:
-
 Bugfixes:
 
 - Strip byte order mark from Strings when importing so they don't become part of imported content's cells. 
@@ -20,8 +18,6 @@ Bugfixes:
   See #102 for discussion. (#107) -- @lardieri
 - Escape any double-quotes embedded inside the field values when serializing the CSV.
   See #111 for discussion. -- @lardieri
-
-Other:
 
 
 ## 0.8.0
