@@ -34,13 +34,16 @@ enum Serializer {
 
 fileprivate extension String {
 
-    func enquoted(whenContaining separator: String) -> String {
-        // Add quotes if value contains a delimiter
-        if self.contains(separator) {
-            return "\"\(self)\""
-        }
+    static let quote = "\""
 
-        return self
+    func enquoted(whenContaining separator: String) -> String {
+        // If value contains a delimiter or quotes, double any embedded quotes and surround with quotes.
+        // For more information, see https://www.rfc-editor.org/rfc/rfc4180.html
+        if self.contains(separator) || self.contains(Self.quote) {
+            return Self.quote + self.replacingOccurrences(of: Self.quote, with: Self.quote + Self.quote) + Self.quote
+        } else {
+            return self
+        }
     }
 
 }
