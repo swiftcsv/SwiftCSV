@@ -125,7 +125,7 @@ csv.columns?[0].header  //=> "name"
 csv.columns?[0].rows    //=> ["Alice", "Bob"]
 ```
 
-To speed things up, skip populating by-column access completely by passing `loadColums: false`. This will prevent the columnar data from being populated. For large data sets, this saves a lot of iterations (at quadratic runtime).
+To speed things up, skip populating by-column access completely by passing `loadColumns: false`. This will prevent the columnar data from being populated. For large data sets, this saves a lot of iterations (at quadratic runtime).
 
 ```swift
 let csv = EnumeratedCSV(string: "id,name,age\n1,Alice,18\n2,Bob,19", loadColumns: false)
