@@ -98,5 +98,26 @@ class URLTests: XCTestCase {
             XCTAssertEqual(expected[index], row)
         }
     }
+    
+    func testBOMInHeadersWhenInitialisingFromString() throws {
+        var csv: CSV<Named>?
+        let csvString: String = """
+Part Number,Description,Unit Price,Qty
+12345,Heizölrückstoßabdämpfung,"€ 100,00",2"
+"""
+        let csvStringWithBOM = "\u{FEFF}" + csvString
 
+        //	Make a CSV object
+        do {
+            //	Create from string
+            csv = try CSV<Named>(string: csvStringWithBOM)
+        } catch {
+            XCTFail("Could not convert string literal to CSV instance")
+        }
+        
+        //	Check that headers match
+        let correctMatchingHeader = ["Part Number", "Description", "Unit Price", "Qty"]
+        XCTAssertEqual(csv!.header, correctMatchingHeader)
+    }
+    
 }
