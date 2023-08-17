@@ -94,10 +94,15 @@ open class CSV<DataView : CSVView>  {
     ///   - rowLimit: Amount of rows to parse (default is `nil`).
     /// - Throws: `CSVParseError` when parsing `string` fails.
     public init(string: String, delimiter: CSVDelimiter, loadColumns: Bool = true, rowLimit: Int? = nil) throws {
-        self.text = string
+		if string.hasPrefix(byteOrderMark) {
+			let trimmedString = string.dropFirst()
+			self.text = String(trimmedString)
+		} else {
+			self.text = string
+		}
         self.delimiter = delimiter
-        self.header = try Parser.array(text: string, delimiter: delimiter, rowLimit: 1).first ?? []
-        self.content = try DataView(header: header, text: text, delimiter: delimiter, loadColumns: loadColumns, rowLimit: rowLimit)
+		self.header = try Parser.array(text: self.text, delimiter: delimiter, rowLimit: 1).first ?? []
+		self.content = try DataView(header: header, text: self.text, delimiter: delimiter, loadColumns: loadColumns, rowLimit: rowLimit)
     }
 
     /// Load CSV data from a string and guess its delimiter from `CSV.recognizedDelimiters`, falling back to `.comma`.
@@ -138,11 +143,7 @@ extension CSV {
     ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - Throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
     public convenience init(url: URL, delimiter: CSVDelimiter, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        var contents = try String(contentsOf: url, encoding: encoding)
-        if contents.hasPrefix(byteOrderMark) {
-            contents.removeFirst()
-        }
-
+        let contents = try String(contentsOf: url, encoding: encoding)
         try self.init(string: contents, delimiter: delimiter, loadColumns: loadColumns)
     }
 
@@ -154,11 +155,7 @@ extension CSV {
     ///   - loadColumns: Whether to populate the columns dictionary (default is `true`)
     /// - Throws: `CSVParseError` when parsing the contents of `url` fails, or file loading errors.
     public convenience init(url: URL, encoding: String.Encoding = .utf8, loadColumns: Bool = true) throws {
-        var contents = try String(contentsOf: url, encoding: encoding)
-        if contents.hasPrefix(byteOrderMark) {
-            contents.removeFirst()
-        }
-
+        let contents = try String(contentsOf: url, encoding: encoding)
         try self.init(string: contents, loadColumns: loadColumns)
     }
 }
