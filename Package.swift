@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -21,7 +21,10 @@ let package = Package(
         .testTarget(
             name: "SwiftCSVTests",
             dependencies: ["SwiftCSV"],
-            path: "SwiftCSVTests"),
+            path: "SwiftCSVTests",
+            resources: [
+                .copy("TestData")
+            ]),
     ],
     swiftLanguageVersions: [.v5, .v4_2]
 )

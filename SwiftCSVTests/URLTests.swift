@@ -13,7 +13,10 @@ class URLTests: XCTestCase {
     var csv: CSV<Named>!
 
     func testEmptyFields() throws {
-        let csvURL = ResourceHelper.url(forResource: "empty_fields", withExtension: "csv")!
+        guard let csvURL = Bundle.module.url(forResource: "TestData/empty_fields", withExtension: "csv") else {
+            XCTAssertNotNil(nil, "Could not get URL for empty_fields.csv from Test Bundle")
+            return
+        }
         csv = try CSV<Named>(url: csvURL)
         let expected = [
             ["id": "1", "name": "John", "age": "23"],
@@ -29,7 +32,11 @@ class URLTests: XCTestCase {
     }
 
     func testQuotes() throws {
-        let csvURL = ResourceHelper.url(forResource: "quotes", withExtension: "csv")!
+        guard let csvURL = Bundle.module.url(forResource: "TestData/quotes", withExtension: "csv") else {
+            XCTAssertNotNil(nil, "Could not get URL for quotes.csv from Test Bundle")
+            return
+        }
+        
         csv = try CSV<Named>(url: csvURL)
         let expected = [
             ["id": "4", "name, first": "Alex", "name, last": "Smith"],
@@ -62,7 +69,11 @@ class URLTests: XCTestCase {
     }
 
     func testUTF8() throws {
-        let csvURL = ResourceHelper.url(forResource: "utf8_with_bom", withExtension: "csv")!
+        guard let csvURL = Bundle.module.url(forResource: "TestData/utf8_with_bom", withExtension: "csv") else {
+            XCTAssertNotNil(nil, "Could not get URL for utf8_with_bom.csv from Test Bundle")
+            return
+        }
+        
         csv = try CSV(url: csvURL)
 
         XCTAssertFalse(csv.header.first!.hasPrefix("\u{FEFF}"))
@@ -81,7 +92,11 @@ class URLTests: XCTestCase {
     }
 
     func testUTF8Delimited() throws {
-        let csvURL = ResourceHelper.url(forResource: "utf8_with_bom", withExtension: "csv")!
+        guard let csvURL = Bundle.module.url(forResource: "TestData/utf8_with_bom", withExtension: "csv") else {
+            XCTAssertNotNil(nil, "Could not get URL for utf8_with_bom.csv from Test Bundle")
+            return
+        }
+        
         csv = try CSV(url: csvURL, delimiter: .comma)
 
         XCTAssertFalse(csv.header.first!.hasPrefix("\u{FEFF}"))
