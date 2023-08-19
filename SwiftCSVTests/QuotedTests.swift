@@ -35,7 +35,10 @@ class QuotedTests: XCTestCase {
     }
 
     func testEmbeddedQuotes() throws {
-        let csvURL = ResourceHelper.url(forResource: "wonderland", withExtension: "csv")!
+        guard let csvURL = Bundle.module.url(forResource: "TestData/wonderland", withExtension: "csv") else {
+            XCTAssertNotNil(nil, "Could not get URL for Wonderland.csv from Test Bundle")
+            return
+        }
         csv = try CSV(url: csvURL)
 
         /*
