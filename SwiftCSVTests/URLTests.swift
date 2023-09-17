@@ -13,7 +13,12 @@ class URLTests: XCTestCase {
     var csv: CSV<Named>!
 
     func testEmptyFields() throws {
-        let csvURL = ResourceHelper.url(forResource: "empty_fields", withExtension: "csv")!
+        let testFilePath = "TestData/empty_fields"
+        let testFileExtension = "csv"
+        guard let csvURL = ResourceHelper.url(forResource: testFilePath, withExtension: testFileExtension) else {
+            XCTAssertNotNil(nil, "Could not get URL for \(testFilePath).\(testFileExtension) from Test Bundle")
+            return
+        }
         csv = try CSV<Named>(url: csvURL)
         let expected = [
             ["id": "1", "name": "John", "age": "23"],
@@ -29,7 +34,12 @@ class URLTests: XCTestCase {
     }
 
     func testQuotes() throws {
-        let csvURL = ResourceHelper.url(forResource: "quotes", withExtension: "csv")!
+        let testFilePath = "TestData/quotes"
+        let testFileExtension = "csv"
+        guard let csvURL = ResourceHelper.url(forResource: testFilePath, withExtension: testFileExtension) else {
+            XCTAssertNotNil(nil, "Could not get URL for \(testFilePath).\(testFileExtension) from Test Bundle")
+            return
+        }
         csv = try CSV<Named>(url: csvURL)
         let expected = [
             ["id": "4", "name, first": "Alex", "name, last": "Smith"],
@@ -62,7 +72,12 @@ class URLTests: XCTestCase {
     }
 
     func testUTF8() throws {
-        let csvURL = ResourceHelper.url(forResource: "utf8_with_bom", withExtension: "csv")!
+        let testFilePath = "TestData/utf8_with_bom"
+        let testFileExtension = "csv"
+        guard let csvURL = ResourceHelper.url(forResource: testFilePath, withExtension: testFileExtension) else {
+            XCTAssertNotNil(nil, "Could not get URL for \(testFilePath).\(testFileExtension) from Test Bundle")
+            return
+        }
         csv = try CSV(url: csvURL)
 
         XCTAssertFalse(csv.header.first!.hasPrefix("\u{FEFF}"))
@@ -81,7 +96,12 @@ class URLTests: XCTestCase {
     }
 
     func testUTF8Delimited() throws {
-        let csvURL = ResourceHelper.url(forResource: "utf8_with_bom", withExtension: "csv")!
+        let testFilePath = "TestData/utf8_with_bom"
+        let testFileExtension = "csv"
+        guard let csvURL = ResourceHelper.url(forResource: testFilePath, withExtension: testFileExtension) else {
+            XCTAssertNotNil(nil, "Could not get URL for \(testFilePath).\(testFileExtension) from Test Bundle")
+            return
+        }
         csv = try CSV(url: csvURL, delimiter: .comma)
 
         XCTAssertFalse(csv.header.first!.hasPrefix("\u{FEFF}"))

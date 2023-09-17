@@ -13,7 +13,13 @@ class PerformanceTest: XCTestCase {
     var csv: CSV<Named>!
 
     override func setUpWithError() throws {
-        let csvURL = ResourceHelper.url(forResource: "large", withExtension: "csv")!
+        let testFilePath = "TestData/large"
+        let testFileExtension = "csv"
+        guard let csvURL = ResourceHelper.url(forResource: testFilePath, withExtension: testFileExtension) else {
+            XCTAssertNotNil(nil, "Could not get URL for \(testFilePath).\(testFileExtension) from Test Bundle")
+            return
+        }
+        
         csv = try CSV<Named>(url: csvURL)
     }
 
