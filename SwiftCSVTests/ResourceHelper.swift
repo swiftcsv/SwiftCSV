@@ -1,28 +1,26 @@
 import Foundation
 
 // Find url of resource.
-// This is a workaround for SwiftPM, becasue SwiftPM is not yet support for include resources with targets.(https://bugs.swift.org/browse/SR-2866)
+// This is a workaround for Xcode, when testing from the Xcode project (not the SPM package) bundle.module is not available...
+
 struct ResourceHelper {
     static func url(forResource name: String, withExtension type: String) -> URL? {
         
-
-        return Bundle.module.url(forResource: name, withExtension: type)
-        
-        
 #if SWIFT_PACKAGE
-        let bundle = Bundle.module
+        return Bundle.module.url(forResource: name, withExtension: type)
 #else
-        let bundle = Bundle.main
-//                let bundle = Bundle(for: NamedViewTests.self)
-#endif
+        //	Xcode project
+        let bundle = Bundle(for: NamedViewTests.self)
         
-        
-        if let url = bundle.url(forResource: name, withExtension: type) {
-            return url
-        } else if let realBundle = Bundle(path: "\(bundle.bundlePath)/../../../../SwiftCSVTests") {
-            return realBundle.url(forResource: name, withExtension: type)
-        } else {
-            return nil
+        //	In Xcode, folders are stripped from the resources folder.
+        var finalName = name
+        var slashCharSet = CharacterSet()
+        slashCharSet.insert("/")
+        let parts = name.components(separatedBy: slashCharSet)
+        if parts.count > 1 {
+            finalName = parts.last!
         }
+        return bundle.url(forResource: finalName, withExtension: type)
+#endif
     }
 }

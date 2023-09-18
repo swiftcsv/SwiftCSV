@@ -68,32 +68,35 @@
 		5FB74BE71CCB931F009DDBF1 /* TSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3749E2194D6DF7008F262A /* TSVTests.swift */; };
 		5FB74BE81CCB931F009DDBF1 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06B67F1CB726B5009578CC /* URLTests.swift */; };
 		5FB74BE91CCB931F009DDBF1 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46085931CCB1F5C00385286 /* PerformanceTest.swift */; };
-		5FB74BEA1CCB9325009DDBF1 /* empty_fields.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE06B67C1CB7267B009578CC /* empty_fields.csv */; };
-		5FB74BEB1CCB9325009DDBF1 /* quotes.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE06B6811CB7287F009578CC /* quotes.csv */; };
-		5FB74BEC1CCB9325009DDBF1 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
-		5FB74BED1CCB932B009DDBF1 /* empty_fields.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE06B67C1CB7267B009578CC /* empty_fields.csv */; };
-		5FB74BEE1CCB932B009DDBF1 /* quotes.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE06B6811CB7287F009578CC /* quotes.csv */; };
-		5FB74BEF1CCB932B009DDBF1 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
-		BE06B67D1CB7267B009578CC /* empty_fields.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE06B67C1CB7267B009578CC /* empty_fields.csv */; };
 		BE06B6801CB726B5009578CC /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06B67F1CB726B5009578CC /* URLTests.swift */; };
-		BE06B6821CB7287F009578CC /* quotes.csv in Resources */ = {isa = PBXBuildFile; fileRef = BE06B6811CB7287F009578CC /* quotes.csv */; };
 		BE6C86071CB5CE44009A351D /* QuotedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C86061CB5CE44009A351D /* QuotedTests.swift */; };
 		BE9B02D81CBE57B8009FE424 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B02D71CBE57B8009FE424 /* Parser.swift */; };
-		DF94FE462898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
-		DF94FE472898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
-		DF94FE482898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */; };
+		DDF4064F2AB83CDE00A2B058 /* wonderland.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF406472AB83CDE00A2B058 /* wonderland.csv */; };
+		DDF406502AB83CDE00A2B058 /* wonderland.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF406472AB83CDE00A2B058 /* wonderland.csv */; };
+		DDF406512AB83CDE00A2B058 /* wonderland.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF406472AB83CDE00A2B058 /* wonderland.csv */; };
+		DDF406522AB83CDE00A2B058 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF406482AB83CDE00A2B058 /* large.csv */; };
+		DDF406532AB83CDE00A2B058 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF406482AB83CDE00A2B058 /* large.csv */; };
+		DDF406542AB83CDE00A2B058 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF406482AB83CDE00A2B058 /* large.csv */; };
+		DDF406552AB83CDE00A2B058 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF406492AB83CDE00A2B058 /* utf8_with_bom.csv */; };
+		DDF406562AB83CDE00A2B058 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF406492AB83CDE00A2B058 /* utf8_with_bom.csv */; };
+		DDF406572AB83CDE00A2B058 /* utf8_with_bom.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF406492AB83CDE00A2B058 /* utf8_with_bom.csv */; };
+		DDF406582AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064B2AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist */; };
+		DDF406592AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064B2AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist */; };
+		DDF4065A2AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064B2AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist */; };
+		DDF4065B2AB83CDE00A2B058 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064C2AB83CDE00A2B058 /* Info.plist */; };
+		DDF4065C2AB83CDE00A2B058 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064C2AB83CDE00A2B058 /* Info.plist */; };
+		DDF4065D2AB83CDE00A2B058 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064C2AB83CDE00A2B058 /* Info.plist */; };
+		DDF4065E2AB83CDE00A2B058 /* quotes.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064D2AB83CDE00A2B058 /* quotes.csv */; };
+		DDF4065F2AB83CDE00A2B058 /* quotes.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064D2AB83CDE00A2B058 /* quotes.csv */; };
+		DDF406602AB83CDE00A2B058 /* quotes.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064D2AB83CDE00A2B058 /* quotes.csv */; };
+		DDF406612AB83CDE00A2B058 /* empty_fields.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064E2AB83CDE00A2B058 /* empty_fields.csv */; };
+		DDF406622AB83CDE00A2B058 /* empty_fields.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064E2AB83CDE00A2B058 /* empty_fields.csv */; };
+		DDF406632AB83CDE00A2B058 /* empty_fields.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDF4064E2AB83CDE00A2B058 /* empty_fields.csv */; };
 		DFAD8B7B28B601EB0042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
 		DFAD8B8028BC8B6F0042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
 		DFAD8B8128BC8B700042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
 		DFAD8B8228BC8B710042BB56 /* Serializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAD8B7A28B601EB0042BB56 /* Serializer.swift */; };
-		DFAD8B8428BC91D10042BB56 /* wonderland.csv in Resources */ = {isa = PBXBuildFile; fileRef = DFAD8B8328BC91D10042BB56 /* wonderland.csv */; };
-		DFAD8B8528BC91D10042BB56 /* wonderland.csv in Resources */ = {isa = PBXBuildFile; fileRef = DFAD8B8328BC91D10042BB56 /* wonderland.csv */; };
-		DFAD8B8628BC91D10042BB56 /* wonderland.csv in Resources */ = {isa = PBXBuildFile; fileRef = DFAD8B8328BC91D10042BB56 /* wonderland.csv */; };
-		E46085921CCB1E8F00385286 /* large.csv in Resources */ = {isa = PBXBuildFile; fileRef = E46085911CCB1E8F00385286 /* large.csv */; };
 		E46085941CCB1F5C00385286 /* PerformanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46085931CCB1F5C00385286 /* PerformanceTest.swift */; };
-		F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
-		F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
-		F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C19F4F2283243C00920B06 /* ResourceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,17 +157,18 @@
 		5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74BB61CCB929D009DDBF1 /* SwiftCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB74BC91CCB92BA009DDBF1 /* SwiftCSV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCSV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE06B67C1CB7267B009578CC /* empty_fields.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty_fields.csv; sourceTree = "<group>"; };
 		BE06B67F1CB726B5009578CC /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
-		BE06B6811CB7287F009578CC /* quotes.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = quotes.csv; sourceTree = "<group>"; };
 		BE6C86061CB5CE44009A351D /* QuotedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotedTests.swift; sourceTree = "<group>"; };
 		BE9B02D71CBE57B8009FE424 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = utf8_with_bom.csv; sourceTree = "<group>"; };
+		DDF406472AB83CDE00A2B058 /* wonderland.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wonderland.csv; sourceTree = "<group>"; };
+		DDF406482AB83CDE00A2B058 /* large.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = large.csv; sourceTree = "<group>"; };
+		DDF406492AB83CDE00A2B058 /* utf8_with_bom.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = utf8_with_bom.csv; sourceTree = "<group>"; };
+		DDF4064B2AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "210222BF-FF70-4818-9C2E-20B20A9F7F48.plist"; sourceTree = "<group>"; };
+		DDF4064C2AB83CDE00A2B058 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDF4064D2AB83CDE00A2B058 /* quotes.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = quotes.csv; sourceTree = "<group>"; };
+		DDF4064E2AB83CDE00A2B058 /* empty_fields.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty_fields.csv; sourceTree = "<group>"; };
 		DFAD8B7A28B601EB0042BB56 /* Serializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializer.swift; sourceTree = "<group>"; };
-		DFAD8B8328BC91D10042BB56 /* wonderland.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wonderland.csv; sourceTree = "<group>"; };
-		E46085911CCB1E8F00385286 /* large.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = large.csv; sourceTree = "<group>"; };
 		E46085931CCB1F5C00385286 /* PerformanceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTest.swift; sourceTree = "<group>"; };
-		F5C19F4F2283243C00920B06 /* ResourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,7 +276,7 @@
 		3D1E59C31945FFAD001CF760 /* SwiftCSVTests */ = {
 			isa = PBXGroup;
 			children = (
-				BE06B67E1CB72680009578CC /* Res */,
+				DDF406462AB83CDE00A2B058 /* Resources */,
 				3D1E59C61945FFAD001CF760 /* NamedCSVViewTests.swift */,
 				508975E01DBF3E51006F3DBE /* EnumeratedCSVViewTests.swift */,
 				50A2B23324894DC900B168A9 /* NewlineTests.swift */,
@@ -287,17 +291,27 @@
 			path = SwiftCSVTests;
 			sourceTree = "<group>";
 		};
-		BE06B67E1CB72680009578CC /* Res */ = {
+		DDF406462AB83CDE00A2B058 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BE06B67C1CB7267B009578CC /* empty_fields.csv */,
-				BE06B6811CB7287F009578CC /* quotes.csv */,
-				E46085911CCB1E8F00385286 /* large.csv */,
-				DF94FE452898F3A3008FD3F9 /* utf8_with_bom.csv */,
-				DFAD8B8328BC91D10042BB56 /* wonderland.csv */,
-				F5C19F4F2283243C00920B06 /* ResourceHelper.swift */,
+				DDF406472AB83CDE00A2B058 /* wonderland.csv */,
+				DDF406482AB83CDE00A2B058 /* large.csv */,
+				DDF406492AB83CDE00A2B058 /* utf8_with_bom.csv */,
+				DDF4064A2AB83CDE00A2B058 /* xcbaselines */,
+				DDF4064D2AB83CDE00A2B058 /* quotes.csv */,
+				DDF4064E2AB83CDE00A2B058 /* empty_fields.csv */,
 			);
-			name = Res;
+			name = Resources;
+			path = "../../../../Library/Developer/Xcode/DerivedData/SwiftCSV-enezzqhxjfnqqmdwuqokvkbmrvhl/Build/Products/Debug-maccatalyst/SwiftCSVTests.xctest/Contents/Resources";
+			sourceTree = "<group>";
+		};
+		DDF4064A2AB83CDE00A2B058 /* xcbaselines */ = {
+			isa = PBXGroup;
+			children = (
+				DDF4064B2AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist */,
+				DDF4064C2AB83CDE00A2B058 /* Info.plist */,
+			);
+			path = xcbaselines;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -541,11 +555,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFAD8B8428BC91D10042BB56 /* wonderland.csv in Resources */,
-				DF94FE462898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */,
-				BE06B67D1CB7267B009578CC /* empty_fields.csv in Resources */,
-				BE06B6821CB7287F009578CC /* quotes.csv in Resources */,
-				E46085921CCB1E8F00385286 /* large.csv in Resources */,
+				DDF406522AB83CDE00A2B058 /* large.csv in Resources */,
+				DDF406552AB83CDE00A2B058 /* utf8_with_bom.csv in Resources */,
+				DDF406612AB83CDE00A2B058 /* empty_fields.csv in Resources */,
+				DDF4064F2AB83CDE00A2B058 /* wonderland.csv in Resources */,
+				DDF4065E2AB83CDE00A2B058 /* quotes.csv in Resources */,
+				DDF4065B2AB83CDE00A2B058 /* Info.plist in Resources */,
+				DDF406582AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,11 +576,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFAD8B8528BC91D10042BB56 /* wonderland.csv in Resources */,
-				DF94FE472898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */,
-				5FB74BEA1CCB9325009DDBF1 /* empty_fields.csv in Resources */,
-				5FB74BEB1CCB9325009DDBF1 /* quotes.csv in Resources */,
-				5FB74BEC1CCB9325009DDBF1 /* large.csv in Resources */,
+				DDF406532AB83CDE00A2B058 /* large.csv in Resources */,
+				DDF406562AB83CDE00A2B058 /* utf8_with_bom.csv in Resources */,
+				DDF406622AB83CDE00A2B058 /* empty_fields.csv in Resources */,
+				DDF406502AB83CDE00A2B058 /* wonderland.csv in Resources */,
+				DDF4065F2AB83CDE00A2B058 /* quotes.csv in Resources */,
+				DDF4065C2AB83CDE00A2B058 /* Info.plist in Resources */,
+				DDF406592AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,11 +597,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFAD8B8628BC91D10042BB56 /* wonderland.csv in Resources */,
-				DF94FE482898F3A3008FD3F9 /* utf8_with_bom.csv in Resources */,
-				5FB74BED1CCB932B009DDBF1 /* empty_fields.csv in Resources */,
-				5FB74BEE1CCB932B009DDBF1 /* quotes.csv in Resources */,
-				5FB74BEF1CCB932B009DDBF1 /* large.csv in Resources */,
+				DDF406542AB83CDE00A2B058 /* large.csv in Resources */,
+				DDF406572AB83CDE00A2B058 /* utf8_with_bom.csv in Resources */,
+				DDF406632AB83CDE00A2B058 /* empty_fields.csv in Resources */,
+				DDF406512AB83CDE00A2B058 /* wonderland.csv in Resources */,
+				DDF406602AB83CDE00A2B058 /* quotes.csv in Resources */,
+				DDF4065D2AB83CDE00A2B058 /* Info.plist in Resources */,
+				DDF4065A2AB83CDE00A2B058 /* 210222BF-FF70-4818-9C2E-20B20A9F7F48.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,7 +641,6 @@
 				3D1E59C71945FFAD001CF760 /* NamedCSVViewTests.swift in Sources */,
 				50A2B23424894DC900B168A9 /* NewlineTests.swift in Sources */,
 				508CA0FD2771F3260084C8E8 /* CSVDelimiterGuessingTests.swift in Sources */,
-				F5C19F502283243C00920B06 /* ResourceHelper.swift in Sources */,
 				508975E11DBF3E51006F3DBE /* EnumeratedCSVViewTests.swift in Sources */,
 				508CA1052772039E0084C8E8 /* CSVDelimiterTests.swift in Sources */,
 				5015AD8A274BA20A0050F975 /* ParserTests.swift in Sources */,
@@ -655,7 +674,6 @@
 				5FB74BE11CCB9312009DDBF1 /* QuotedTests.swift in Sources */,
 				50A2B23524894DC900B168A9 /* NewlineTests.swift in Sources */,
 				508CA0FE2771F3260084C8E8 /* CSVDelimiterGuessingTests.swift in Sources */,
-				F5C19F512283C0C100920B06 /* ResourceHelper.swift in Sources */,
 				508975E21DBF3E51006F3DBE /* EnumeratedCSVViewTests.swift in Sources */,
 				508CA1062772039E0084C8E8 /* CSVDelimiterTests.swift in Sources */,
 				5015AD8B274BA20A0050F975 /* ParserTests.swift in Sources */,
@@ -689,7 +707,6 @@
 				5FB74BE61CCB931F009DDBF1 /* QuotedTests.swift in Sources */,
 				50A2B23624894DC900B168A9 /* NewlineTests.swift in Sources */,
 				508CA0FF2771F3260084C8E8 /* CSVDelimiterGuessingTests.swift in Sources */,
-				F5C19F522283C0C300920B06 /* ResourceHelper.swift in Sources */,
 				508975E31DBF3E51006F3DBE /* EnumeratedCSVViewTests.swift in Sources */,
 				508CA1072772039E0084C8E8 /* CSVDelimiterTests.swift in Sources */,
 				5015AD8C274BA20A0050F975 /* ParserTests.swift in Sources */,
