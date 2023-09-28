@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftCSV",
     platforms: [
-        .macOS("10.10"), .iOS("9.0"), .tvOS("9.2"), .watchOS("2.2")
+        .macOS("10.13"), .iOS("11.0"), .tvOS("11.0"), .watchOS("4.0")
     ],
     products: [
         .library(
