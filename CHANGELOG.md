@@ -8,7 +8,13 @@ Bugfixes:
 Other:
 -->
 
-## 0.8.1 (current)
+## Upcoming
+
+Bugfixes:
+
+- Strip byte order mark from all input strings, not just when loading files (#128) -- @Diggory
+
+## 0.8.1
 
 Bugfixes:
 
