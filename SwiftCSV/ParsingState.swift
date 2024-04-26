@@ -6,11 +6,21 @@
 //  Copyright © 2016 Naoto Kaneko. All rights reserved.
 //
 
-public enum CSVParseError: Error {
+public enum CSVParseError: Error, Equatable {
     case generic(message: String)
     case quotation(message: String)
+    
+    public static func == (lhs: CSVParseError, rhs: CSVParseError) -> Bool {
+        switch (lhs, rhs) {
+        case (.generic(let message1), .generic(let message2)):
+            return message1 == message2
+        case (.quotation(let message1), .quotation(let message2)):
+            return message1 == message2
+        default:
+            return false
+        }
+    }
 }
-
 /// State machine of parsing CSV contents character by character.
 struct ParsingState {
 
