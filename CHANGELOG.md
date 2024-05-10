@@ -9,6 +9,11 @@ Other:
 -->
 
 ## Upcoming
+
+Other:
+
+- Add Privacy Manifest files.
+
 ## 0.9.1
 
 Other:

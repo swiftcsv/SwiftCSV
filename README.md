@@ -153,3 +153,7 @@ github "swiftcsv/SwiftCSV"
 ```
 .package(url: "https://github.com/swiftcsv/SwiftCSV.git", from: "0.8.0")
 ```
+
+## Privacy Manifest
+
+The package ships with an empty Privacy Manifest because it doesn't access or track any sensitive data.   
