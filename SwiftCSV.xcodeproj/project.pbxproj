@@ -50,6 +50,10 @@
 		50B3EEA5286F8AA3007B3956 /* CSVDelimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B3EEA3286F8A84007B3956 /* CSVDelimiter.swift */; };
 		50B3EEA6286F8AA4007B3956 /* CSVDelimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B3EEA3286F8A84007B3956 /* CSVDelimiter.swift */; };
 		50B3EEA7286F8AA5007B3956 /* CSVDelimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B3EEA3286F8A84007B3956 /* CSVDelimiter.swift */; };
+		50B575DA2BEE1E2E006C9262 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 50B575D92BEE1E2E006C9262 /* PrivacyInfo.xcprivacy */; };
+		50B575DB2BEE1E2E006C9262 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 50B575D92BEE1E2E006C9262 /* PrivacyInfo.xcprivacy */; };
+		50B575DC2BEE1E2E006C9262 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 50B575D92BEE1E2E006C9262 /* PrivacyInfo.xcprivacy */; };
+		50B575DD2BEE1E2E006C9262 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 50B575D92BEE1E2E006C9262 /* PrivacyInfo.xcprivacy */; };
 		5FB74B9B1CCB9274009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74B911CCB9274009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BB71CCB929D009DDBF1 /* SwiftCSV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB74BAD1CCB929D009DDBF1 /* SwiftCSV.framework */; };
 		5FB74BD11CCB92E5009DDBF1 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAAEE9B1C74C7EC00A933DB /* CSV.swift */; };
@@ -147,6 +151,7 @@
 		508CA1042772039E0084C8E8 /* CSVDelimiterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDelimiterTests.swift; sourceTree = "<group>"; };
 		50A2B23324894DC900B168A9 /* NewlineTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewlineTests.swift; sourceTree = "<group>"; };
 		50B3EEA3286F8A84007B3956 /* CSVDelimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVDelimiter.swift; sourceTree = "<group>"; };
+		50B575D92BEE1E2E006C9262 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		50F241A4274BB8DB00520A69 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		50F241A5274BBDF000520A69 /* SwiftCSV.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftCSV.podspec; sourceTree = "<group>"; };
 		50F241A6274BBDF000520A69 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -265,6 +270,7 @@
 				BE9B02D71CBE57B8009FE424 /* Parser.swift */,
 				508975D61DBF34CF006F3DBE /* ParsingState.swift */,
 				DFAD8B7A28B601EB0042BB56 /* Serializer.swift */,
+				50B575D82BEE1E2E006C9262 /* Resources */,
 			);
 			path = SwiftCSV;
 			sourceTree = "<group>";
@@ -286,6 +292,14 @@
 				5015AD89274BA20A0050F975 /* ParserTests.swift */,
 			);
 			path = SwiftCSVTests;
+			sourceTree = "<group>";
+		};
+		50B575D82BEE1E2E006C9262 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50B575D92BEE1E2E006C9262 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		DDF406462AB83CDE00A2B058 /* Resources */ = {
@@ -534,6 +548,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B575DA2BEE1E2E006C9262 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +568,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B575DB2BEE1E2E006C9262 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +588,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B575DC2BEE1E2E006C9262 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +608,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B575DD2BEE1E2E006C9262 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
