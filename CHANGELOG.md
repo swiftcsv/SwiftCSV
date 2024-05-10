@@ -9,6 +9,19 @@ Other:
 -->
 
 ## Upcoming
+## 0.9.1
+
+Other:
+
+- Fix project settings.
+
+## 0.9.0
+
+Other:
+
+- Fix local testing.
+
+## 0.8.2
 
 Bugfixes:
 
