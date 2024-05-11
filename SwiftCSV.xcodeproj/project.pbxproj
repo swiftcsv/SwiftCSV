@@ -142,6 +142,7 @@
 		502CDAF32AC60ADA00766701 /* ResourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceHelper.swift; sourceTree = "<group>"; };
 		5034F4712272E0DC001C02D1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5034F4722272E0E4001C02D1 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		504F73F02BEF52AA00FF4102 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = Configuration/Project.xcconfig; sourceTree = "<group>"; };
 		508975D11DBB897A006F3DBE /* NamedCSVView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedCSVView.swift; sourceTree = "<group>"; };
 		508975D61DBF34CF006F3DBE /* ParsingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingState.swift; sourceTree = "<group>"; };
 		508975DB1DBF3B70006F3DBE /* EnumeratedCSVView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumeratedCSVView.swift; sourceTree = "<group>"; };
@@ -236,6 +237,7 @@
 				50F241A4274BB8DB00520A69 /* CHANGELOG.md */,
 				50F241A6274BBDF000520A69 /* Package.swift */,
 				50F241A5274BBDF000520A69 /* SwiftCSV.podspec */,
+				504F73F02BEF52AA00FF4102 /* Project.xcconfig */,
 				3D1E59B61945FFAC001CF760 /* SwiftCSV */,
 				3D1E59C31945FFAD001CF760 /* SwiftCSVTests */,
 				3D1E59B51945FFAC001CF760 /* Products */,
@@ -761,6 +763,7 @@
 /* Begin XCBuildConfiguration section */
 		3D1E59C81945FFAD001CF760 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 504F73F02BEF52AA00FF4102 /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -821,6 +824,7 @@
 		};
 		3D1E59C91945FFAD001CF760 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 504F73F02BEF52AA00FF4102 /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1263,7 +1267,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1301,7 +1304,6 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				MTL_ENABLE_DEBUG_INFO = NO;

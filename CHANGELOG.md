@@ -8,7 +8,7 @@ Bugfixes:
 Other:
 -->
 
-## Upcoming
+## 0.10.0
 
 Other:
 
