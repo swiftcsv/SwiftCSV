@@ -17,5 +17,6 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = "4.0"
 
   s.source_files = "SwiftCSV/**/*.swift"
+  s.resource_bundles = {'SwiftCSV' => ['SwiftCSV/Resources/*.xcprivacy']}
   s.requires_arc = true
 end
