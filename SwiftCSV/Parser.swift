@@ -130,7 +130,7 @@ enum Parser {
         // Check for duplicate column names
         let duplicateColumns = header.duplicates()
         if !duplicateColumns.isEmpty {
-            throw CSVParseError.generic(message: "Duplicate column names found: \(duplicateColumns.joined(separator: ", "))")
+            throw CSVParseError.duplicateColumns(columnNames: duplicateColumns)
         }
 
         // Start after the header

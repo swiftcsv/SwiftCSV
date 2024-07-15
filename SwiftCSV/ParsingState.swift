@@ -6,9 +6,11 @@
 //  Copyright © 2016 Naoto Kaneko. All rights reserved.
 //
 
-public enum CSVParseError: Error, Equatable {
+public enum CSVParseError: Error {
     case generic(message: String)
     case quotation(message: String)
+    case duplicateColumns(columnNames: [String])
+    
     
     public static func == (lhs: CSVParseError, rhs: CSVParseError) -> Bool {
         switch (lhs, rhs) {
@@ -16,6 +18,8 @@ public enum CSVParseError: Error, Equatable {
             return message1 == message2
         case (.quotation(let message1), .quotation(let message2)):
             return message1 == message2
+        case (.duplicateColumns(let columns1), .duplicateColumns(let columns2)):
+            return columns1 == columns2
         default:
             return false
         }

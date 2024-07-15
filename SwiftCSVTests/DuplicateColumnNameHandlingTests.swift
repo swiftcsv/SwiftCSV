@@ -19,7 +19,12 @@ class DuplicateColumnNameHandlingTests: XCTestCase {
         """
         
         XCTAssertThrowsError(try CSV<Named>(string: csvString)) { error in
-            XCTAssertEqual(error as? CSVParseError, CSVParseError.generic(message: "Duplicate column names found: name"))
+            switch error as? CSVParseError {
+            case .duplicateColumns(let columnNames):
+                XCTAssertEqual(["name"], columnNames)
+            default:
+                XCTFail("Expected CSVParseError.duplicateColumns")
+            }
         }
     }
     
