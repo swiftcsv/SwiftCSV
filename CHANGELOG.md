@@ -18,7 +18,7 @@ Bugfixes:
 
 Bugfixes:
 
-- Throw an error when encountering duplicate column names in CSV headers (#136)
+- Throw an error when encountering duplicate column names in CSV headers (#136) -- @TomorrowMC
 
 ## 0.8.1
 
