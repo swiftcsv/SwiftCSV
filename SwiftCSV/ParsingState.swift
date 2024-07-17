@@ -12,18 +12,6 @@ public enum CSVParseError: Error {
     case duplicateColumns(columnNames: [String])
     
     
-    public static func == (lhs: CSVParseError, rhs: CSVParseError) -> Bool {
-        switch (lhs, rhs) {
-        case (.generic(let message1), .generic(let message2)):
-            return message1 == message2
-        case (.quotation(let message1), .quotation(let message2)):
-            return message1 == message2
-        case (.duplicateColumns(let columns1), .duplicateColumns(let columns2)):
-            return columns1 == columns2
-        default:
-            return false
-        }
-    }
 }
 /// State machine of parsing CSV contents character by character.
 struct ParsingState {
