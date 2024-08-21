@@ -26,7 +26,7 @@ extension CSV {
         try Parser.enumerateAsArray(text: self.text, delimiter: self.delimiter, startAt: startAt, rowLimit: rowLimit, rowCallback: rowCallback)
     }
 
-    public func enumerateAsDict(_ block: @escaping ([String : String]) -> ()) throws {
+    public func enumerateAsDict(_ block: @escaping ([String : String]) throws -> ()) throws {
 
         try Parser.enumerateAsDict(header: self.header, content: self.text, delimiter: self.delimiter, block: block)
     }
@@ -60,7 +60,7 @@ enum Parser {
                                  delimiter: CSVDelimiter,
                                  startAt offset: Int = 0,
                                  rowLimit: Int? = nil,
-                                 rowCallback: @escaping ([String]) -> ()) throws {
+                                 rowCallback: @escaping ([String]) throws -> ()) throws {
         let maxRowIndex = rowLimit.flatMap { $0 < 0 ? nil : offset + $0 }
 
         var currentIndex = text.startIndex
@@ -72,7 +72,7 @@ enum Parser {
 
         var rowIndex = 0
 
-        func finishRow() {
+        func finishRow() throws {
             defer {
                 rowIndex += 1
                 fields = []
@@ -81,7 +81,11 @@ enum Parser {
 
             guard rowIndex >= offset else { return }
             fields.append(String(field))
-            rowCallback(fields)
+            do {
+                try rowCallback(fields)
+            } catch {
+                throw CSVParseError.generic(message: "Error thrown by block for row \(rowIndex)")
+            }
         }
 
         var state: ParsingState = ParsingState(
@@ -118,12 +122,16 @@ enum Parser {
             }
 
             if !fields.isEmpty {
-                rowCallback(fields)
+                do {
+                    try rowCallback(fields)
+                } catch {
+                    throw CSVParseError.generic(message: "Error thrown by block for row \(rowIndex)")
+                }
             }
         }
     }
 
-    static func enumerateAsDict(header: [String], content: String, delimiter: CSVDelimiter, rowLimit: Int? = nil, block: @escaping ([String : String]) -> ()) throws {
+    static func enumerateAsDict(header: [String], content: String, delimiter: CSVDelimiter, rowLimit: Int? = nil, block: @escaping ([String : String]) throws -> ()) throws {
 
         let enumeratedHeader = header.enumerated()
 
@@ -133,7 +141,7 @@ enum Parser {
             for (index, head) in enumeratedHeader {
                 dict[head] = index < fields.count ? fields[index] : ""
             }
-            block(dict)
+            try block(dict)
         }
     }
 }

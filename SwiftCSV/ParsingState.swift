@@ -20,12 +20,12 @@ struct ParsingState {
     private(set) var innerQuotes = false
 
     let delimiter: Character
-    let finishRow: () -> Void
+    let finishRow: () throws -> Void
     let appendChar: (Character) -> Void
     let finishField: () -> Void
 
     init(delimiter: Character,
-         finishRow: @escaping () -> Void,
+         finishRow: @escaping () throws -> Void,
          appendChar: @escaping (Character) -> Void,
          finishField: @escaping () -> Void) {
 
@@ -44,7 +44,7 @@ struct ParsingState {
             } else if char == delimiter {
                 finishField()
             } else if char.isNewline {
-                finishRow()
+                try finishRow()
             } else if char.isWhitespace {
               // ignore whitespaces between fields
             } else {
@@ -72,7 +72,7 @@ struct ParsingState {
                     atStart = true
                     parsingField = false
                     innerQuotes = false
-                    finishRow()
+                    try finishRow()
                 } else {
                     appendChar(char)
                 }
@@ -91,7 +91,7 @@ struct ParsingState {
                     atStart = true
                     parsingQuotes = false
                     innerQuotes = false
-                    finishRow()
+                    try finishRow()
                 } else if char.isWhitespace {
                   // ignore whitespaces between fields
                 } else {
