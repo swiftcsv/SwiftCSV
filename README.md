@@ -93,7 +93,7 @@ csv.rows           //=> [["id": "1", "name": "Alice", "age": "18"], ["id": "2", 
 csv.columns        //=> ["id": ["1", "2"], "name": ["Alice", "Bob"], "age": ["18", "19"]]
 ```
 
-The rows can also parsed and passed to a block on the fly, reducing the memory needed to store the whole lot in an array:
+The rows can also be parsed and passed to a block on the fly, reducing the memory needed to store the whole lot in an array:
 
 ```swift
 // Access each row as an array (inner array not guaranteed to always be equal length to the header)
