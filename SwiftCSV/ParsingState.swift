@@ -9,8 +9,10 @@
 public enum CSVParseError: Error {
     case generic(message: String)
     case quotation(message: String)
+    case duplicateColumns(columnNames: [String])
+    
+    
 }
-
 /// State machine of parsing CSV contents character by character.
 struct ParsingState {
 
