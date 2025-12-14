@@ -21,13 +21,13 @@ struct ParsingState {
 
     let delimiter: Character
     let finishRow: () throws -> Void
-    let appendChar: (Character) -> Void
-    let finishField: () -> Void
+    let appendChar: (Character) throws -> Void
+    let finishField: () throws -> Void
 
     init(delimiter: Character,
          finishRow: @escaping () throws -> Void,
-         appendChar: @escaping (Character) -> Void,
-         finishField: @escaping () -> Void) {
+         appendChar: @escaping (Character) throws -> Void,
+         finishField: @escaping () throws -> Void) {
 
         self.delimiter = delimiter
         self.finishRow = finishRow
@@ -42,7 +42,7 @@ struct ParsingState {
                 atStart = false
                 parsingQuotes = true
             } else if char == delimiter {
-                finishField()
+                try finishField()
             } else if char.isNewline {
                 try finishRow()
             } else if char.isWhitespace {
@@ -50,12 +50,12 @@ struct ParsingState {
             } else {
                 parsingField = true
                 atStart = false
-                appendChar(char)
+                try appendChar(char)
             }
         } else if parsingField {
             if innerQuotes {
                 if char == "\"" {
-                    appendChar(char)
+                    try appendChar(char)
                     innerQuotes = false
                 } else {
                     throw CSVParseError.quotation(message: "Can't have non-quote here: \(char)")
@@ -67,26 +67,26 @@ struct ParsingState {
                     atStart = true
                     parsingField = false
                     innerQuotes = false
-                    finishField()
+                    try finishField()
                 } else if char.isNewline {
                     atStart = true
                     parsingField = false
                     innerQuotes = false
                     try finishRow()
                 } else {
-                    appendChar(char)
+                    try appendChar(char)
                 }
             }
         } else if parsingQuotes {
             if innerQuotes {
                 if char == "\"" {
-                    appendChar(char)
+                    try appendChar(char)
                     innerQuotes = false
                 } else if char == delimiter {
                     atStart = true
                     parsingField = false
                     innerQuotes = false
-                    finishField()
+                    try finishField()
                 } else if char.isNewline {
                     atStart = true
                     parsingQuotes = false
@@ -101,7 +101,7 @@ struct ParsingState {
                 if char == "\"" {
                     innerQuotes = true
                 } else {
-                    appendChar(char)
+                    try appendChar(char)
                 }
             }
         } else {
