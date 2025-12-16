@@ -128,6 +128,12 @@ enum Parser {
     static func enumerateAsDict(header: [String], content: String, delimiter: CSVDelimiter, rowLimit: Int? = nil, block: @escaping ([String : String]) throws -> ()) throws {
 
         let enumeratedHeader = header.enumerated()
+        
+        // Check for duplicate column names
+        let duplicateColumns = header.duplicates()
+        if !duplicateColumns.isEmpty {
+            throw CSVParseError.duplicateColumns(columnNames: duplicateColumns)
+        }
 
         // Start after the header
         try enumerateAsArray(text: content, delimiter: delimiter, startAt: 1, rowLimit: rowLimit) { fields in
