@@ -8,6 +8,12 @@ Bugfixes:
 Other:
 -->
 
+## Unreleased
+
+API Changes:
+
+- Allow `enumerateAsArray` and `enumerateAsDict` to accept a function that throws.
+
 ## 0.10.0
 
 Other:
