@@ -37,9 +37,9 @@ fileprivate extension String {
     static let quote = "\""
 
     func enquoted(whenContaining separator: String) -> String {
-        // If value contains a delimiter or quotes, double any embedded quotes and surround with quotes.
+        // Quote fields containing delimiters, quotes or line breaks, and double embedded quotes.
         // For more information, see https://www.rfc-editor.org/rfc/rfc4180.html
-        if self.contains(separator) || self.contains(Self.quote) {
+        if self.contains(separator) || self.contains(Self.quote) || self.contains(where: { $0.isNewline }) {
             return Self.quote + self.replacingOccurrences(of: Self.quote, with: Self.quote + Self.quote) + Self.quote
         } else {
             return self
