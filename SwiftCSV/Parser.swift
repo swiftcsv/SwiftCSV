@@ -114,12 +114,9 @@ enum Parser {
         }
 
         // Append remainder of the cache, unless we're past the limit already.
-        if !limitReached(rowIndex) {
-            if !field.isEmpty {
+        if !limitReached(rowIndex), rowIndex >= offset {
+            if !field.isEmpty || !fields.isEmpty || !state.atStart {
                 fields.append(field)
-            }
-
-            if !fields.isEmpty {
                 try rowCallback(fields)
             }
         }
