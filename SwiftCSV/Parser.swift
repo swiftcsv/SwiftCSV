@@ -28,6 +28,8 @@ extension CSV {
         try Parser.enumerateAsArray(text: self.text, delimiter: self.delimiter, startAt: startAt, rowLimit: rowLimit, rowCallback: rowCallback)
     }
 
+    /// Enumerate each row as a dictionary keyed by its header names.
+    /// - Throws: `CSVParseError.duplicateHeader` if headers repeat, or an error thrown by `block`.
     public func enumerateAsDict(_ block: @escaping ([String : String]) throws -> ()) throws {
 
         try Parser.enumerateAsDict(header: self.header, content: self.text, delimiter: self.delimiter, block: block)
@@ -125,7 +127,14 @@ enum Parser {
         }
     }
 
+    /// Parse rows as dictionaries. Duplicate header names are rejected because a dictionary cannot
+    /// preserve both columns.
     static func enumerateAsDict(header: [String], content: String, delimiter: CSVDelimiter, rowLimit: Int? = nil, block: @escaping ([String : String]) throws -> ()) throws {
+
+        var seenHeaders = Set<String>()
+        for name in header where !seenHeaders.insert(name).inserted {
+            throw CSVParseError.duplicateHeader(name: name)
+        }
 
         let enumeratedHeader = header.enumerated()
 

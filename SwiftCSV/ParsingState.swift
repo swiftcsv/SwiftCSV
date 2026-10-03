@@ -9,6 +9,8 @@
 public enum CSVParseError: Error {
     case generic(message: String)
     case quotation(message: String)
+    /// A duplicate header cannot be represented without losing a column in dictionary-based access.
+    case duplicateHeader(name: String)
 }
 
 /// State machine of parsing CSV contents character by character.
