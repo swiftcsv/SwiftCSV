@@ -76,6 +76,16 @@ open class CSV<DataView : CSVView>  {
     /// Underlying data representation of the CSV contents.
     public let content: DataView
 
+    let firstDataRow: Int
+
+    init(text: String, header: [String], delimiter: CSVDelimiter, content: DataView) {
+        self.text = text
+        self.header = header
+        self.delimiter = delimiter
+        self.content = content
+        self.firstDataRow = 0
+    }
+
     public var rows: [DataView.Row] {
         return content.rows
     }
@@ -101,6 +111,7 @@ open class CSV<DataView : CSVView>  {
             self.text = string
         }
         self.delimiter = delimiter
+        self.firstDataRow = 1
         self.header = try Parser.array(text: self.text, delimiter: delimiter, rowLimit: 1).first ?? []
         self.content = try DataView(header: header, text: self.text, delimiter: delimiter, loadColumns: loadColumns, rowLimit: rowLimit)
     }
@@ -130,6 +141,43 @@ open class CSV<DataView : CSVView>  {
 extension CSV: CustomStringConvertible {
     public var description: String {
         return self.serialized
+    }
+}
+
+extension CSV where DataView == Named {
+    /// Load headerless CSV contents using caller-supplied column names.
+    ///
+    /// - Parameters:
+    ///   - string: CSV data, including the first data row.
+    ///   - header: Column names. Every parsed field must have a corresponding name.
+    ///   - delimiter: Cell separator; guessed from the input when omitted.
+    ///   - loadColumns: Whether to populate columns.
+    ///   - rowLimit: Maximum number of data rows to parse.
+    /// - Throws: `CSVParseError` for invalid CSV or insufficient column names.
+    public convenience init(string: String, header: [String], delimiter: CSVDelimiter? = nil,
+                            loadColumns: Bool = true, rowLimit: Int? = nil) throws {
+        let text = string.hasPrefix(byteOrderMark) ? String(string.dropFirst()) : string
+        let delimiter = delimiter ?? CSVDelimiter.guessed(string: text)
+        let content = try Named(header: header, text: text, delimiter: delimiter,
+                                loadColumns: loadColumns, rowLimit: rowLimit, startAt: 0)
+        self.init(text: text, header: header, delimiter: delimiter, content: content)
+    }
+
+    /// Load a headerless CSV file with caller-supplied column names.
+    ///
+    /// - Parameters:
+    ///   - url: File to read.
+    ///   - header: Column names corresponding to the fields in each row.
+    ///   - delimiter: Cell separator; guessed when omitted.
+    ///   - encoding: File encoding.
+    ///   - loadColumns: Whether to populate columns.
+    ///   - rowLimit: Maximum number of data rows to parse.
+    /// - Throws: File-loading errors or `CSVParseError`.
+    public convenience init(url: URL, header: [String], delimiter: CSVDelimiter? = nil,
+                            encoding: String.Encoding = .utf8, loadColumns: Bool = true,
+                            rowLimit: Int? = nil) throws {
+        try self.init(string: String(contentsOf: url, encoding: encoding), header: header,
+                      delimiter: delimiter, loadColumns: loadColumns, rowLimit: rowLimit)
     }
 }
 

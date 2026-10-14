@@ -30,7 +30,8 @@ extension CSV {
 
     public func enumerateAsDict(_ block: @escaping ([String : String]) throws -> ()) throws {
 
-        try Parser.enumerateAsDict(header: self.header, content: self.text, delimiter: self.delimiter, block: block)
+        try Parser.enumerateAsDict(header: self.header, content: self.text, delimiter: self.delimiter,
+                                   startAt: firstDataRow, block: block)
     }
 }
 
@@ -125,12 +126,16 @@ enum Parser {
         }
     }
 
-    static func enumerateAsDict(header: [String], content: String, delimiter: CSVDelimiter, rowLimit: Int? = nil, block: @escaping ([String : String]) throws -> ()) throws {
+    static func enumerateAsDict(header: [String], content: String, delimiter: CSVDelimiter,
+                                rowLimit: Int? = nil, startAt: Int = 1,
+                                block: @escaping ([String: String]) throws -> Void) throws {
 
         let enumeratedHeader = header.enumerated()
 
-        // Start after the header
-        try enumerateAsArray(text: content, delimiter: delimiter, startAt: 1, rowLimit: rowLimit) { fields in
+        try enumerateAsArray(text: content, delimiter: delimiter, startAt: startAt, rowLimit: rowLimit) { fields in
+            if startAt == 0 && fields.count > header.count {
+                throw CSVParseError.generic(message: "Not enough column names for \(fields.count) fields")
+            }
             var dict = [String: String]()
             for (index, head) in enumeratedHeader {
                 dict[head] = index < fields.count ? fields[index] : ""

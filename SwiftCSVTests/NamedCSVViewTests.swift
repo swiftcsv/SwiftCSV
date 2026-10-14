@@ -10,6 +10,40 @@ import XCTest
 @testable import SwiftCSV
 
 class NamedViewTests: XCTestCase {
+    func testSuppliedHeadersRetainFirstRow() throws {
+        let csv = try NamedCSV(string: "1,Alice\n2,Bob", header: ["id", "name"])
+        XCTAssertEqual(csv.rows, [["id": "1", "name": "Alice"], ["id": "2", "name": "Bob"]])
+        XCTAssertEqual(csv.columns, ["id": ["1", "2"], "name": ["Alice", "Bob"]])
+        XCTAssertEqual(csv.text, "1,Alice\n2,Bob")
+        var enumerated: [[String: String]] = []
+        try csv.enumerateAsDict { enumerated.append($0) }
+        XCTAssertEqual(enumerated, csv.rows)
+        let roundTrip = try NamedCSV(string: csv.serialized)
+        XCTAssertEqual(roundTrip.rows, csv.rows)
+    }
+
+    func testSuppliedHeadersWithBOMQuotesAndCustomDelimiter() throws {
+        let csv = try NamedCSV(string: "\u{FEFF}1;\"Alice; A\"\n2;Bob", header: ["id", "name"],
+                               delimiter: .semicolon, loadColumns: false, rowLimit: 1)
+        XCTAssertEqual(csv.rows, [["id": "1", "name": "Alice; A"]])
+        XCTAssertNil(csv.columns)
+        XCTAssertFalse(csv.text.hasPrefix("\u{FEFF}"))
+    }
+
+    func testSuppliedHeadersValidateEachRow() throws {
+        XCTAssertThrowsError(try NamedCSV(string: "1\n2,Bob", header: ["id"]))
+        let csv = try NamedCSV(string: "1,Alice\n2", header: ["id", "name", "age"])
+        XCTAssertEqual(csv.rows, [
+            ["id": "1", "name": "Alice", "age": ""],
+            ["id": "2", "name": "", "age": ""]
+        ])
+    }
+
+    func testSuppliedHeadersWithEmptyInputAndZeroLimit() throws {
+        XCTAssertEqual(try NamedCSV(string: "", header: ["id"]).rows, [])
+        XCTAssertEqual(try NamedCSV(string: "1\n2", header: ["id"], rowLimit: 0).rows, [])
+    }
+
     let string = "id,name,age\n1,Alice,18\n2,Bob,19\n3,Charlie,20"
     var csv: CSV<Named>!
 

@@ -15,10 +15,17 @@ public struct Named: CSVView {
     public var columns: Columns?
 
     public init(header: [String], text: String, delimiter: CSVDelimiter, loadColumns: Bool = false, rowLimit: Int? = nil) throws {
+        try self.init(header: header, text: text, delimiter: delimiter,
+                      loadColumns: loadColumns, rowLimit: rowLimit, startAt: 1)
+    }
+
+    init(header: [String], text: String, delimiter: CSVDelimiter, loadColumns: Bool,
+         rowLimit: Int?, startAt: Int) throws {
 
         self.rows = try {
             var rows: [Row] = []
-            try Parser.enumerateAsDict(header: header, content: text, delimiter: delimiter, rowLimit: rowLimit) { dict in
+            try Parser.enumerateAsDict(header: header, content: text, delimiter: delimiter,
+                                       rowLimit: rowLimit, startAt: startAt) { dict in
                 rows.append(dict)
             }
             return rows

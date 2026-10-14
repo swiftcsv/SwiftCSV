@@ -85,6 +85,18 @@ You can also use any other single-character delimiter when loading CSV data. A c
 
 ### Reading Data
 
+For files without a header row, supply the column names to `NamedCSV`:
+
+```swift
+let csv = try NamedCSV(string: "1,Alice\n2,Bob", header: ["id", "name"])
+// Both input rows are data; csv.rows[0]["name"] is "Alice".
+```
+
+The `url:header:` initializer also accepts headerless files. Delimiters are guessed
+unless supplied explicitly. Rows with fewer fields are padded with empty strings;
+rows with more fields than supplied names throw `CSVParseError`. `rowLimit` counts
+data rows, and serialization includes the supplied header row.
+
 ```swift
 // Recognized the comma delimiter automatically:
 let csv = CSV<Named>(string: "id,name,age\n1,Alice,18\n2,Bob,19")

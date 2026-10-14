@@ -10,6 +10,14 @@ import XCTest
 import SwiftCSV
 
 class URLTests: XCTestCase {
+    func testSuppliedHeadersFromURL() throws {
+        let url = try XCTUnwrap(
+            ResourceHelper.url(forResource: "TestData/empty_fields", withExtension: "csv")
+        )
+        let csv = try NamedCSV(url: url, header: ["first", "second", "third"], rowLimit: 1)
+        XCTAssertEqual(csv.rows, [["first": "id", "second": "name", "third": "age"]])
+    }
+
     var csv: CSV<Named>!
 
     func testEmptyFields() throws {
